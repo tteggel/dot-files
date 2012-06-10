@@ -21,3 +21,6 @@ ln -s $SCRIPTPATH/.xmonad $HOME/.xmonad
 
 rm -f $HOME/.xsession
 ln -s $SCRIPTPATH/.xsession $HOME/.xsession
+
+rm -f $HOME/.bash_aliases
+ln -s $SCRIPTPATH/.bash_aliases $HOME/.bash_aliases
