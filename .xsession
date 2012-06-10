@@ -58,5 +58,8 @@ autocutsel -selection PRIMARY -fork
 echo Starting pulseaudio...
 start-pulseaudio-x11
 
+echo Starting emacs daemon
+emacs --daemon
+
 echo Starting xmonad...
 exec xmonad
