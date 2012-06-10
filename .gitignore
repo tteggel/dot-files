@@ -1,0 +1,4 @@
+.xmonad/xmonad-*-linux
+.xmonad/xmonad.errors
+.xmonad/xmonad.hi
+.xmonad/xmonad.o
