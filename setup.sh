@@ -24,3 +24,6 @@ ln -s $SCRIPTPATH/.xsession $HOME/.xsession
 
 rm -f $HOME/.bash_aliases
 ln -s $SCRIPTPATH/.bash_aliases $HOME/.bash_aliases
+
+rm -f $HOME/.bashrc
+ln -s $SCRIPTPATH/.bashrc $HOME/.bashrc
