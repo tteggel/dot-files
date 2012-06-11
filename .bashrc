@@ -40,12 +40,12 @@ force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -82,10 +82,21 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Add local user bin to path.
-export PATH=$PATH:/home/tleggett/bin
+export PATH=$PATH:$HOME/bin
 
-#Node js modules
-export NODE_PATH=/home/tleggett/.node_modules
+# Node js modules
+export NODE_PATH=$HOME/.node_modules
 
+# Load RVM into a shell session *as a function*
+if [ -f $HOME/.rvm/scripts/rvm ]; then
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+fi
+
+# Git prompt
+if [ -f $HOME/src/git-prompt/git-prompt.sh ]; then
+    [[ $- == *i* ]]   &&   . $HOME/src/git-prompt/git-prompt.sh
+fi
+
+# Emacs client
 EDITOR="emacsclient -c"
 VISUAL="emacsclient -c"
