@@ -21,3 +21,6 @@ alias ec='emacsclient -c -n'
 alias e='emacsclient'
 alias et='emacsclient -t'
 alias emacs='emacsclient -a "" -c'
+
+# open
+alias open=xdg-open
