@@ -82,7 +82,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # Add local user bin to path.
-export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/src/depot_tools
 
 # Node js modules
 export NODE_PATH=$HOME/.node_modules

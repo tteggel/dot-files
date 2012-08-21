@@ -10,8 +10,8 @@ ln -s $SCRIPTPATH/.conkerorrc $HOME/.conkerorrc
 rm -f $HOME/.dircolors
 ln -s $SCRIPTPATH/.dircolors $HOME/.dircolors
 
-rm -f $HOME/.Xdefaults
-ln -s $SCRIPTPATH/.Xdefaults $HOME/.Xdefaults
+rm -f $HOME/.Xresources
+ln -s $SCRIPTPATH/.Xresources $HOME/.Xresources
 
 rm -f $HOME/.xmobarrc
 ln -s $SCRIPTPATH/.xmobarrc $HOME/.xmobarrc

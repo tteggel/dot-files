@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#xrdb -merge .Xresources
+xrdb -merge $HOME/.Xresources
 
 #Fix java GUI apps.
 wmname LG3D &
@@ -9,7 +9,7 @@ wmname LG3D &
 export SAL_USE_VCLPLUGIN=gen
 
 echo Starting keyring...
-gnome-keyring-daemon &
+eval $(gnome-keyring-daemon --start)
 
 echo Starting trayer...
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --heighttype pixels --height 18 --transparent true --alpha 0 --tint 0x000000 &
