@@ -87,6 +87,9 @@ export PATH=$PATH:$HOME/bin:$HOME/src/depot_tools
 # Node js modules
 export NODE_PATH=$HOME/.node_modules
 
+# Cabal binaries
+export PATH=$PATH:$HOME/.cabal/bin
+
 # Load RVM into a shell session *as a function*
 if [ -f $HOME/.rvm/scripts/rvm ]; then
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
