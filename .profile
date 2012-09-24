@@ -28,7 +28,7 @@ fi
 
 # Add depot tools to path
 if [ -d "$HOME/src/depot_tools" ] ; then
-    PATH="$HOME/src/depot_tools:$PATH"
+    PATH="$PATH:$HOME/src/depot_tools"
 fi
 
 # Node js modules to path
@@ -39,3 +39,8 @@ EDITOR="emacsclient -c"
 VISUAL="emacsclient -c"
 
 eval `dircolors $HOME/.dircolors`
+
+ANDROID_SDK="$HOME/opt/android-sdk-linux"
+if [ -d $ANDROID_SDK ] ; then
+    PATH="$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools"
+fi
