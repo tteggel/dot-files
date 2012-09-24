@@ -27,3 +27,6 @@ ln -s $SCRIPTPATH/.bash_aliases $HOME/.bash_aliases
 
 rm -f $HOME/.bashrc
 ln -s $SCRIPTPATH/.bashrc $HOME/.bashrc
+
+rm -f $HOME/.profile
+ln -s $SCRIPTPATH/.profile $HOME/.profile
