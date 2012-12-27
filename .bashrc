@@ -103,3 +103,5 @@ fi
 # Emacs client
 EDITOR="emacsclient -c"
 VISUAL="emacsclient -c"
+
+umask 022
