@@ -105,7 +105,7 @@ myConfig = defaultConfig
         `additionalKeysP` myKeys
 
 main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar /home/tleggett/.xmobarrc"
+    xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmobarrc"
     xmonad $ withUrgencyHook myUrgencyHook $ myConfig 
         { logHook = do
             (dynamicLogWithPP $ xmobarPP
