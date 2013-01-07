@@ -35,7 +35,7 @@ echo Starting gnome-volume-control...
 gnome-sound-applet &
 
 echo Setting background...
-feh --bg-scale /home/tleggett/Pictures/hr-air-1.jpg
+feh --bg-scale $HOME/Pictures/bg.jpg
 
 #echo Starting compositing...
 #xcompmgr -c -t-5 -l-5 -l4.2 -r.55 -f &
@@ -43,10 +43,8 @@ feh --bg-scale /home/tleggett/Pictures/hr-air-1.jpg
 echo Turn off touchpad...
 synclient TouchPadOff=1
 
-if [ -f ~/.xmodmaprc ]; then
-    echo Setting Caps-lock == mod 4
-    xmodmap ~/.xmodmaprc
-fi
+echo Setting Caps-lock == mod 4
+setxkbmap -option caps:super
 
 echo Starting blueman-applet...
 blueman-applet &
