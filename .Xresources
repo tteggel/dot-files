@@ -1,7 +1,3 @@
-Xft*dpi:                96
-Xft*antialias:          true
-Xft*hinting:            full
-
 URxvt.depth:                32
 URxvt.geometry:             90x30
 URxvt.transparent:          false
@@ -9,13 +5,21 @@ URxvt.fading:               0
 URxvt.urgentOnBell:         true
 URxvt.visualBell:           true
 URxvt.loginShell:           true
-URxvt.saveLines:            500
+URxvt.saveLines:            8192
 URxvt.internalBorder:       3
 URxvt.lineSpace:            0
 
 ! Fonts
 URxvt.allow_bold:           true
-URxvt*font:                 xft:Anonymous Pro:size=11
+URxvt.font:                 xft:Source Code Pro for Powerline:size=11
+
+Xft.antialias:		1
+Xft.autohint:		0
+Xft.dpi:		96
+Xft.hinting:		1
+Xft.hintstyle:		hintfull
+Xft.lcdfilter:		lcddefault
+Xft.rgba:		rgb
 
 ! Scrollbar
 URxvt.scrollStyle:          rxvt

@@ -20,34 +20,14 @@ gnome-screensaver &
 echo Starting gnome-settings-daemon...
 gnome-settings-daemon &
 
-if [ -x /usr/bin/gnome-power-manager ] ; then
-   sleep 1
-   echo Starting gnome-power-manager...
-   gnome-power-manager &
-fi
-
-if [ -x /usr/bin/nm-applet ] ; then
-   echo Starting nm-applet...
-   nm-applet --sm-disable &
-fi
-
-echo Starting gnome-volume-control...
-gnome-sound-applet &
-
 echo Setting background...
 feh --bg-scale $HOME/Pictures/bg.jpg
-
-#echo Starting compositing...
-#xcompmgr -c -t-5 -l-5 -l4.2 -r.55 -f &
-
-echo Turn off touchpad...
-synclient TouchPadOff=1
 
 echo Setting Caps-lock == mod 4
 setxkbmap -option caps:super
 
-echo Starting blueman-applet...
-blueman-applet &
+echo UK Keyboard...
+setxkbmap gb
 
 echo Starting autocutsel...
 autocutsel -fork
@@ -58,6 +38,11 @@ start-pulseaudio-x11
 
 echo Starting emacs daemon
 emacs --daemon
+
+echo Virtualbox guest additions...
+VBoxClient --display
+VBoxClient --seamless
+VBoxClient --clipboard
 
 echo Starting xmonad...
 exec xmonad
