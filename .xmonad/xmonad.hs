@@ -106,6 +106,7 @@ myConfig = defaultConfig
 
 main = do
     xmproc <- spawnPipe "/usr/bin/xmobar $HOME/.xmobarrc"
+    konsole <- spawnPipe "/usr/bin/konsole"
     xmonad $ withUrgencyHook myUrgencyHook $ myConfig
         { logHook = do
             (dynamicLogWithPP $ xmobarPP

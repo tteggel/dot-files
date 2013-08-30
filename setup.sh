@@ -30,3 +30,6 @@ ln -s $SCRIPTPATH/.bashrc $HOME/.bashrc
 
 rm -f $HOME/.profile
 ln -s $SCRIPTPATH/.profile $HOME/.profile
+
+rm -f $HOME/.zshrc
+ln -s $SCRIPTPATH/.zshrc $HOME/.zshrc
