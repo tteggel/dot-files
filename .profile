@@ -21,22 +21,11 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-# set PATH to include .cabal/bin if it exists
-#if [ -d "$HOME/.cabal/bin" ] ; then
-#    PATH="$HOME/.cabal/bin:$PATH"
-#fi
-
-# Add depot tools to path
-if [ -d "$HOME/src/depot_tools" ] ; then
-    PATH="$PATH:$HOME/src/depot_tools"
-fi
-
-# Node js modules to path
-NODE_PATH=$HOME/.node_modules
-
 # Emacs client
-EDITOR="emacsclient -c"
-VISUAL="emacsclient -c"
+EDITOR="emacsclient -ct"
+VISUAL="emacsclient -ct"
+
+alias emacs="/usr/bin/emacsclient -ct" 
 
 eval `dircolors $HOME/.dircolors`
 

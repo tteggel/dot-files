@@ -37,12 +37,12 @@ echo Starting pulseaudio...
 start-pulseaudio-x11
 
 echo Starting emacs daemon
-emacs --daemon
+emacs --daemon & 
 
-echo Virtualbox guest additions...
-VBoxClient --display
-VBoxClient --seamless
-VBoxClient --clipboard
+echo Setting up mouse...
+xinput set-prop 11 "Evdev Middle Button Emulation" 1
+xinput set-prop 11 "Evdev Wheel Emulation" 1
+xinput set-prop 11 "Evdev Wheel Emulation Button" 3
 
 echo Starting xmonad...
 exec xmonad
