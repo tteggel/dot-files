@@ -33,3 +33,6 @@ ln -s $SCRIPTPATH/.profile $HOME/.profile
 
 rm -f $HOME/.zshrc
 ln -s $SCRIPTPATH/.zshrc $HOME/.zshrc
+
+rm -f $HOME/.tmux.conf
+ln -s $SCRIPTPATH/.tmux.conf $HOME/.tmux.conf
