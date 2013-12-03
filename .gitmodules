@@ -1,0 +1,9 @@
+[submodule "third_party/powerline"]
+	path = third_party/powerline
+	url = https://github.com/Lokaltog/powerline.git
+[submodule "third_party/oh-my-zsh"]
+	path = third_party/oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "third_party/powerline-fonts"]
+	path = third_party/powerline-fonts
+	url = https://github.com/Lokaltog/powerline-fonts.git

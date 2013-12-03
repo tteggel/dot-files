@@ -25,11 +25,8 @@ fi
 EDITOR="emacsclient -ct"
 VISUAL="emacsclient -ct"
 
-alias emacs="/usr/bin/emacsclient -ct" 
+alias emacs="/usr/bin/emacsclient -ct"
 
 eval `dircolors $HOME/.dircolors`
 
-ANDROID_SDK="$HOME/opt/android-sdk-linux"
-if [ -d $ANDROID_SDK ] ; then
-    PATH="$PATH:$ANDROID_SDK/tools:$ANDROID_SDK/platform-tools"
-fi
+export PS1=\$ '$([ -n "$TMUX" ] && tmux setenv -g TMUX_PWD_$(tmux display -p "#D" | tr -d %) "$PWD" && tmux setenv -g TMUX_VENV_$(tmux display -p "#D" | tr -d %) "$VIRTUAL_ENV")'

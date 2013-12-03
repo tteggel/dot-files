@@ -36,3 +36,9 @@ ln -s $SCRIPTPATH/.zshrc $HOME/.zshrc
 
 rm -f $HOME/.tmux.conf
 ln -s $SCRIPTPATH/.tmux.conf $HOME/.tmux.conf
+
+rm -rf $HOME/.oh-my-zsh
+ln -s $SCRIPTPATH/third_party/oh-my-zsh $HOME/.oh-my-zsh
+
+find $SCRIPTPATH/third_party/powerline-fonts -name '*.[ot]tf' -exec cp '{}' $HOME/.fonts \;
+fc-cache -frv
