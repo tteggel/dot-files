@@ -40,5 +40,12 @@ ln -s $SCRIPTPATH/.tmux.conf $HOME/.tmux.conf
 rm -rf $HOME/.oh-my-zsh
 ln -s $SCRIPTPATH/third_party/oh-my-zsh $HOME/.oh-my-zsh
 
+rm -rf $HOME/.config/powerline
+ln -s $SCRIPTPATH/powerline $HOME/.config/powerline
+
 find $SCRIPTPATH/third_party/powerline-fonts -name '*.[ot]tf' -exec cp '{}' $HOME/.fonts \;
 fc-cache -frv
+
+cd $SCRIPTPATH/third_party/powerline
+sudo python setup.py develop
+
