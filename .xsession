@@ -11,12 +11,6 @@ export SAL_USE_VCLPLUGIN=gen
 echo Starting screensaver...
 /usr/bin/xscreensaver -no-splash &
 
-echo Starting ssh-agent...
-eval $(ssh-agent)
-
-echo Starting trayer...
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --heighttype pixels --height 18 --transparent true --alpha 0 --tint 0x000000 &
-
 echo Setting background...
 feh --bg-scale $HOME/Pictures/bg.jpg
 
@@ -45,4 +39,4 @@ xinput set-prop 11 "Evdev Wheel Emulation" 1
 xinput set-prop 11 "Evdev Wheel Emulation Button" 3
 
 echo Starting xmonad...
-exec xmonad
+exec i3
