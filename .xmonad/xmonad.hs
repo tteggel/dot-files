@@ -27,6 +27,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.FadeInactive
+import XMonad.Hooks.EwmhDesktops
 
 -- layouts
 import XMonad.Layout.NoBorders
@@ -102,6 +103,7 @@ myConfig = defaultConfig
         , modMask = mod4Mask     -- Rebind Mod to the Caps Lock key
         , workspaces = myWorkspaces
         , terminal = "konsole"
+        , handleEventHook = fullscreenEventHook
         }
         `additionalKeysP` myKeys
 

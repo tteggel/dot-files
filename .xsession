@@ -11,6 +11,9 @@ export SAL_USE_VCLPLUGIN=gen
 echo Starting screensaver...
 /usr/bin/xscreensaver -no-splash &
 
+echo Starting ssh-agent...
+eval $(ssh-agent)
+
 echo Starting trayer...
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --heighttype pixels --height 18 --transparent true --alpha 0 --tint 0x000000 &
 
