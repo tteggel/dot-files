@@ -29,4 +29,5 @@ alias emacs="/usr/bin/emacsclient -ct"
 
 eval `dircolors $HOME/.dircolors`
 
-export PS1=\$ '$([ -n "$TMUX" ] && tmux setenv -g TMUX_PWD_$(tmux display -p "#D" | tr -d %) "$PWD" && tmux setenv -g TMUX_VENV_$(tmux display -p "#D" | tr -d %) "$VIRTUAL_ENV")'
+export http_proxy=http://127.0.0.1:8118
+export https_proxy=$http_proxy

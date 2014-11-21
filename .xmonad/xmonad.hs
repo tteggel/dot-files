@@ -70,7 +70,8 @@ myManageHook = composeAll . concat $
                 , className =? "Shiretoko"             --> viewShift "1:web"
                 , className =? "Chromium-browser"      --> viewShift "1:web"
                 , className =? "Konsole"               --> viewShift "3:console"
-                , className =? "Mail"                  --> viewShift "4:mail"]
+                , className =? "Mail"                  --> viewShift "4:mail"
+		]
                 , [className =? c --> doFloat          | c <- myFloats]
                 ]
 
@@ -83,7 +84,7 @@ myManageHook = composeAll . concat $
 myWorkspaces = ["1:web", "2:text", "3:console", "4:mail", "5:im", "6:office", "7:media", "8:misc", "9:misc"]
 
 myKeys =  [
-           ("M-S-l", spawn "gnome-screensaver-command -l")
+           ("M-S-l", spawn "xscreensaver-command --lock")
           ]
           ++
           [
