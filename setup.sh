@@ -6,7 +6,7 @@ pushd `dirname $0` > /dev/null
 SCRIPTPATH=`pwd`
 popd > /dev/null
 
-sudo apt-get install tmux git tinyproxy i3 emacs zsh hplip cups spice-client inkscape pulseaudio xinput xinit rxvt-unicode-256color xscreensaver* socat tinyproxy python-setuptools x11-xserver-utils
+sudo apt-get install tmux git privoxy i3 emacs zsh hplip cups spice-client inkscape pulseaudio xinput xinit rxvt-unicode-256color xscreensaver* socat tinyproxy python-setuptools x11-xserver-utils firefox
 
 rm -f $HOME/.dircolors
 ln -s $SCRIPTPATH/.dircolors $HOME/.dircolors
@@ -41,6 +41,9 @@ ln -s $SCRIPTPATH/powerline $HOME/.config/powerline
 
 rm -rf $HOME/.i3
 ln -s $SCRIPTPATH/.i3 $HOME/.i3
+
+rm -rf $HOME/.i3status
+ln -s $SCRIPTPATH/.i3status $HOME/.i3status
 
 rm -rf $HOME/.emacs.d
 ln -s $SCRIPTPATH/third_party/emacs-live $HOME/.emacs.d

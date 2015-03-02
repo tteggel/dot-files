@@ -3,16 +3,13 @@
 xrdb -merge $HOME/.Xresources
 
 #Fix java GUI apps.
-wmname LG3D &
+#wmname LG3D &
 
 #Fix [libre|open]office dialogs
-export SAL_USE_VCLPLUGIN=gen
+#export SAL_USE_VCLPLUGIN=gen
 
 echo Starting screensaver...
 /usr/bin/xscreensaver -no-splash &
-
-echo Setting background...
-feh --bg-scale $HOME/Pictures/bg.jpg
 
 echo Setting Caps-lock == mod 4...
 setxkbmap -option caps:super
@@ -24,7 +21,7 @@ echo Starting autocutsel...
 autocutsel -fork
 autocutsel -selection PRIMARY -fork
 
-echo Starting pulseaudio...
+#echo Starting pulseaudio...
 start-pulseaudio-x11
 
 echo Starting emacs daemon...
@@ -34,9 +31,12 @@ echo Setting cursor...
 xsetroot -cursor_name crosshair
 
 echo Setting up mouse...
-xinput set-prop 11 "Evdev Middle Button Emulation" 1
-xinput set-prop 11 "Evdev Wheel Emulation" 1
-xinput set-prop 11 "Evdev Wheel Emulation Button" 3
+#xinput set-prop 11 "Evdev Middle Button Emulation" 1
+#xinput set-prop 11 "Evdev Wheel Emulation" 1
+#xinput set-prop 11 "Evdev Wheel Emulation Button" 3
 
-echo Starting xmonad...
+echo Disabling touchpad...
+#xinput set-prop 12 "Device Enabled" 0
+
+echo Starting window manager...
 exec i3
