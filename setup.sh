@@ -6,8 +6,6 @@ pushd `dirname $0` > /dev/null
 SCRIPTPATH=`pwd`
 popd > /dev/null
 
-sudo apt-get install tmux git privoxy i3 emacs zsh hplip cups spice-client inkscape pulseaudio xinput xinit rxvt-unicode-256color xscreensaver* socat tinyproxy python-setuptools x11-xserver-utils firefox
-
 rm -f $HOME/.dircolors
 ln -s $SCRIPTPATH/.dircolors $HOME/.dircolors
 
