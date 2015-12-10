@@ -26,7 +26,9 @@ URxvt.scrollStyle:          rxvt
 URxvt.scrollBar:            false
 
 ! Perl extensions
-URxvt.perl-ext-common:      default,matcher
+URxvt.perl-ext-common:      default,matcher,keyboard-select
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
 URxvt.matcher.button:       1
 URxvt.urlLauncher:          x-www-browser
 

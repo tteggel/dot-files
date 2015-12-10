@@ -40,8 +40,8 @@ ln -s $SCRIPTPATH/powerline $HOME/.config/powerline
 rm -rf $HOME/.i3
 ln -s $SCRIPTPATH/.i3 $HOME/.i3
 
-rm -rf $HOME/.i3status
-ln -s $SCRIPTPATH/.i3status $HOME/.i3status
+rm -rf $HOME/.i3status.conf
+ln -s $SCRIPTPATH/.i3status.conf $HOME/.i3status.conf
 
 rm -rf $HOME/.emacs.d
 ln -s $SCRIPTPATH/third_party/emacs-live $HOME/.emacs.d
