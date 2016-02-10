@@ -74,16 +74,6 @@ ssh() {
 
 export PS1=\>'$([ -n "$TMUX" ] && tmux setenv -g TMUX_PWD_$(tmux display -p "#D" | tr -d %) "$PWD" && tmux setenv -g TMUX_VENV_$(tmux display -p "#D" | tr -d %) "$VIRTUAL_ENV")'
 
-if [[ "$TERM" == "dumb" ]]
-then
-    unsetopt zle
-    unsetopt prompt_cr
-    unsetopt prompt_subst
-    unfunction precmd
-    unfunction preexec
-    PS1='$ '
-fi
-
 # Fix up special keys in tmux
 #  http://zshwiki.org/home/zle/bindkeys
 # create a zkbd compatible hash;
@@ -120,4 +110,14 @@ function zle-line-finish () {
     echoti rmkx
 }
 zle -N zle-line-init
-zle -N zle-line-finish  
+zle -N zle-line-finish
+
+if [[ "$TERM" == "dumb" ]]
+then
+    unsetopt zle
+    unsetopt prompt_cr
+    unsetopt prompt_subst
+    unfunction precmd
+    unfunction preexec
+    PS1='$ '
+fi
