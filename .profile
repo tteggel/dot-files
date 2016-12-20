@@ -21,6 +21,10 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+if [ -d "$HOME/.cabal/bin" ] ; then
+    PATH="$HOME/.cabal/bin:$PATH"
+fi
+
 # Emacs client
 EDITOR="emacsclient -ct"
 VISUAL="emacsclient -ct"
