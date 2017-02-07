@@ -30,8 +30,6 @@ POWERLINE_HIDE_HOST_NAME="true"
 
 TERM="screen-256color"
 
-PATH=$PATH:$HOME/bin
-
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 

@@ -47,7 +47,7 @@ values."
      java
      javascript
      html
-     ocaml
+     ;;ocaml
      shell-scripts
      sql
      yaml
@@ -61,7 +61,9 @@ values."
    '(
      groovy-mode
      gradle-mode
-     gradle-imports
+     groovy-imports
+     elixir-mode
+     alchemist
     )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -128,7 +130,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Source Code Pro for Powerline"
                                :size 13
                                :weight normal
                                :width normal

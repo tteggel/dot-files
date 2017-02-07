@@ -7,9 +7,6 @@
 [submodule "third_party/powerline-fonts"]
 	path = third_party/powerline-fonts
 	url = https://github.com/Lokaltog/powerline-fonts.git
-[submodule "third_party/emacs-live"]
-	path = third_party/emacs-live
-	url = https://github.com/overtone/emacs-live.git
-[submodule "third_party/tteggel-pack"]
-	path = third_party/tteggel-pack
-	url = https://github.com/thom-leggett/tteggel-pack.git
+[submodule "third_party/spacemacs"]
+	path = third_party/spacemacs
+	url = https://github.com/syl20bnr/spacemacs

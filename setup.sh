@@ -44,10 +44,10 @@ rm -rf $HOME/.i3status.conf
 ln -s $SCRIPTPATH/.i3status.conf $HOME/.i3status.conf
 
 rm -rf $HOME/.emacs.d
-ln -s $SCRIPTPATH/third_party/emacs-live $HOME/.emacs.d
+ln -s $SCRIPTPATH/third_party/spacemacs $HOME/.emacs.d
 
-rm -rf $HOME/.emacs-live.el
-ln -s $SCRIPTPATH/.emacs-live.el $HOME/.emacs-live.el
+rm -rf $HOME/.spacemacs
+ln -s $SCRIPTPATH/.spacemacs $HOME/.spacemacs
 
 mkdir -p $HOME/.live-packs
 rm -rf $HOME/.live-packs/tteggel-pack
