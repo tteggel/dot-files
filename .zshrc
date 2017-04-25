@@ -1,11 +1,23 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+POWERLEVEL9K_MODE='nerdfont-complete'
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+
+DEFAULT_USER="tteggel"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -28,7 +40,7 @@ POWERLINE_DETECT_SSH="true"
 #POWERLINE_SHOW_GIT_ON_RIGHT="true"
 POWERLINE_HIDE_HOST_NAME="true"
 
-TERM="screen-256color"
+TERM="rxvt-256color"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -45,32 +57,6 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git colored-man copydir cp cpanm git-extras gitfast github gnu-utils jira lein pip python ssh-agent svn mercirual themes urltools)
 
 source $ZSH/oh-my-zsh.sh
-
-# ssh wrapper that rename current tmux window to the hostname of the
-# remote host.
-ssh() {
-    # Do nothing if we are not inside tmux or ssh is called without arguments
-    if [[ $# == 0 || -z $TMUX ]]; then
-        command ssh $@
-        return
-    fi
-    # The hostname is the last parameter (i.e. ${(P)#})
-    local remote=${${(P)#}%.*}
-    local old_name="$(tmux display-message -p '#W')"
-    local renamed=0
-    # Save the current name
-    if [[ $remote != -* ]]; then
-        renamed=1
-        tmux rename-window $remote
-	tmux setenv -g TMUX_HOSTNAME_$(tmux display -p "#D" | tr -d %) "$remote"
-    fi
-    command ssh $@
-    if [[ $renamed == 1 ]]; then
-        tmux rename-window "$old_name"
-    fi
-}
-
-export PS1=\>'$([ -n "$TMUX" ] && tmux setenv -g TMUX_PWD_$(tmux display -p "#D" | tr -d %) "$PWD" && tmux setenv -g TMUX_VENV_$(tmux display -p "#D" | tr -d %) "$VIRTUAL_ENV")'
 
 # Fix up special keys in tmux
 #  http://zshwiki.org/home/zle/bindkeys
@@ -119,3 +105,7 @@ then
     unfunction preexec
     PS1='$ '
 fi
+
+alias bgred='echo -e "\033]11;#550000\007"'
+alias bggreen='echo -e "\033]11;#005500\007"'
+alias bgblue='echo -e "\033]11;#000055\007"'

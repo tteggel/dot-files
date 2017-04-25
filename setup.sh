@@ -6,6 +6,8 @@ pushd `dirname $0` > /dev/null
 SCRIPTPATH=`pwd`
 popd > /dev/null
 
+ln -s $SCRIPTPATH $HOME/.dotfiles || true
+
 rm -f $HOME/.dircolors
 ln -s $SCRIPTPATH/.dircolors $HOME/.dircolors
 
@@ -33,6 +35,10 @@ ln -s $SCRIPTPATH/.tmux.conf $HOME/.tmux.conf
 rm -rf $HOME/.oh-my-zsh
 ln -s $SCRIPTPATH/third_party/oh-my-zsh $HOME/.oh-my-zsh
 
+rm -rf $HOME/.oh-my-zsh/custom/themes/powerlevel9k
+mkdir -p ~/.oh-my-zsh/custom/themes
+ln -s $SCRIPTPATH/third_party/powerlevel9k $HOME/.oh-my-zsh/custom/themes/powerlevel9k
+
 mkdir -p $HOME/.config
 rm -rf $HOME/.config/powerline
 ln -s $SCRIPTPATH/powerline $HOME/.config/powerline
@@ -49,12 +55,9 @@ ln -s $SCRIPTPATH/third_party/spacemacs $HOME/.emacs.d
 rm -rf $HOME/.spacemacs
 ln -s $SCRIPTPATH/.spacemacs $HOME/.spacemacs
 
-mkdir -p $HOME/.live-packs
-rm -rf $HOME/.live-packs/tteggel-pack
-ln -s $SCRIPTPATH/third_party/tteggel-pack $HOME/.live-packs/tteggel-pack
-
 mkdir -p $HOME/.fonts
-$SCRIPTPATH/third_party/powerline-fonts/install.sh
+#$SCRIPTPATH/third_party/powerline-fonts/install.sh
+(cd $SCRIPTPATH/third_party/nerd-fonts && ./install.sh)
 fc-cache -frv
 
 cd $SCRIPTPATH/third_party/powerline

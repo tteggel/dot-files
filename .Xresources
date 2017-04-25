@@ -1,3 +1,4 @@
+URxvt.termName:             rxvt-256color
 URxvt.depth:                32
 URxvt.geometry:             90x30
 URxvt.transparent:          false
@@ -11,7 +12,7 @@ URxvt.lineSpace:            0
 
 ! Fonts
 URxvt.allow_bold:           true
-URxvt.font:                 xft:Source Code Pro for Powerline:size=11
+URxvt.font:                 xft:Source Code Pro for Powerline
 
 Xft.antialias:		1
 Xft.autohint:		0
