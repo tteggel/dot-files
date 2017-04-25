@@ -16,3 +16,4 @@
 [submodule "third_party/nerd-fonts"]
 	path = third_party/nerd-fonts
 	url = https://github.com/ryanoasis/nerd-fonts.git
+	shallow = true
