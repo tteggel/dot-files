@@ -4,16 +4,12 @@
 [submodule "third_party/oh-my-zsh"]
 	path = third_party/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
-[submodule "third_party/powerline-fonts"]
-	path = third_party/powerline-fonts
-	url = https://github.com/Lokaltog/powerline-fonts.git
 [submodule "third_party/spacemacs"]
 	path = third_party/spacemacs
 	url = https://github.com/syl20bnr/spacemacs
 [submodule "third_party/powerlevel9k"]
 	path = third_party/powerlevel9k
 	url = https://github.com/bhilburn/powerlevel9k.git
-[submodule "third_party/nerd-fonts"]
-	path = third_party/nerd-fonts
-	url = https://github.com/ryanoasis/nerd-fonts.git
-	shallow = true
+[submodule "third_party/termite-install"]
+	path = third_party/termite-install
+	url = https://github.com/Corwind/termite-install.git

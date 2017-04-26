@@ -1,12 +1,14 @@
 #!/bin/bash
 
-set -xe
+set -xeuo pipefail
 
-pushd `dirname $0` > /dev/null
-SCRIPTPATH=`pwd`
-popd > /dev/null
+pushd $(dirname $0)
+SCRIPTPATH=$(pwd)
 
-ln -s $SCRIPTPATH $HOME/.dotfiles || true
+git submodule update --init --recursive
+
+rm -rf $HOME/.dotfiles
+ln -s $SCRIPTPATH/. $HOME/.dotfiles
 
 rm -f $HOME/.dircolors
 ln -s $SCRIPTPATH/.dircolors $HOME/.dircolors
@@ -55,10 +57,32 @@ ln -s $SCRIPTPATH/third_party/spacemacs $HOME/.emacs.d
 rm -rf $HOME/.spacemacs
 ln -s $SCRIPTPATH/.spacemacs $HOME/.spacemacs
 
-mkdir -p $HOME/.fonts
-#$SCRIPTPATH/third_party/powerline-fonts/install.sh
-(cd $SCRIPTPATH/third_party/nerd-fonts && ./install.sh)
-fc-cache -frv
+mkdir /tmp/termite || true
+(
+    cd /tmp/termite
+    $SCRIPTPATH/third_party/termite-install/termite-install.sh || true
+)
+rm -rf /tmp/termite
 
 cd $SCRIPTPATH/third_party/powerline
 sudo python setup.py develop
+
+rm -rf $SCRIPTPATH/third_party/nerd-fonts-1.0.0
+curl -L -o /tmp/nerd-fonts.zip https://github.com/ryanoasis/nerd-fonts/archive/v1.0.0.zip
+unzip /tmp/nerd-fonts.zip -d /tmp
+rm /tmp/nerd-fonts.zip
+(
+    cd /tmp/nerd-fonts-1.0.0
+    ./install.sh || true
+)
+rm -rf /tmp/nerd-fonts-1.0.0
+
+popd
+
+cleanup() {
+    rm -rf /tmp/nerd-fonts.zip || true
+    rm -rf /tmp/nerd-fonts-1.0.0 || true
+    rm -rf /tmp/termite || true
+    popd || true
+}
+trap cleanup EXIT
