@@ -1,6 +1,3 @@
-[submodule "third_party/powerline"]
-	path = third_party/powerline
-	url = https://github.com/thom-leggett/powerline.git
 [submodule "third_party/oh-my-zsh"]
 	path = third_party/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
@@ -10,6 +7,6 @@
 [submodule "third_party/powerlevel9k"]
 	path = third_party/powerlevel9k
 	url = https://github.com/bhilburn/powerlevel9k.git
-[submodule "third_party/termite-install"]
-	path = third_party/termite-install
-	url = https://github.com/Corwind/termite-install.git
+[submodule "third_party/tmux-current-pane-hostname"]
+	path = third_party/tmux-current-pane-hostname
+	url = https://github.com/soyuka/tmux-current-pane-hostname
