@@ -111,5 +111,3 @@ fi
 alias bgred='echo -e "\033]11;#550000\007"'
 alias bggreen='echo -e "\033]11;#005500\007"'
 alias bgblue='echo -e "\033]11;#000055\007"'
-
-powerline-config tmux setup
