@@ -8,6 +8,8 @@ git submodule update --init --recursive
 sudo rm -rf /etc/nixos/configuration.nix
 sudo ln -s $SCRIPTPATH/configuration.nix /etc/nixos/configuration.nix
 
+sudo nixos-rebuild switch --update
+
 rm -rf $HOME/.dotfiles
 ln -s $SCRIPTPATH/. $HOME/.dotfiles
 
