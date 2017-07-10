@@ -3,7 +3,7 @@ set -xeuo pipefail
 pushd $(dirname $0)
 SCRIPTPATH=$(pwd)
 
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 1
 
 sudo rm -rf /etc/nixos/configuration.nix
 sudo ln -s $SCRIPTPATH/configuration.nix /etc/nixos/configuration.nix
