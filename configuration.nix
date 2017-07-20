@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
-
+  
 {
   imports =
     [
       /etc/nixos/hardware-configuration.nix
+      ./squid.nix
     ];
 
   boot = {
@@ -22,7 +23,8 @@
 
   networking = {
     hostName = "nixos";
-    proxy.default = "http://127.0.0.1:8118";
+    proxy.default = "http://127.0.0.1:3128";
+    proxy.noProxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
   };
 
   i18n = {
@@ -43,6 +45,8 @@
     tmux
     zsh
     python27Packages.powerline
+    python3Packages.lxml
+    python3Packages.requests
 
     aspell
     aspellDicts.en
@@ -51,26 +55,15 @@
     i3status
     
     htop
+
+    openconnect
+    squid
   ];
 
-  # services.openssh.enable = true;
-
-  # networking.firewall.enable = false;
-
   services = {
-    privoxy = {
-      enable = true;
-      extraConfig = ''
-        forward / www-proxy.uk.oracle.com:80
-      '';
-    };
-
     vmwareGuest.enable = true;
 
     printing.enable = true;
-
-    emacs.enable = true;
-    emacs.defaultEditor = true;
 
     xserver = {
       enable = true;
@@ -118,6 +111,78 @@
     device = ".host:Shared";
     options = [ "nofail" "allow_other" "uid=1000" "gid=1000" "auto_unmount" "defaults" ];
   };
+
+  nix = {
+    useSandbox = true;
+    buildCores = 0;  # 0 means auto-detect number of CPUs (and use all)
+
+    extraOptions = ''
+      # To not get caught by the '''"nix-collect-garbage -d" makes
+      # "nixos-rebuild switch" unusable when nixos.org is down"''' issue:
+      gc-keep-outputs = true
+      # For 'nix-store -l $(which vim)'
+      log-servers = http://hydra.nixos.org/log
+      # Number of seconds to wait for binary-cache to accept() our connect()
+      connect-timeout = 15
+    '';
+
+    # Automatic garbage collection
+    gc.automatic = true;
+    gc.dates = "03:15";
+    gc.options = "--delete-older-than 14d";
+  };
+
+  systemd.services.vpn = {
+    enable = true;
+    description = "VPN";
+    path = with pkgs; [ stdenv openconnect nettools gawk iproute openresolv curl bash ];
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "networking.target" ];
+    environment = {
+      NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
+      no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
+    };
+    script = ''
+      sleep 1
+      ${builtins.readFile /root/vpn.sh}
+    '';
+    serviceConfig = {
+      User = "root";
+      Restart = "on-failure";
+      TimeoutStopSec = 10;
+      KillSignal = "SIGTERM";
+      SendSIGHUP = true;
+    };
+  };
+
+  systemd.services.wpad = {
+    enable = true;
+    description = "Scrape config for local proxy";
+    path = with pkgs; [stdenv nix bash python3 pythonPackages.requests pythonPackages.lxml];
+    wants = [ "vpn.service" ];
+    environment = {
+      NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
+      no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
+    };
+    script = ''
+      /home/tteggel/.dotfiles/gen-proxy.py > /home/tteggel/.dotfiles/squid-parents.conf
+      systemctl restart squid
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+    };
+  };
+
+  # environment.etc."vpnc/post-connect.d/proxy" = {
+  #   text = ''
+  #     env
+  #     sleep 60
+  #     curl http://wpad-admin.oraclecorp.com/master.xml
+  #     /home/tteggel/.dotfiles/gen-proxy.py > /home/tteggel/.dotfiles/squid-parents.conf
+  #     systemctl restart squid
+  #   '';
+  #   mode = "0700";
+  # };
 
   system.stateVersion = "17.03";
 

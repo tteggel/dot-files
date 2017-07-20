@@ -3,10 +3,17 @@ set -xeuo pipefail
 pushd $(dirname $0)
 SCRIPTPATH=$(pwd)
 
-git submodule update --init --recursive --depth 1
+git submodule update --init --recursive --depth 1 || true
 
 sudo rm -rf /etc/nixos/configuration.nix
 sudo ln -s $SCRIPTPATH/configuration.nix /etc/nixos/configuration.nix
+
+sudo rm -rf /etc/nixos/squid.nix
+sudo ln -s $SCRIPTPATH/squid.nix /etc/nixos/squid.nix
+
+sudo rm -rf /etc/nixos/pkgs
+sudo ln -s $SCRIPTPATH/pkgs /etc/nixos/pkgs
+
 
 sudo nixos-rebuild switch --upgrade
 
