@@ -27,6 +27,9 @@
 
       include /home/tteggel/.dotfiles/squid-parents.conf
 
+      acl CONNECT method CONNECT
+      never_direct allow CONNECT
+
       cache deny all
 
       http_access allow localhost
