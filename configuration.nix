@@ -162,6 +162,7 @@
     enable = true;
     description = "Autoconfig local squid proxy";
     path = with pkgs; [stdenv nix bash python3 pythonPackages.requests pythonPackages.lxml];
+    wantedBy = [ "multi-user.target" ];
     after = [ "vpn.service" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
@@ -174,6 +175,7 @@
     '';
     serviceConfig = {
       Type = "oneshot";
+      RemainAfterExit = true;
     };
   };
 
