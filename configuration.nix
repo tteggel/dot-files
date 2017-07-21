@@ -137,7 +137,7 @@
     description = "VPN";
     path = with pkgs; [ stdenv openconnect nettools gawk iproute openresolv curl bash ];
     wantedBy = [ "multi-user.target" ];
-    wants = [ "networking.target" ];
+    after = [ "networking-online.target" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
       no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
@@ -147,19 +147,22 @@
       ${builtins.readFile /root/vpn.sh}
     '';
     serviceConfig = {
+      Type = "simple";
+      PIDFile = "/var/run/openconnect";
       User = "root";
-      Restart = "on-failure";
+      Restart = "always";
+      KillMode = "process";
       TimeoutStopSec = 10;
-      KillSignal = "SIGTERM";
-      SendSIGHUP = true;
+      KillSignal = "SIGINT";
+      SendSIGHUP = false;
     };
   };
 
   systemd.services.wpad = {
     enable = true;
-    description = "Scrape config for local proxy";
+    description = "Autoconfig local squid proxy";
     path = with pkgs; [stdenv nix bash python3 pythonPackages.requests pythonPackages.lxml];
-    wants = [ "vpn.service" ];
+    after = [ "vpn.service" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
       no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
