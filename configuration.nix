@@ -168,6 +168,7 @@
       no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
     };
     script = ''
+      sleep 60
       /home/tteggel/.dotfiles/gen-proxy.py > /home/tteggel/.dotfiles/squid-parents.conf
       systemctl restart squid
     '';
@@ -175,17 +176,6 @@
       Type = "oneshot";
     };
   };
-
-  # environment.etc."vpnc/post-connect.d/proxy" = {
-  #   text = ''
-  #     env
-  #     sleep 60
-  #     curl http://wpad-admin.oraclecorp.com/master.xml
-  #     /home/tteggel/.dotfiles/gen-proxy.py > /home/tteggel/.dotfiles/squid-parents.conf
-  #     systemctl restart squid
-  #   '';
-  #   mode = "0700";
-  # };
 
   system.stateVersion = "17.03";
 
