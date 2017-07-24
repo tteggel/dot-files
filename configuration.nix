@@ -140,22 +140,30 @@
     after = [ "networking-online.target" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
-      no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
+      no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com,.oraclevpn.com";
     };
     script = ''
-      sleep 1
       ${builtins.readFile /root/vpn.sh}
     '';
     serviceConfig = {
-      Type = "simple";
+      Type = "notify";
       PIDFile = "/var/run/openconnect";
       User = "root";
       Restart = "always";
-      KillMode = "process";
+      RestartSec = "1";
+      KillMode = "control-group";
       TimeoutStopSec = 10;
       KillSignal = "SIGINT";
       SendSIGHUP = false;
+      NotifyAccess = "all";
     };
+  };
+
+  environment.etc."vpnc/post-connect.d/notify" = {
+    mode = "0700";
+    text = ''
+      systemd-notify --ready --status="Connected."
+    '';
   };
 
   systemd.services.wpad = {
@@ -163,13 +171,14 @@
     description = "Autoconfig local squid proxy";
     path = with pkgs; [stdenv nix bash python3 pythonPackages.requests pythonPackages.lxml];
     wantedBy = [ "multi-user.target" ];
+    requires = [ "vpn.service" ];
     after = [ "vpn.service" ];
+    partOf = [ "vpn.service" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
       no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
     };
     script = ''
-      sleep 60
       /home/tteggel/.dotfiles/gen-proxy.py > /home/tteggel/.dotfiles/squid-parents.conf
       systemctl restart squid
     '';
