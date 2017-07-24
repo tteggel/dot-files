@@ -150,7 +150,7 @@
       PIDFile = "/var/run/openconnect";
       User = "root";
       Restart = "always";
-      RestartSec = "1";
+      RestartSec = "10";
       KillMode = "control-group";
       TimeoutStopSec = 10;
       KillSignal = "SIGINT";
