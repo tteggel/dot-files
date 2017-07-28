@@ -29,7 +29,7 @@ fi
 EDITOR="emacsclient -ct"
 VISUAL="emacsclient -ct"
 
-alias emacs="/usr/bin/emacsclient -ct"
+alias emacs="emacsclient -ct"
 
 eval `dircolors $HOME/.dircolors`
 
