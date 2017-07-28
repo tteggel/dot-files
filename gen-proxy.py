@@ -29,7 +29,7 @@ def print_acl(domain):
     if '/' in domain:
         print('acl {0} dst -n {0}'.format(domain))
     else:
-        print('acl {0} dstdomain -n {0}'.format(domain))
+        print('acl {0} dstdom_regex -n \.{1}\.?$|^{1}\.?$'.format(domain, domain.replace('.', '\.')))
     return domain
 
 def get_region(tree):
