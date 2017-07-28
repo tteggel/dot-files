@@ -23,8 +23,8 @@
 
   networking = {
     hostName = "nixos";
-    proxy.default = "http://127.0.0.1:3128";
-    proxy.noProxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
+    proxy.default = "http://10.200.10.1:3128";
+    proxy.noProxy = "10.200.10.1,127.0.0.1,localhost,wpad-admin.oraclecorp.com";
   };
 
   i18n = {
@@ -69,14 +69,17 @@
   ''
   ];
 
-time.timeZone = "Europe/London";
+  time.timeZone = "Europe/London";
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    docker = pkgs.docker-edge;
+  };
 
   environment.systemPackages = with pkgs; [
     emacs
 
     git
     unzip
-
     termite
     tmux
     zsh
@@ -95,6 +98,8 @@ time.timeZone = "Europe/London";
     openconnect
     squid
   ];
+
+  virtualisation.docker = { enable = true; };
 
   services = {
     vmwareGuest.enable = true;
@@ -138,7 +143,7 @@ time.timeZone = "Europe/London";
   users.extraUsers.tteggel = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = ["wheel" "input" "audio" "video"];
+    extraGroups = ["wheel" "input" "audio" "video" "docker"];
     shell = pkgs.zsh;
   };
 
@@ -199,6 +204,7 @@ time.timeZone = "Europe/London";
     mode = "0700";
     text = ''
       systemd-notify --ready --status="Connected."
+      ip a add dev lo 10.200.10.1 || true
     '';
   };
 

@@ -26,9 +26,6 @@ ln -s $SCRIPTPATH/.dircolors $HOME/.dircolors
 rm -f $HOME/.Xresources
 ln -s $SCRIPTPATH/.Xresources $HOME/.Xresources
 
-rm -f $HOME/.bashrc
-ln -s $SCRIPTPATH/.bashrc $HOME/.bashrc
-
 rm -f $HOME/.profile
 ln -s $SCRIPTPATH/.profile $HOME/.profile
 

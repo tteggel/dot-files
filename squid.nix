@@ -32,12 +32,15 @@
 
       cache deny all
 
+      acl 10.200.10.1 src 10.200.10.1/24
+      http_access allow 10.200.10.1
       http_access allow localhost
 
       # And finally deny all other access to this proxy
       http_access deny all
 
       http_port 3128
+      visible_hostname nixos
 
       # Leave coredumps in the first cache dir
       coredump_dir /var/cache/squid
