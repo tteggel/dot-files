@@ -49,4 +49,15 @@
 
     '';
   };
+
+  systemd.services.squid = {
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = 10;
+    };
+    requires = [ "vpn.service" "wpad.service" ];
+    after = [ "vpn.service" "wpad.service" ];
+    partOf = [ "vpn.service" "wpad.service" ];
+    bindsTo = [ "vpn.service" "wpad.service"];
+  };
 }

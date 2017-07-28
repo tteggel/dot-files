@@ -106,6 +106,8 @@
 
     printing.enable = true;
 
+    emacs.enable = true;
+
     xserver = {
       enable = true;
       layout = "gb";
@@ -178,7 +180,8 @@
     description = "VPN";
     path = with pkgs; [ stdenv openconnect nettools gawk iproute openresolv curl bash ];
     wantedBy = [ "multi-user.target" ];
-    after = [ "networking-online.target" ];
+    wants = [ "networking-online.target" "network.target" "dhcpcd.service" ];
+    after = [ "networking-online.target" "network.target" "dhcpcd.service" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
       no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com,.oraclevpn.com";
@@ -216,17 +219,22 @@
     requires = [ "vpn.service" ];
     after = [ "vpn.service" ];
     partOf = [ "vpn.service" ];
+    bindsTo = [ "vpn.service" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
       no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
     };
     script = ''
-      /home/tteggel/.dotfiles/gen-proxy.py > /home/tteggel/.dotfiles/squid-parents.conf
-      systemctl restart squid
+      parents=$(/home/tteggel/.dotfiles/gen-proxy.py)
+      if [ -z "$parents" ]; then
+        echo $parents > /home/tteggel/.dotfiles/squid-parents.conf
+      fi
     '';
     serviceConfig = {
-      Type = "oneshot";
+      Type = "simple";
       RemainAfterExit = true;
+      Restart = "always";
+      RestartSec = 10;
     };
   };
 
