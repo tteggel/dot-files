@@ -1,7 +1,6 @@
 { config, ... }:
 
 {
-  imports = [ ./pkgs/squid.nix ];
   services.squid = {
     enable = true;
     configText = ''

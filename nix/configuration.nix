@@ -1,10 +1,18 @@
 { config, pkgs, ... }:
   
 {
+  nixpkgs.config.allowUnfree = true;
+
   imports =
     [
       /etc/nixos/hardware-configuration.nix
-      ./squid.nix
+
+      /etc/nixos/pkgs/squid/module.nix
+      /etc/nixos/pkgs/smith/module.nix
+
+      /etc/nixos/squid.nix
+
+      /etc/nixos/machine.nix
     ];
 
   boot = {
