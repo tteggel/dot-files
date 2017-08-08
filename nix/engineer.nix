@@ -7,6 +7,7 @@
       go
       idea.idea-ultimate
       tree
+      smith
     ];
   };
 }

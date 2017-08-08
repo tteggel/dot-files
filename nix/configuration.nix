@@ -8,7 +8,6 @@
       /etc/nixos/hardware-configuration.nix
 
       /etc/nixos/pkgs/squid/module.nix
-      /etc/nixos/pkgs/smith/module.nix
 
       /etc/nixos/squid.nix
 
@@ -79,8 +78,9 @@
 
   time.timeZone = "Europe/London";
 
-  nixpkgs.config.packageOverrides = pkgs: {
+  nixpkgs.config.packageOverrides = pkgs: rec {
     docker = pkgs.docker-edge;
+    smith = pkgs.callPackage /etc/nixos/pkgs/smith {};
   };
 
   environment.systemPackages = with pkgs; [
@@ -107,7 +107,10 @@
     squid
   ];
 
-  virtualisation.docker = { enable = true; };
+  virtualisation.docker = {
+    enable = true;
+    extraOptions = "--mtu=1290";
+  };
 
   services = {
     vmwareGuest.enable = true;
