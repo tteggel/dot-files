@@ -103,7 +103,7 @@
     
     htop
 
-    openconnect
+    openconnect_openssl
     squid
   ];
 
@@ -242,10 +242,8 @@
       fi
     '';
     serviceConfig = {
-      Type = "simple";
+      Type = "oneshot";
       RemainAfterExit = true;
-      Restart = "always";
-      RestartSec = 10;
     };
   };
 
