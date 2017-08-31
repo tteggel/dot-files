@@ -188,20 +188,17 @@
 
   systemd.services.wpad = {
     enable = true;
-    description = "Autoconfig local squid proxy";
+    description = "Detect proxy config";
     path = with pkgs; [stdenv nix bash python3 pythonPackages.requests pythonPackages.lxml];
     wantedBy = [ "multi-user.target" ];
-    requires = [ "networking-online" ];
-    after = [ "networking-online" ];
+    requires = [ "dhcpcd.service" ];
+    after = [ "dhcpcd.service" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
       no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
     };
     script = ''
-      parents=$(/home/tteggel/.dotfiles/gen-proxy.py)
-      if [ -z "$parents" ]; then
-        echo $parents > /home/tteggel/.dotfiles/squid-parents.conf
-      fi
+      /home/tteggel/.dotfiles/gen-proxy.py > /home/tteggel/.dotfiles/squid-parents.conf
     '';
     serviceConfig = {
       Type = "oneshot";

@@ -87,7 +87,16 @@ def print_our_proxies(our_proxies):
 
 def main():
     # Read and parse master file
-    raw = requests.get("http://wpad-admin.oraclecorp.com/master.xml").text
+    raw = ""
+    try:
+        raw = requests.get("http://wpad-admin.oraclecorp.com/master.xml").text
+    except (requests.exceptions.ConnectionError):
+        raw = ""
+
+    if raw == "":
+        print("always_direct allow all")
+        return
+
     tree = etree.fromstring(raw)
 
     # Where are we?
