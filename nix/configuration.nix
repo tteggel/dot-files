@@ -186,51 +186,13 @@
     gc.options = "--delete-older-than 14d";
   };
 
-  systemd.services.vpn = {
-    enable = true;
-    description = "VPN";
-    path = with pkgs; [ stdenv openconnect nettools gawk iproute openresolv curl bash ];
-    wantedBy = [ "multi-user.target" ];
-    wants = [ "networking-online.target" "network.target" "dhcpcd.service" ];
-    after = [ "networking-online.target" "network.target" "dhcpcd.service" ];
-    environment = {
-      NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
-      no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com,.oraclevpn.com";
-    };
-    script = ''
-      ${builtins.readFile /root/vpn.sh}
-    '';
-    serviceConfig = {
-      Type = "notify";
-      PIDFile = "/var/run/openconnect";
-      User = "root";
-      Restart = "always";
-      RestartSec = "10";
-      KillMode = "control-group";
-      TimeoutStopSec = 10;
-      KillSignal = "SIGINT";
-      SendSIGHUP = false;
-      NotifyAccess = "all";
-    };
-  };
-
-  environment.etc."vpnc/post-connect.d/notify" = {
-    mode = "0700";
-    text = ''
-      systemd-notify --ready --status="Connected."
-      ip a add dev lo 10.200.10.1 || true
-    '';
-  };
-
   systemd.services.wpad = {
     enable = true;
     description = "Autoconfig local squid proxy";
     path = with pkgs; [stdenv nix bash python3 pythonPackages.requests pythonPackages.lxml];
     wantedBy = [ "multi-user.target" ];
-    requires = [ "vpn.service" ];
-    after = [ "vpn.service" ];
-    partOf = [ "vpn.service" ];
-    bindsTo = [ "vpn.service" ];
+    requires = [ "networking-online" ];
+    after = [ "networking-online" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
       no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
