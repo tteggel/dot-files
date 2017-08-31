@@ -30,8 +30,8 @@
 
   networking = {
     hostName = "nixos";
-    proxy.default = "http://10.200.10.1:3128";
-    proxy.noProxy = "10.200.10.1,127.0.0.1,localhost,wpad-admin.oraclecorp.com";
+    proxy.default = "http://127.0.0.1:3128";
+    proxy.noProxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
   };
 
   i18n = {
