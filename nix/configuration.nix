@@ -103,7 +103,6 @@
     
     htop
 
-    openconnect_openssl
     squid
   ];
 
