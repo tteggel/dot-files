@@ -30,8 +30,8 @@
 
   networking = {
     hostName = "nixos";
-    proxy.default = "http://127.0.0.1:3128";
-    proxy.noProxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
+    proxy.default = "http://10.10.10.10:3128";
+    proxy.noProxy = "127.0.0.1,10.10.10.10,localhost,wpad-admin.oraclecorp.com";
   };
 
   i18n = {
@@ -188,7 +188,7 @@
   systemd.services.wpad = {
     enable = true;
     description = "Detect proxy config";
-    path = with pkgs; [stdenv nix bash python3 pythonPackages.requests pythonPackages.lxml];
+    path = with pkgs; [stdenv nix bash python3 pythonPackages.requests pythonPackages.lxml iproute];
     wantedBy = [ "multi-user.target" ];
     requires = [ "dhcpcd.service" ];
     after = [ "dhcpcd.service" ];
@@ -197,6 +197,7 @@
       no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
     };
     script = ''
+      ip a add dev lo 10.10.10.10 || true
       /home/tteggel/.dotfiles/gen-proxy.py > /home/tteggel/.dotfiles/squid-parents.conf
     '';
     serviceConfig = {

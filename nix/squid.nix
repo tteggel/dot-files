@@ -25,6 +25,8 @@
       cache deny all
 
       http_access allow localhost
+      acl 10.10.10.10 src 10.10.10.10/24
+      http_access allow 10.10.10.10
 
       http_access deny all
 
