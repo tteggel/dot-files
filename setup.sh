@@ -17,7 +17,7 @@ sudo ln -s $SCRIPTPATH/nix/* /etc/nixos
 
 sudo nixos-rebuild switch --upgrade
 
-git submodule update --init --recursive --depth 1 || true
+git submodule update --init --recursive || true
 
 rm -rf $HOME/.dotfiles
 ln -s $SCRIPTPATH/. $HOME/.dotfiles
