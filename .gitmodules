@@ -4,9 +4,6 @@
 [submodule "third_party/spacemacs"]
 	path = third_party/spacemacs
 	url = https://github.com/syl20bnr/spacemacs
-[submodule "third_party/powerlevel9k"]
-	path = third_party/powerlevel9k
-	url = https://github.com/bhilburn/powerlevel9k.git
 [submodule "third_party/tmux-current-pane-hostname"]
 	path = third_party/tmux-current-pane-hostname
 	url = https://github.com/soyuka/tmux-current-pane-hostname
