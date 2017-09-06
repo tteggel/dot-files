@@ -8,6 +8,7 @@
       idea.idea-ultimate
       tree
       smith
+      chromium
     ];
   };
 }

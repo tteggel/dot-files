@@ -44,6 +44,7 @@
     serviceConfig = {
       Restart = "always";
       RestartSec = 10;
+      LimitNOFILE = 16384;
     };
     requires = [ "wpad.service" ];
     after = [ "wpad.service" ];
