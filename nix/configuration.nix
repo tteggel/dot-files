@@ -7,7 +7,7 @@
     [
       /etc/nixos/hardware-configuration.nix
 
-      /etc/nixos/pkgs/squid/module.nix
+#      /etc/nixos/pkgs/squid/module.nix
 
       /etc/nixos/squid.nix
 
@@ -32,6 +32,7 @@
     hostName = "nixos";
     proxy.default = "http://10.10.10.10:3128";
     proxy.noProxy = "127.0.0.1,10.10.10.10,localhost,wpad-admin.oraclecorp.com";
+    firewall.enable = false;
   };
 
   i18n = {
