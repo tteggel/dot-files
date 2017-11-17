@@ -11,7 +11,7 @@ from ipaddress import ip_address, ip_network
 def getip():
     import socket
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(("8.8.8.8", 80))
+    s.connect(("8.8.8.8", 53))
     ip = s.getsockname()[0]
     s.close()
     return ip_address(ip)
@@ -37,7 +37,7 @@ def get_region(tree):
     ip = getip()
     region = next(subnet for subnet in subnets if ip in ip_network(subnet.get('network'))).get('region')
     if region is None:
-        region = 'EMEA'
+        region = 'LON-AMS'
     return region
 
 def get_all_proxies(tree):
@@ -101,7 +101,7 @@ def main():
 
     # Where are we?
     region = get_region(tree)
-
+  
     # Munge the data
     our_proxies = tree.xpath('/proxyconf/region[@name="' + region + '"]/server')[0].text.split(',')
     all_proxies = get_all_proxies(tree)
