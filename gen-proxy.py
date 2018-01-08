@@ -7,6 +7,7 @@
 from lxml import etree
 import requests
 from ipaddress import ip_address, ip_network
+import string
 
 def getip():
     import socket
@@ -24,20 +25,22 @@ def split_host(url):
 
 def print_acl(domain):
     if domain == 'localhost': return
-    if domain[0] == '(': return
+    # if domain[0] == '(': return
+
+    acl_name = ''.join(c for c in domain if c in string.printable)[:62]
 
     if '/' in domain:
-        print('acl {0} dst -n {0}'.format(domain))
+        print('acl {0} dst -n {1}'.format(acl_name, domain))
     else:
-        print('acl {0} dstdom_regex -n \.{1}\.?$|^{1}\.?$'.format(domain, domain.replace('.', '\.')))
-    return domain
+        print('acl {0} dstdom_regex -n \.{1}\.?$|^{1}\.?$'.format(acl_name, domain.replace('.', '\.')))
+    return acl_name
 
 def get_region(tree):
     subnets = tree.xpath('/proxyconf/subnet')
     ip = getip()
     region = next(subnet for subnet in subnets if ip in ip_network(subnet.get('network'))).get('region')
     if region is None:
-        region = 'EMEA'
+        region = 'LON-AMS'
     return region
 
 def get_all_proxies(tree):
@@ -65,7 +68,7 @@ def print_specific_proxies(proxies, our_proxies, specific_map):
                 for server in specific_map[host]:
                     acl = print_acl(server)
                     if acl is not None:
-                        print('cache_peer_access {0} allow {1}'.format(host, server))
+                        print('cache_peer_access {0} allow {1}'.format(host, acl))
             print('cache_peer_access {0} deny all'.format(host))
 
 def print_direct_hosts(no_proxy):
