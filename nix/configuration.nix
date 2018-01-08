@@ -7,8 +7,6 @@
     [
       /etc/nixos/hardware-configuration.nix
 
-#      /etc/nixos/pkgs/squid/module.nix
-
       /etc/nixos/squid.nix
 
       /etc/nixos/machine.nix
@@ -105,6 +103,7 @@
     htop
 
     squid
+    socat
   ];
 
   virtualisation.docker = {
