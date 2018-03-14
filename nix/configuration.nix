@@ -104,6 +104,10 @@
 
     squid
     socat
+
+    yubikey-personalization
+    gnupg
+    keybase
   ];
 
   virtualisation.docker = {
@@ -139,12 +143,30 @@
         };
       };
 
+      videoDrivers = [ "vmware" ];
+
     };
+
+    udev.packages = with pkgs; [
+      yubikey-personalization
+    ];
+
+    pcscd.enable = true;
+
   };
 
   programs = {
     zsh.enable = true;
+    ssh = {
+      askPassword = "";
+      startAgent = false;
+    };
   };
+
+  environment.shellInit = ''
+    gpg-connect-agent /bye
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  '';
 
   fonts = {
     enableFontDir = true;
@@ -162,7 +184,7 @@
   fileSystems."/home/tteggel/host" = {
     fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
     device = ".host:Shared";
-    options = [ "nofail" "allow_other" "uid=1000" "gid=1000" "auto_unmount" "defaults" ];
+    options = [ "nofail" "allow_other" "uid=1000" "gid=100" "auto_unmount" "defaults" ];
   };
 
   nix = {
@@ -173,8 +195,6 @@
       # To not get caught by the '''"nix-collect-garbage -d" makes
       # "nixos-rebuild switch" unusable when nixos.org is down"''' issue:
       gc-keep-outputs = true
-      # For 'nix-store -l $(which vim)'
-      log-servers = http://hydra.nixos.org/log
       # Number of seconds to wait for binary-cache to accept() our connect()
       connect-timeout = 15
     '';
