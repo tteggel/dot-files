@@ -158,6 +158,7 @@
   programs = {
     zsh.enable = true;
     ssh = {
+      extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 10.10.10.10 3128 %h %p";
       startAgent = false;
     };
   };
