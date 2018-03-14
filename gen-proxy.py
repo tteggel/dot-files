@@ -104,7 +104,7 @@ def main():
 
     # Where are we?
     region = get_region(tree)
-  
+
     # Munge the data
     our_proxies = tree.xpath('/proxyconf/region[@name="' + region + '"]/server')[0].text.split(',')
     all_proxies = get_all_proxies(tree)
