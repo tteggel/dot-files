@@ -103,7 +103,7 @@
     htop
 
     squid
-    socat
+    corkscrew
 
     yubikey-personalization
     gnupg
@@ -158,7 +158,6 @@
   programs = {
     zsh.enable = true;
     ssh = {
-      askPassword = "";
       startAgent = false;
     };
   };
@@ -166,6 +165,7 @@
   environment.shellInit = ''
     gpg-connect-agent /bye
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    gpg-connect-agent updatestartuptty /bye
   '';
 
   fonts = {
