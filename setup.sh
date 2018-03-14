@@ -28,8 +28,8 @@ ln -s $SCRIPTPATH/.dircolors $HOME/.dircolors
 rm -f $HOME/.Xresources
 ln -s $SCRIPTPATH/.Xresources $HOME/.Xresources
 
-rm -f $HOME/.zprofile
-ln -s $SCRIPTPATH/.zprofile $HOME/.zprofile
+rm -f $HOME/.zshenv
+ln -s $SCRIPTPATH/.zshenv $HOME/.zshenv
 
 rm -f $HOME/.zshrc
 ln -s $SCRIPTPATH/.zshrc $HOME/.zshrc
