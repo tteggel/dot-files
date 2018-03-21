@@ -6,9 +6,12 @@
       gcc
       go
       idea.idea-ultimate
+      jetbrains.jdk
       tree
       smith
       chromium
     ];
+
+    virtualisation.virtualbox.host.enable = true;
   };
 }
