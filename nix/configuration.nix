@@ -13,10 +13,9 @@
     ];
 
   boot = {
-    loader.grub = {
-      enable = true;
-      version = 2;
-      device = "/dev/sda";
+      loader = {
+          systemd-boot.enable = true;
+          efi.canTouchEfiVariables = true;
     };
     initrd.checkJournalingFS = false;
   };
@@ -116,7 +115,7 @@
   };
 
   services = {
-    vmwareGuest.enable = true;
+    #vmwareGuest.enable = true;
 
     printing.enable = true;
 
@@ -143,7 +142,7 @@
         };
       };
 
-      videoDrivers = [ "vmware" ];
+      #videoDrivers = [ "vmware" ];
 
     };
 
@@ -179,12 +178,6 @@
     uid = 1000;
     extraGroups = ["wheel" "input" "audio" "video" "docker"];
     shell = pkgs.zsh;
-  };
-
-  fileSystems."/home/tteggel/host" = {
-    fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-    device = ".host:Shared";
-    options = [ "nofail" "allow_other" "uid=1000" "gid=100" "auto_unmount" "defaults" ];
   };
 
   nix = {
@@ -226,6 +219,6 @@
     };
   };
 
-  system.stateVersion = "17.03";
+  system.stateVersion = "18.03";
 
 }
