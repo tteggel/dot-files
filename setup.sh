@@ -6,6 +6,9 @@ SCRIPTPATH=$(pwd)
 : ${1?"Usage: $0 machine-name"}
 test -e $SCRIPTPATH/nix/machines/${1}.nix || exit 99
 
+rm -rf $HOME/.dotfiles
+ln -s $SCRIPTPATH/. $HOME/.dotfiles
+
 sudo rm -rf /etc/nixos/configuration.nix
 sudo ln -s $SCRIPTPATH/nix/configuration.nix /etc/nixos/configuration.nix
 
@@ -18,9 +21,6 @@ sudo ln -s $SCRIPTPATH/nix/* /etc/nixos
 sudo nixos-rebuild switch --upgrade
 
 git submodule update --init --recursive || true
-
-rm -rf $HOME/.dotfiles
-ln -s $SCRIPTPATH/. $HOME/.dotfiles
 
 rm -f $HOME/.dircolors
 ln -s $SCRIPTPATH/.dircolors $HOME/.dircolors
