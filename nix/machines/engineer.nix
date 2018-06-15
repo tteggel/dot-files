@@ -4,9 +4,14 @@
   config = {
     environment.systemPackages = with pkgs; [
       gcc
-      go
       idea.idea-ultimate
+      jetbrains.goland
       jetbrains.jdk
+      jetbrains.pycharm-professional
+      jetbrains.ruby-mine
+      go
+      dep
+      gnumake      
       tree
       smith
       chromium

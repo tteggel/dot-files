@@ -1,13 +1,14 @@
 { config, pkgs, ... }:
   
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+#    overlays = import /etc/nixos/overlays.nix;
+    config.allowUnfree = true;
+  };
 
   imports =
     [
       /etc/nixos/hardware-configuration.nix
-
-      /etc/nixos/squid.nix
 
       /etc/nixos/machine.nix
     ];
@@ -16,8 +17,9 @@
       loader = {
           systemd-boot.enable = true;
           efi.canTouchEfiVariables = true;
-    };
-    initrd.checkJournalingFS = false;
+      };
+      kernelParams = [ "elevator=noop" ];
+      initrd.checkJournalingFS = false;
   };
 
   system.autoUpgrade = {
@@ -27,8 +29,8 @@
 
   networking = {
     hostName = "nixos";
-    proxy.default = "http://10.10.10.10:3128";
-    proxy.noProxy = "127.0.0.1,10.10.10.10,localhost,wpad-admin.oraclecorp.com";
+    proxy.default = "http://127.0.0.1:3128";
+    proxy.noProxy = "127.0.0.1,localhost,wpad";
     firewall.enable = false;
   };
 
@@ -79,7 +81,8 @@
   nixpkgs.config.packageOverrides = pkgs: rec {
     docker = pkgs.docker-edge;
     smith = pkgs.callPackage /etc/nixos/pkgs/smith {};
-  };
+    proxy-pac-proxy = (import /etc/nixos/pkgs/proxy-pac-proxy { inherit pkgs; }).proxy-pac-proxy;
+};
 
   environment.systemPackages = with pkgs; [
     emacs
@@ -101,7 +104,7 @@
     
     htop
 
-    squid
+    proxy-pac-proxy
     corkscrew
 
     yubikey-personalization
@@ -115,8 +118,6 @@
   };
 
   services = {
-    #vmwareGuest.enable = true;
-
     printing.enable = true;
 
     emacs.enable = true;
@@ -124,7 +125,7 @@
     xserver = {
       enable = true;
       layout = "gb";
-
+      dpi = 192; 
       windowManager = { 
         i3.enable = true;
         default = "i3";
@@ -134,16 +135,11 @@
         xterm.enable = false;
         default = "none";
       };
+    };
 
-      displayManager = {
-        auto = {
-          enable = true;
-          user = "tteggel";
-        };
-      };
-
-      #videoDrivers = [ "vmware" ];
-
+    xrdp = {
+      enable = true;
+      defaultWindowManager = "i3";
     };
 
     udev.packages = with pkgs; [
@@ -157,7 +153,7 @@
   programs = {
     zsh.enable = true;
     ssh = {
-      extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 10.10.10.10 3128 %h %p";
+      extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 127.0.0.1 3128 %h %p";
       startAgent = false;
     };
   };
@@ -198,27 +194,25 @@
     gc.options = "--delete-older-than 14d";
   };
 
-  systemd.services.wpad = {
+  systemd.services.proxy-pac-proxy = {
     enable = true;
-    description = "Detect proxy config";
-    path = with pkgs; [stdenv nix bash python3 pythonPackages.requests pythonPackages.lxml iproute];
+    description = "Local PAC proxy";
+    path = with pkgs; [stdenv nix proxy-pac-proxy];
     wantedBy = [ "multi-user.target" ];
     requires = [ "dhcpcd.service" ];
     after = [ "dhcpcd.service" ];
     environment = {
       NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
-      no_proxy = "127.0.0.1,localhost,wpad-admin.oraclecorp.com";
+      no_proxy = "127.0.0.1,localhost,wpad";
     };
     script = ''
-      ip a add dev lo 10.10.10.10 || true
-      /home/tteggel/.dotfiles/gen-proxy.py > /home/tteggel/.dotfiles/squid-parents.conf
+      proxy-pac-proxy start --url http://wpad/wpad.dat -p 3128 -f
     '';
     serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
+      Type = "simple";
     };
   };
 
-  system.stateVersion = "18.03";
+  system.nixos.stateVersion = "18.03";
 
 }
