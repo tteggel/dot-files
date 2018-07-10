@@ -29,7 +29,7 @@
 
   networking = {
     hostName = "nixos";
-    proxy.default = "http://127.0.0.1:3128";
+#    proxy.default = "http://127.0.0.1:3128";
     proxy.noProxy = "127.0.0.1,localhost,wpad";
     firewall.enable = false;
   };
@@ -153,7 +153,7 @@
   programs = {
     zsh.enable = true;
     ssh = {
-      extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 127.0.0.1 3128 %h %p";
+ #     extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 127.0.0.1 3128 %h %p";
       startAgent = false;
     };
   };
@@ -197,7 +197,7 @@
   systemd.services.proxy-pac-proxy = {
     enable = true;
     description = "Local PAC proxy";
-    path = with pkgs; [stdenv nix proxy-pac-proxy];
+    path = with pkgs; [stdenv nix curl proxy-pac-proxy];
     wantedBy = [ "multi-user.target" ];
     requires = [ "dhcpcd.service" ];
     after = [ "dhcpcd.service" ];
@@ -206,7 +206,14 @@
       no_proxy = "127.0.0.1,localhost,wpad";
     };
     script = ''
-      proxy-pac-proxy start --url http://wpad/wpad.dat -p 3128 -f
+      set -xe
+      set -o pipefail
+      status=$(http_proxy="" curl -s http://wpad/wpad.dat > /dev/null 2>&1; echo $?)
+      if [ $status -eq 0 ]; then
+        proxy-pac-proxy start --url http://wpad/wpad.dat -p 3128 -f
+      else
+        echo "no-proxy config"
+      fi
     '';
     serviceConfig = {
       Type = "simple";

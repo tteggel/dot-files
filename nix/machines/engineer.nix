@@ -15,6 +15,9 @@
       tree
       smith
       chromium
+      kubectl
+      openssl
+      kubernetes-helm
     ];
 
     virtualisation.virtualbox.host.enable = true;
