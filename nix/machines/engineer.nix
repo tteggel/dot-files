@@ -18,6 +18,7 @@
       kubectl
       openssl
       kubernetes-helm
+      firefox
     ];
 
     virtualisation.virtualbox.host.enable = true;

@@ -11,9 +11,9 @@ EDITOR="emacsclient -ct"
 VISUAL="emacsclient -ct"
 
 alias emacs="emacsclient -ct"
-alias k="KUBECONFIG=~/.kube/kubeconfig kubectl"
-alias k-dev="KUBECONFIG=~/.kube/kubeconfig-dev kubectl"
-alias grafana-dev="k-dev -n monitoring port-forward $(k-dev -n monitoring get pods | grep grafana-grafana | cut -f1 -d' ') 3000:3000"
+alias k-prod="KUBECONFIG=~/.kube/config-prod kubectl"
+alias k-dev="KUBECONFIG=~/.kube/config-dev kubectl"
+alias k-test="KUBECONFIG=~/.kube/config-test kubectl"
 
 eval $(dircolors $HOME/.dircolors)
 

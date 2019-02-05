@@ -29,9 +29,11 @@
 
   networking = {
     hostName = "nixos";
-#    proxy.default = "http://127.0.0.1:3128";
+#    proxy.default = "http://www-proxy-lon.uk.oracle.com:80";
+    proxy.default = "http://127.0.0.1:3128";
     proxy.noProxy = "127.0.0.1,localhost,wpad";
     firewall.enable = false;
+    enableIPv6 = false;
   };
 
   i18n = {
@@ -125,7 +127,11 @@
     xserver = {
       enable = true;
       layout = "gb";
-      dpi = 192; 
+
+      monitorSection = ''
+        DisplaySize 343 285
+      '';
+
       windowManager = { 
         i3.enable = true;
         default = "i3";
@@ -142,9 +148,14 @@
       defaultWindowManager = "i3";
     };
 
-    udev.packages = with pkgs; [
-      yubikey-personalization
-    ];
+    udev = {
+      extraRules = ''
+        SUBSYSTEM=="tty", GROUP="dialout"
+      '';
+      packages = with pkgs; [
+        yubikey-personalization
+      ];
+    };
 
     pcscd.enable = true;
 
@@ -153,7 +164,7 @@
   programs = {
     zsh.enable = true;
     ssh = {
- #     extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 127.0.0.1 3128 %h %p";
+#      extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 127.0.0.1 3128 %h %p";
       startAgent = false;
     };
   };
@@ -169,11 +180,14 @@
     fonts = [ pkgs.nerdfonts ];
   };
 
-  users.extraUsers.tteggel = {
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = ["wheel" "input" "audio" "video" "docker"];
-    shell = pkgs.zsh;
+  users = {
+    extraUsers.tteggel = {
+      isNormalUser = true;
+      uid = 1000;
+      extraGroups = ["wheel" "input" "audio" "video" "docker" "dialout"];
+      shell = pkgs.zsh;
+    };
+    groups = { dialout = {}; };
   };
 
   nix = {
@@ -208,9 +222,9 @@
     script = ''
       set -xe
       set -o pipefail
-      status=$(http_proxy="" curl -s http://wpad/wpad.dat > /dev/null 2>&1; echo $?)
+      status=$(http_proxy="" curl -s http://wpad.oraclecorp.com/wpad.dat > /dev/null 2>&1; echo $?)
       if [ $status -eq 0 ]; then
-        proxy-pac-proxy start --url http://wpad/wpad.dat -p 3128 -f
+        proxy-pac-proxy start --url http://wpad.oraclecorp.com/wpad.dat -p 3128 -f
       else
         echo "no-proxy config"
       fi
@@ -220,6 +234,5 @@
     };
   };
 
-  system.nixos.stateVersion = "18.03";
-
+  system.stateVersion = "18.03";
 }
