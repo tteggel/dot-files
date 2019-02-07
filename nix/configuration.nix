@@ -42,8 +42,8 @@
     defaultLocale = "en_GB.UTF-8";
   };
 
-  security.pki.certificates = [
-  ''
+  security.pki.certificates =
+  [''
   Oracle SSL CA
   -----BEGIN CERTIFICATE-----
   MIIFGTCCBAGgAwIBAgIQMTW7fm3iZjqw4jPmsOGlzDANBgkqhkiG9w0BAQsFADCB
@@ -75,8 +75,15 @@
   NnDZrEiqhx1sFVmhZgmZTN/XcQKYrVcBwrCrH9ZKc0yUDHnCvbBWe3OZ+4jsE5xL
   QerozOtT8JoZ/72C+Q==
   -----END CERTIFICATE-----
-  ''
-  ];
+  '']
+  ++
+  (let
+    d=~/.dotfiles/third_party/sparta-pki/trustroots;
+    l=builtins.readDir d;
+    f=builtins.attrNames l;
+   in
+    map (a: builtins.readFile "${d}/${a}") f
+  );
 
   time.timeZone = "Europe/London";
 

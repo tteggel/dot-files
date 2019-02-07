@@ -10,3 +10,6 @@
 [submodule "third_party/powerlevel9k"]
 	path = third_party/powerlevel9k
 	url = https://github.com/bhilburn/powerlevel9k.git
+[submodule "third_party/sparta-pki"]
+	path = third_party/sparta-pki
+	url = ssh://git@bitbucket.oci.oraclecorp.com:7999/secinf/sparta-pki.git
