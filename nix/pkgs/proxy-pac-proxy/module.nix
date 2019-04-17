@@ -32,8 +32,10 @@ in {
       description = "Local PAC proxy";
       path = with pkgs; [stdenv nix curl netcat];
       wantedBy = [ "multi-user.target" ];
-      requires = [ "dhcpcd.service" ];
-      after = [ "dhcpcd.service" ];
+      requires = [ "network-online.target" ];
+      wants = [ "network-online.target" "sys-subsystem-net-devices-eth0.device" ];
+      bindsTo = [ "sys-subsystem-net-devices-eth0.device" ];
+      after = [ "network-online.target" ];
 
       environment = {
         NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";

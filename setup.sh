@@ -2,6 +2,7 @@ set -xeuo pipefail
 
 pushd $(dirname $0)
 SCRIPTPATH=$(pwd)
+USER_HOME=$HOME
 
 : ${1?"Usage: $0 machine-name"}
 test -e $SCRIPTPATH/nix/machines/${1}.nix || exit 99
@@ -18,7 +19,7 @@ ln -s $SCRIPTPATH/nix/machines/${1}.nix $SCRIPTPATH/nix/machine.nix
 sudo find /etc/nixos -mindepth 1 -not -name 'hardware-configuration.nix' -delete
 sudo ln -s $SCRIPTPATH/nix/* /etc/nixos
 
-sudo nixos-rebuild switch --upgrade
+sudo HOME=$USER_HOME nixos-rebuild switch --upgrade
 
 git submodule update --init --recursive || true
 

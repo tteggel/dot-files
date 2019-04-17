@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, options, ... }:
   
 {
   nixpkgs = {
@@ -29,9 +29,10 @@
   };
 
   networking = {
-    hostName = "nixos";
+    hostName = "engineer";
     proxy.default = "http://127.0.0.1:3128";
-    proxy.noProxy = "127.0.0.1,localhost,wpad";
+    proxy.noProxy = "127.0.0.1,localhost";
+    timeServers = options.networking.timeServers.default ++ [ "gdsntp.us.oracle.com" "gdsntp.uk.oracle.com" ];
     firewall.enable = false;
   };
 
