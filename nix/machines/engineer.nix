@@ -19,8 +19,8 @@
       openssl
       kubernetes-helm
       firefox
+      jq
+      libffi
     ];
-
-    virtualisation.virtualbox.host.enable = true;
   };
 }

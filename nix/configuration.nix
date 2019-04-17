@@ -2,15 +2,14 @@
   
 {
   nixpkgs = {
-#    overlays = import /etc/nixos/overlays.nix;
     config.allowUnfree = true;
   };
 
   imports =
     [
       /etc/nixos/hardware-configuration.nix
-
-      /etc/nixos/machine.nix
+      ./machine.nix
+      ./pkgs/proxy-pac-proxy/module.nix
     ];
 
   boot = {
@@ -19,6 +18,8 @@
           efi.canTouchEfiVariables = true;
       };
       kernelParams = [ "elevator=noop" ];
+      kernelModules = [ "hv_sock" ];
+      kernelPackages = pkgs.linuxPackages_latest;
       initrd.checkJournalingFS = false;
   };
 
@@ -29,11 +30,9 @@
 
   networking = {
     hostName = "nixos";
-#    proxy.default = "http://www-proxy-lon.uk.oracle.com:80";
     proxy.default = "http://127.0.0.1:3128";
     proxy.noProxy = "127.0.0.1,localhost,wpad";
     firewall.enable = false;
-    enableIPv6 = false;
   };
 
   i18n = {
@@ -42,8 +41,9 @@
     defaultLocale = "en_GB.UTF-8";
   };
 
-  security.pki.certificates =
-  [''
+  security = {
+    pki.certificates =
+      [''
   Oracle SSL CA
   -----BEGIN CERTIFICATE-----
   MIIFGTCCBAGgAwIBAgIQMTW7fm3iZjqw4jPmsOGlzDANBgkqhkiG9w0BAQsFADCB
@@ -75,51 +75,49 @@
   NnDZrEiqhx1sFVmhZgmZTN/XcQKYrVcBwrCrH9ZKc0yUDHnCvbBWe3OZ+4jsE5xL
   QerozOtT8JoZ/72C+Q==
   -----END CERTIFICATE-----
-  '']
-  ++
-  (let
-    d=~/.dotfiles/third_party/sparta-pki/trustroots;
-    l=builtins.readDir d;
-    f=builtins.attrNames l;
-   in
-    map (a: builtins.readFile "${d}/${a}") f
-  );
+      '']
+      ++
+      (let
+        d=~/.dotfiles/third_party/sparta-pki/trustroots;
+        l=builtins.readDir d;
+        f=builtins.attrNames l;
+       in
+        map (a: builtins.readFile "${d}/${a}") f
+      );
+
+      pam.services.xrdp-sesman-rdp = {
+        text = ''
+          auth      include   system-remote-login
+          account   include   system-remote-login
+          password  include   system-remote-login
+          session   include   system-remote-login
+        '';
+      };
+
+     polkit = {
+        enable = true;
+        extraConfig = ''
+          polkit.addRule(function(action, subject) {
+              if ((action.id == "org.freedesktop.color-manager.create-device" ||
+                   action.id == "org.freedesktop.color-manager.modify-profile" ||
+                   action.id == "org.freedesktop.color-manager.delete-device" ||
+                   action.id == "org.freedesktop.color-manager.create-profile" ||
+                   action.id == "org.freedesktop.color-manager.modify-profile" ||
+                   action.id == "org.freedesktop.color-manager.delete-profile") &&
+                    subject.isInGroup("users")) {
+                  return polkit.Result.YES;
+              }
+          });
+        '';
+      }; 
+  };
 
   time.timeZone = "Europe/London";
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     docker = pkgs.docker-edge;
-    smith = pkgs.callPackage /etc/nixos/pkgs/smith {};
-    proxy-pac-proxy = (import /etc/nixos/pkgs/proxy-pac-proxy { inherit pkgs; }).proxy-pac-proxy;
-};
-
-  environment.systemPackages = with pkgs; [
-    emacs
-
-    git
-    unzip
-    termite
-    tmux
-    zsh
-    python27Packages.powerline
-    python3Packages.lxml
-    python3Packages.requests
-
-    aspell
-    aspellDicts.en
-
-    dmenu
-    i3status
-    
-    htop
-
-    proxy-pac-proxy
-    corkscrew
-
-    yubikey-personalization
-    gnupg
-    keybase
-  ];
+    smith = pkgs.callPackage ./pkgs/smith {};
+  };
 
   virtualisation.docker = {
     enable = true;
@@ -134,25 +132,32 @@
     xserver = {
       enable = true;
       layout = "gb";
-
-      monitorSection = ''
-        DisplaySize 343 285
-      '';
-
-      windowManager = { 
-        i3.enable = true;
-        default = "i3";
-      };
-
+      autorun = false;
+      videoDrivers = [ "fbdev" ];
+      monitorSection = "DisplaySize 343 285";
       desktopManager = {
         xterm.enable = false;
         default = "none";
       };
+      windowManager = {
+        i3.enable = true;
+        default = "i3";
+      }; 
     };
 
     xrdp = {
       enable = true;
-      defaultWindowManager = "i3";
+      defaultWindowManager = "${config.services.xserver.displayManager.session.wrapper}";
+      package = pkgs.xrdp.overrideAttrs (old: rec {
+        configureFlags = old.configureFlags ++ [ " --enable-vsock" ];     
+        postInstall = old.postInstall + ''
+          ${pkgs.gnused}/bin/sed -i -e "s/use_vsock=false/use_vsock=true/g" $out/etc/xrdp/xrdp.ini
+          ${pkgs.gnused}/bin/sed -i -e "s/security_layer=negotiate/security_layer=rdp/g" $out/etc/xrdp/xrdp.ini
+          ${pkgs.gnused}/bin/sed -i -e "s/crypt_level=high/crypt_level=none/g" $out/etc/xrdp/xrdp.ini
+          ${pkgs.gnused}/bin/sed -i -e "s/bitmap_compression=true/bitmap_compression=false/g" $out/etc/xrdp/xrdp.ini
+          ${pkgs.gnused}/bin/sed -i -e "s/FuseMountName=thinclient_drives/FuseMountName=shared-drives/g" $out/etc/xrdp/sesman.ini
+        '';
+      });
     };
 
     udev = {
@@ -166,20 +171,68 @@
 
     pcscd.enable = true;
 
+    proxy-pac-proxy.enable = true;
+
   };
 
   programs = {
     zsh.enable = true;
     ssh = {
-#      extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 127.0.0.1 3128 %h %p";
+      extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 127.0.0.1 3128 %h %p";
       startAgent = false;
     };
   };
 
-  environment.shellInit = ''
-    gpg-connect-agent /bye
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-  '';
+  environment = {
+    systemPackages = with pkgs; [
+      emacs
+
+      git
+      unzip
+      termite
+      tmux
+      zsh
+      python27Packages.powerline
+      python3Packages.lxml
+      python3Packages.requests
+
+      aspell
+      aspellDicts.en
+
+      dmenu
+      i3status
+
+      htop
+
+      corkscrew
+
+      yubikey-personalization
+      gnupg
+      keybase
+    ];
+
+    shellInit = ''
+      gpg-connect-agent /bye
+      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    '';
+
+    etc."X11/Xwrapper.config" = {
+      mode = "0644";
+      text = ''
+        allowed_users=anybody 
+        needs_root_rights=auto
+      '';
+    };
+
+    etc."X11/XLaunchXRDP" = {
+      mode = "0755";
+      text = ''
+        #!/usr/bin/env sh
+        exec ${config.services.xserver.windowManager.i3.package}/bin/i3        
+      '';
+    };
+
+  };
 
   fonts = {
     enableFontDir = true;
@@ -213,32 +266,6 @@
     gc.automatic = true;
     gc.dates = "03:15";
     gc.options = "--delete-older-than 14d";
-  };
-
-  systemd.services.proxy-pac-proxy = {
-    enable = true;
-    description = "Local PAC proxy";
-    path = with pkgs; [stdenv nix curl proxy-pac-proxy];
-    wantedBy = [ "multi-user.target" ];
-    requires = [ "dhcpcd.service" ];
-    after = [ "dhcpcd.service" ];
-    environment = {
-      NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
-      no_proxy = "127.0.0.1,localhost,wpad";
-    };
-    script = ''
-      set -xe
-      set -o pipefail
-      status=$(http_proxy="" curl -s http://wpad.oraclecorp.com/wpad.dat > /dev/null 2>&1; echo $?)
-      if [ $status -eq 0 ]; then
-        proxy-pac-proxy start --url http://wpad.oraclecorp.com/wpad.dat -p 3128 -f
-      else
-        echo "no-proxy config"
-      fi
-    '';
-    serviceConfig = {
-      Type = "simple";
-    };
   };
 
   system.stateVersion = "18.03";
