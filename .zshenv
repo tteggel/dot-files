@@ -11,9 +11,8 @@ EDITOR="emacsclient -ct"
 VISUAL="emacsclient -ct"
 
 alias emacs="emacsclient -ct"
-alias k-prod="KUBECONFIG=~/.kube/config-prod kubectl"
-alias k-dev="KUBECONFIG=~/.kube/config-dev kubectl"
-alias k-test="KUBECONFIG=~/.kube/config-test kubectl"
+alias ns="nix-shell --command zsh -p"
+alias less="bat -A -m conf:yaml --theme zenburn"
 
 eval $(dircolors $HOME/.dircolors)
 

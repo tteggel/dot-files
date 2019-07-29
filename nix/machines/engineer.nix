@@ -21,6 +21,7 @@
       firefox
       jq
       libffi
+      bat
     ];
   };
 }

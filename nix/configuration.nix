@@ -18,7 +18,6 @@
           efi.canTouchEfiVariables = true;
       };
       kernelParams = [ "elevator=noop" ];
-      kernelModules = [ "hv_sock" ];
       kernelPackages = pkgs.linuxPackages_latest;
       initrd.checkJournalingFS = false;
   };
@@ -29,7 +28,7 @@
   };
 
   networking = {
-    hostName = "engineer";
+    hostName = "thonix";
     proxy.default = "http://127.0.0.1:3128";
     proxy.noProxy = "127.0.0.1,localhost";
     timeServers = options.networking.timeServers.default ++ [ "gdsntp.us.oracle.com" "gdsntp.uk.oracle.com" ];
@@ -85,44 +84,21 @@
        in
         map (a: builtins.readFile "${d}/${a}") f
       );
-
-      pam.services.xrdp-sesman-rdp = {
-        text = ''
-          auth      include   system-remote-login
-          account   include   system-remote-login
-          password  include   system-remote-login
-          session   include   system-remote-login
-        '';
-      };
-
-     polkit = {
-        enable = true;
-        extraConfig = ''
-          polkit.addRule(function(action, subject) {
-              if ((action.id == "org.freedesktop.color-manager.create-device" ||
-                   action.id == "org.freedesktop.color-manager.modify-profile" ||
-                   action.id == "org.freedesktop.color-manager.delete-device" ||
-                   action.id == "org.freedesktop.color-manager.create-profile" ||
-                   action.id == "org.freedesktop.color-manager.modify-profile" ||
-                   action.id == "org.freedesktop.color-manager.delete-profile") &&
-                    subject.isInGroup("users")) {
-                  return polkit.Result.YES;
-              }
-          });
-        '';
-      }; 
   };
 
-  time.timeZone = "Europe/London";
+time.timeZone = "Europe/London";
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     docker = pkgs.docker-edge;
     smith = pkgs.callPackage ./pkgs/smith {};
   };
 
-  virtualisation.docker = {
-    enable = true;
-    extraOptions = "--mtu=1290";
+  virtualisation = {
+    vmware.guest.enable = true;
+    docker = {
+      enable = true;
+      extraOptions = "--mtu=1290";
+    };
   };
 
   services = {
@@ -133,9 +109,7 @@
     xserver = {
       enable = true;
       layout = "gb";
-      autorun = false;
-      videoDrivers = [ "fbdev" ];
-      monitorSection = "DisplaySize 343 285";
+      videoDrivers = [ "vmware" ];
       desktopManager = {
         xterm.enable = false;
         default = "none";
@@ -143,22 +117,7 @@
       windowManager = {
         i3.enable = true;
         default = "i3";
-      }; 
-    };
-
-    xrdp = {
-      enable = true;
-      defaultWindowManager = "${config.services.xserver.displayManager.session.wrapper}";
-      package = pkgs.xrdp.overrideAttrs (old: rec {
-        configureFlags = old.configureFlags ++ [ " --enable-vsock" ];     
-        postInstall = old.postInstall + ''
-          ${pkgs.gnused}/bin/sed -i -e "s/use_vsock=false/use_vsock=true/g" $out/etc/xrdp/xrdp.ini
-          ${pkgs.gnused}/bin/sed -i -e "s/security_layer=negotiate/security_layer=rdp/g" $out/etc/xrdp/xrdp.ini
-          ${pkgs.gnused}/bin/sed -i -e "s/crypt_level=high/crypt_level=none/g" $out/etc/xrdp/xrdp.ini
-          ${pkgs.gnused}/bin/sed -i -e "s/bitmap_compression=true/bitmap_compression=false/g" $out/etc/xrdp/xrdp.ini
-          ${pkgs.gnused}/bin/sed -i -e "s/FuseMountName=thinclient_drives/FuseMountName=shared-drives/g" $out/etc/xrdp/sesman.ini
-        '';
-      });
+      };
     };
 
     udev = {
@@ -208,30 +167,14 @@
       corkscrew
 
       yubikey-personalization
-      gnupg
+      opensc
       keybase
     ];
 
     shellInit = ''
-      gpg-connect-agent /bye
-      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+      OPENSC_PATH=$(nix-build '<nixpkgs>' --no-build-output -A opensc)
+      eval $(ssh-agent -s -P $OPENSC_PATH/lib/opensc-pkcs11.so)
     '';
-
-    etc."X11/Xwrapper.config" = {
-      mode = "0644";
-      text = ''
-        allowed_users=anybody 
-        needs_root_rights=auto
-      '';
-    };
-
-    etc."X11/XLaunchXRDP" = {
-      mode = "0755";
-      text = ''
-        #!/usr/bin/env sh
-        exec ${config.services.xserver.windowManager.i3.package}/bin/i3        
-      '';
-    };
 
   };
 
@@ -239,6 +182,12 @@
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = [ pkgs.nerdfonts ];
+  };
+
+  fileSystems."/home/tteggel/host" = {
+    fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
+    device = ".host:Shared";
+    options = [ "nofail" "allow_other" "uid=1000" "gid=100" "auto_unmount" "defaults" ];
   };
 
   users = {

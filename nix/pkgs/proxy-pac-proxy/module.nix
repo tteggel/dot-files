@@ -33,8 +33,8 @@ in {
       path = with pkgs; [stdenv nix curl netcat];
       wantedBy = [ "multi-user.target" ];
       requires = [ "network-online.target" ];
-      wants = [ "network-online.target" "sys-subsystem-net-devices-eth0.device" ];
-      bindsTo = [ "sys-subsystem-net-devices-eth0.device" ];
+      wants = [ "network-online.target" "sys-subsystem-net-devices-ens33.device" ];
+      bindsTo = [ "sys-subsystem-net-devices-ens33.device" ];
       after = [ "network-online.target" ];
 
       environment = {

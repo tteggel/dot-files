@@ -56,7 +56,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git colored-man copydir cp cpanm git-extras gitfast github gnu-utils jira lein pip python svn mercirual themes urltools tmux)
+plugins=(git copydir cp cpanm git-extras gitfast github gnu-utils jira lein pip python svn themes urltools tmux)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,3 +111,9 @@ fi
 alias bgred='echo -e "\033]11;#550000\007"'
 alias bggreen='echo -e "\033]11;#005500\007"'
 alias bgblue='echo -e "\033]11;#000055\007"'
+
+function yk () {
+    OPENSC_PATH=$(nix-build '<nixpkgs>' --no-build-output -A opensc)/lib/opensc-pkcs11.so
+    ssh-add -e $OPENSC_PATH > /dev/null 2>&1 || true
+    ssh-add -s $OPENSC_PATH
+}
