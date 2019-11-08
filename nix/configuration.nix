@@ -138,7 +138,10 @@ time.timeZone = "Europe/London";
   programs = {
     zsh.enable = true;
     ssh = {
-      extraConfig = "ProxyCommand /run/current-system/sw/bin/corkscrew 127.0.0.1 3128 %h %p";
+      extraConfig = ''
+        ProxyCommand /run/current-system/sw/bin/nc -X connect -x 127.0.0.1:3128 %h %p
+        ServerAliveInterval 10
+        '';
       startAgent = false;
     };
   };
@@ -163,8 +166,6 @@ time.timeZone = "Europe/London";
       i3status
 
       htop
-
-      corkscrew
 
       yubikey-personalization
       opensc

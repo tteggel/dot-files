@@ -12,7 +12,7 @@ VISUAL="emacsclient -ct"
 
 alias emacs="emacsclient -ct"
 alias ns="nix-shell --command zsh -p"
-alias less="bat -A -m conf:yaml --theme zenburn"
+alias less="bat -m conf:yaml --theme zenburn"
 
 eval $(dircolors $HOME/.dircolors)
 
