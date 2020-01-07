@@ -9,19 +9,20 @@
       jetbrains.jdk
       jetbrains.pycharm-professional
       jetbrains.ruby-mine
+      jetbrains.webstorm
       go
       dep
       gnumake      
       tree
       smith
       chromium
-      kubectl
       openssl
-      kubernetes-helm
       firefox
       jq
       libffi
       bat
+      nodejs
+      yarn
     ];
   };
 }
