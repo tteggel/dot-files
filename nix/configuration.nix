@@ -1,8 +1,18 @@
-{ config, pkgs, options, ... }:
+{ config, pkgs, options, stdenv, ... }:
   
 {
-  nixpkgs = {
-    config.allowUnfree = true;
+
+  nixpkgs.config = {
+    allowUnfree = true;
+
+    packageOverrides = pkgs: rec {
+      unstable = import <nixos-unstable> {
+        config = config.nixpkgs.config;
+      };
+      docker = pkgs.docker-edge;
+      smith = pkgs.callPackage ./pkgs/smith {};
+      firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
+    };
   };
 
   imports =
@@ -38,11 +48,6 @@
 
   time.timeZone = "Europe/London";
 
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    docker = pkgs.docker-edge;
-    smith = pkgs.callPackage ./pkgs/smith {};
-  };
-
   virtualisation = {
     vmware.guest.enable = true;
     docker = {
@@ -60,14 +65,11 @@
       enable = true;
       layout = "gb";
       videoDrivers = [ "vmware" ];
-      desktopManager = {
-        xterm.enable = false;
-        default = "none";
-      };
-      windowManager = {
-        i3.enable = true;
-        default = "i3";
-      };
+      desktopManager.xterm.enable = false;
+      desktopManager.default = "none";
+      windowManager.i3.enable = true;
+      windowManager.default = "i3";
+#      displayManager.defaultSession = "none+i3";
     };
 
     udev = {
@@ -116,8 +118,8 @@
     ];
 
     shellInit = ''
-      OPENSC_PATH=$(nix-build '<nixpkgs>' --no-build-output -A opensc)
-      eval $(ssh-agent -s -P $OPENSC_PATH/lib/opensc-pkcs11.so)
+      OPENSC_PATH=$(nix-build '<nixpkgs>' --no-build-output --no-out-link -A opensc)
+      eval $(ssh-agent -s -P $OPENSC_PATH/lib/opensc-pkcs11.so) > /dev/null 2>&1
     '';
 
   };

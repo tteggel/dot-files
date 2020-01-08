@@ -26,12 +26,13 @@ DEFAULT_USER="tteggel"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # emacs
-alias en='emacsclient -c -n'
-alias e='emacsclient -n'
-alias et='emacsclient -t'
-alias emacs='emacsclient -a "" -c'
+alias et='emacsclient -t -c -a ""'
+alias emacs='emacsclient -n -c -a ""'
+EDITOR='emacsclient -t -c -a ""'
+VISUAL='emacsclient -t -c -a ""'
 
-EDITOR='emacsclient -t -n'
+alias ns="nix-shell --command zsh -p"
+alias less="bat -m conf:yaml --theme zenburn"
 
 # open
 alias open=xdg-open
@@ -56,7 +57,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git copydir cp cpanm git-extras gitfast github gnu-utils jira lein pip python svn themes urltools tmux)
+plugins=(git copydir cp cpanm git-extras gitfast github gnu-utils pip python themes urltools tmux)
 
 source $ZSH/oh-my-zsh.sh
 
