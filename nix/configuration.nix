@@ -28,7 +28,30 @@
       };
       kernelParams = [ "elevator=noop" ];
       kernelPackages = pkgs.linuxPackages_latest;
-      initrd.checkJournalingFS = false;
+      initrd = {
+        checkJournalingFS = false;
+        kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
+        luks = {
+          cryptoModules = [ "aes" "xts" "sha512" ];
+          yubikeySupport = true;
+          devices."thomnixe" = {
+          name = "thomnixe";
+          device = "/dev/sda2";
+          preLVM = true;
+          yubikey = {
+            slot = 2;
+            twoFactor = true;
+            keyLength = 64;
+            saltLength = 16;
+            storage = {
+              device = "/dev/sda1";
+              fsType = "vfat";
+              path = "/crypt-storage/default"
+            };
+          };
+        };
+      };
+    };
   };
 
   system.autoUpgrade = {
