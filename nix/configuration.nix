@@ -39,8 +39,8 @@
           device = "/dev/sda2";
           preLVM = true;
           yubikey = {
-            slot = 2;
             twoFactor = true;
+            slot = 2;
             keyLength = 64;
             saltLength = 16;
             storage = {
