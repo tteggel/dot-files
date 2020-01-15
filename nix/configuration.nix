@@ -22,32 +22,31 @@
     ];
 
   boot = {
-      loader = {
-          systemd-boot.enable = true;
-          efi.canTouchEfiVariables = true;
-      };
-      kernelParams = [ "elevator=noop" ];
-      kernelPackages = pkgs.linuxPackages_latest;
-      initrd = {
-        checkJournalingFS = false;
-        kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
-        luks = {
-          cryptoModules = [ "aes" "xts" "sha512" ];
-          yubikeySupport = true;
-          devices."thomnixe" = {
-            name = "thomnixe";
-            device = "/dev/sda2";
-            preLVM = true;
-            yubikey = {
-              twoFactor = true;
-              slot = 2;
-              keyLength = 64;
-              saltLength = 16;
-              storage = {
-                device = "/dev/sda1";
-                fsType = "vfat";
-                path = "/crypt-storage/default";
-              };
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    kernelParams = [ "elevator=noop" ];
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd = {
+      checkJournalingFS = false;
+      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
+      luks = {
+        cryptoModules = [ "aes" "xts" "sha512" ];
+        yubikeySupport = true;
+        devices."thomnixe" = {
+          name = "thomnixe";
+          device = "/dev/sda2";
+          preLVM = true;
+          yubikey = {
+            twoFactor = true;
+            slot = 2;
+            keyLength = 64;
+            saltLength = 16;
+            storage = {
+              device = "/dev/sda1";
+              fsType = "vfat";
+              path = "/crypt-storage/default";
             };
           };
         };
