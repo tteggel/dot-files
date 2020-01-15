@@ -17,11 +17,12 @@
       firebase-tools
 
       nodejs
-      yarn
-      unstable.nodePackages.mocha
-      nodePackages.node2nix
+      unstable.yarn
+      mocha
+      unstable.nodePackages.node2nix
 
       gcc
+      binutils
       go
       dep
       gnumake      

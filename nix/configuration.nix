@@ -12,6 +12,7 @@
       docker = pkgs.docker-edge;
       smith = pkgs.callPackage ./pkgs/smith {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
+      mocha = pkgs.callPackage ./pkgs/mocha {};
     };
   };
 
@@ -92,6 +93,8 @@
       desktopManager.default = "none";
       windowManager.i3.enable = true;
       windowManager.default = "i3";
+      displayManager.sddm.enable = true;
+      dpi = 138;
 #      displayManager.defaultSession = "none+i3";
     };
 
