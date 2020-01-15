@@ -35,18 +35,19 @@
           cryptoModules = [ "aes" "xts" "sha512" ];
           yubikeySupport = true;
           devices."thomnixe" = {
-          name = "thomnixe";
-          device = "/dev/sda2";
-          preLVM = true;
-          yubikey = {
-            twoFactor = true;
-            slot = 2;
-            keyLength = 64;
-            saltLength = 16;
-            storage = {
-              device = "/dev/sda1";
-              fsType = "vfat";
-              path = "/crypt-storage/default"
+            name = "thomnixe";
+            device = "/dev/sda2";
+            preLVM = true;
+            yubikey = {
+              twoFactor = true;
+              slot = 2;
+              keyLength = 64;
+              saltLength = 16;
+              storage = {
+                device = "/dev/sda1";
+                fsType = "vfat";
+                path = "/crypt-storage/default"
+              };
             };
           };
         };
