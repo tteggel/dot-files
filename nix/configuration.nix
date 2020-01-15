@@ -46,7 +46,7 @@
               storage = {
                 device = "/dev/sda1";
                 fsType = "vfat";
-                path = "/crypt-storage/default"
+                path = "/crypt-storage/default";
               };
             };
           };
