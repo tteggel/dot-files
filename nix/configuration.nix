@@ -37,11 +37,11 @@ in
       checkJournalingFS = false;
       kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
       luks = {
-        cryptoModules = [ "aes" "xts" "sha512" ];
+#        cryptoModules = [ "aes" "xts" "sha512" ];
         yubikeySupport = true;
         devices."luks-root" = {
           name = "thomnixe";
-          preLVM = true;
+#          preLVM = true;
           yubikey = {
             twoFactor = true;
             slot = 2;
