@@ -1,24 +1,28 @@
 { config, pkgs, options, stdenv, ... }:
-  
+let
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs-channels/archive/nixpkgs-unstable.tar.gz;
+in
 {
 
   nixpkgs.config = {
     allowUnfree = true;
 
     packageOverrides = pkgs: rec {
-      unstable = import <nixos-unstable> {
+      unstable = import unstableTarball {
         config = config.nixpkgs.config;
       };
-      docker = pkgs.docker-edge;
       smith = pkgs.callPackage ./pkgs/smith {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
+      docker = pkgs.docker-edge;
     };
   };
 
   imports =
     [
-      /etc/nixos/hardware-configuration.nix
+      ./hardware-configuration.nix
       ./machine.nix
     ];
 
@@ -57,7 +61,7 @@
 
   system.autoUpgrade = {
     enable = true;
-    channel = https://nixos.org/channels/nixos-unstable;
+    channel = https://nixos.org/channels/nixpkgs-unstable;
   };
 
   networking = {

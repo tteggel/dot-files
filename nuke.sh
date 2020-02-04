@@ -21,7 +21,7 @@ cleanup() {
 }
 
 yubi_run() {
-  nix-shell https://github.com/sgillespie/nixos-yubikey-luks/archive/master.tar.gz --run "$1"
+  nix-shell https://codeload.github.com/sgillespie/nixos-yubikey-luks/tar.gz/master --run "$1"
 }
 
 luks() {
@@ -82,6 +82,7 @@ rm -rf "$EFI_MNT" || true
 mkdir "$EFI_MNT"
 mount "$EFI_PART" "$EFI_MNT"
 nixos-generate-config --root /mnt
-cp -f $SCRIPT_PATH/nix/configuration.nix /etc/nixos
-cp -f $SCRIPT_PATH/nix/machines/engineer.nix /etc/nixos/machine.nix
-nixos-install --root /mnt
+cp -f $SCRIPT_PATH/nix/configuration.nix /mnt/etc/nixos/
+cp -f $SCRIPT_PATH/nix/machines/blank.nix /mnt/etc/nixos/machine.nix
+cp -rf $SCRIPT_PATH/nix/pkgs /mnt/etc/nixos/
+nixos-install
