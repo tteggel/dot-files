@@ -64,7 +64,7 @@ in
   };
 
   networking = {
-    hostName = "thomnix";
+    hostName = "thomnixe";
   };
 
   i18n = {
