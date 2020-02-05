@@ -36,7 +36,9 @@ luks() {
   HASH=sha512
 
   salt=$(yubi_run "dd if=/dev/random bs=1 count=$SALT_LENGTH 2>/dev/null | rbtohex")
-  echo -n "Disk passphrase: "; read -s k_user
+  read -p "Disk passphrase: " -s k_user
+  read -p "Confirm disk passphrase: " -s k_user_again
+  [[ $k_user = $k_user_again ]] || (echo "Passphrases don't match"; false)
 
   challenge=$(yubi_run "echo -n $salt | openssl dgst -binary -sha512 | rbtohex")
   response=$(yubi_run "ykchalresp -2 -x $challenge 2>/dev/null")

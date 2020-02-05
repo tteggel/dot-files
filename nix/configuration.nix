@@ -40,7 +40,7 @@ in
 #        cryptoModules = [ "aes" "xts" "sha512" ];
         yubikeySupport = true;
         devices."luks-root" = {
-          name = "thomnixe";
+#          name = "thomnixe";
 #          preLVM = true;
           yubikey = {
             twoFactor = true;
