@@ -90,4 +90,5 @@ nixos-generate-config --root /mnt
 cp -f $SCRIPT_PATH/nix/configuration.nix /mnt/etc/nixos/
 cp -f $SCRIPT_PATH/nix/machines/blank.nix /mnt/etc/nixos/machine.nix
 cp -rf $SCRIPT_PATH/nix/pkgs /mnt/etc/nixos/
-nixos-install
+nixos-install --no-root-passwd
+$SCRIPT_PATH/post-install.sh

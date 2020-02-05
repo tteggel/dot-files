@@ -1,3 +1,4 @@
 squid-parents.conf
 nix/machine.nix
 result
+hardware-configuration.nix

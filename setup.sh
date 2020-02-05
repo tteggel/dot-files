@@ -10,16 +10,8 @@ test -e $SCRIPTPATH/nix/machines/${1}.nix || exit 99
 rm -rf $HOME/.dotfiles
 ln -s $SCRIPTPATH/. $HOME/.dotfiles
 
-sudo rm -rf /etc/nixos/configuration.nix
-sudo ln -s $SCRIPTPATH/nix/configuration.nix /etc/nixos/configuration.nix
-
 rm -rf $SCRIPTPATH/nix/machine.nix
 ln -s $SCRIPTPATH/nix/machines/${1}.nix $SCRIPTPATH/nix/machine.nix
-
-sudo find /etc/nixos -mindepth 1 -not -name 'hardware-configuration.nix' -delete
-sudo ln -s $SCRIPTPATH/nix/* /etc/nixos
-
-sudo HOME=$USER_HOME nixos-rebuild switch --upgrade
 
 git submodule update --init --recursive || true
 

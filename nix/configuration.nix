@@ -167,11 +167,13 @@ in
   };
 
   users = {
+    mutableUsers = false;
     extraUsers.tteggel = {
       isNormalUser = true;
       uid = 1000;
       extraGroups = ["wheel" "input" "audio" "video" "docker" "dialout"];
       shell = pkgs.zsh;
+      hashedPassword = "";
     };
     groups = { dialout = {}; };
   };
