@@ -14,6 +14,7 @@ EFI_MNT=/mnt/boot
 FS_ROOT=fs-root
 
 cleanup() {
+  echo "Bye!"
 }
 
 yubi_run() {
@@ -31,7 +32,11 @@ luks() {
   CIPHER=aes-xts-plain64
   HASH=sha512
 
+  mkdir -p "$EFI_MNT"
+  mount "$EFI_PART" "$EFI_MNT"
   salt=$(head -1 "$EFI_MNT$STORAGE")
+  umount "$EFI_MNT"
+
   read -p "Disk passphrase: " -s k_user
 
   challenge=$(yubi_run "echo -n $salt | openssl dgst -binary -sha512 | rbtohex")
@@ -46,7 +51,6 @@ luks() {
 cleanup
 
 # Mounts
-mkdir -p "$EFI_MNT"
-mount "$EFI_PART" "$EFI_MNT"
 luks
 mount -t btrfs -o noatime,discard,ssd,autodefrag,compress=lzo,space_cache,subvol=subvolume-root "/dev/mapper/$LUKS_ROOT" /mnt
+mount "$EFI_PART" "$EFI_MNT"
