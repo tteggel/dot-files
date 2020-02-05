@@ -44,8 +44,11 @@ luks() {
   response=$(yubi_run "ykchalresp -2 -x $challenge 2>/dev/null")
   k_luks=$(yubi_run "echo -n \"$k_user\" | pbkdf2-sha512 $(($KEY_LENGTH / 8)) $ITERATIONS $response | rbtohex")
 
+  mkdir -p "$EFI_MNT" || true
+  mount "$EFI_PART" "$EFI_MNT"
   mkdir -p "$(dirname $EFI_MNT$STORAGE)"
   echo -ne "$salt\n$ITERATIONS" > $EFI_MNT$STORAGE
+  umount "$EFI_MNT"
 
   yubi_run "echo -n \"$k_luks\" | hextorb | cryptsetup luksFormat --cipher=\"$CIPHER\" --key-size=\"$KEY_LENGTH\" \
                                   --hash=\"$HASH\" --key-file=- \"$LUKS_PART\""
@@ -80,8 +83,8 @@ btrfs subvolume create /mnt/run
 btrfs subvolume create /mnt/nix
 
 # Bootstrap nixos
-rm -rf "$EFI_MNT" || true
-mkdir "$EFI_MNT"
+umount "$EFI_MNT" || true
+mkdir -p "$EFI_MNT" || true
 mount "$EFI_PART" "$EFI_MNT"
 nixos-generate-config --root /mnt
 cp -f $SCRIPT_PATH/nix/configuration.nix /mnt/etc/nixos/

@@ -47,6 +47,7 @@ in
             slot = 2;
             keyLength = 64;
             saltLength = 16;
+            gracePeriod = 60;
             storage = {
               device = "/dev/sda1";
               fsType = "vfat";
