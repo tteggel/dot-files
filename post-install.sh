@@ -29,7 +29,12 @@ nixos-enter -c "ln -s /home/tteggel/src/github.com/tteggel/dot-files/nix /etc/ni
 touch /mnt/etc/resolv.conf
 mount -o bind,ro /etc/resolv.conf /mnt/etc/resolv.conf
 nixos-enter -c "su tteggel -c '/home/tteggel/src/github.com/tteggel/dot-files/setup.sh engineer'"
+
 echo -n "Adding yubikey..."
-nixos-enter -c "su tteggel -c 'mkdir -p /home/tteggel/.config/Yubico && pamu2fcfg > /home/tteggel/.config/Yubico/u2f_keys'"
-nixos-enter -c "su tteggel -c 'ssh-keygen -b 4096 -t rsa -f ~/.ssh/id_rsa -q -N \'\''"
+mkdir -p "/mnt/home/tteggel/.config/Yubico"
+nix run nixpkgs.pam_u2f -c "pamu2fcfg" | sed s/^root/tteggel/ > /mnt/home/tteggel/.config/Yubico/u2f_keys
+
+nixos-enter -c "chown -R tteggel:users /home/tteggel"
+
+nixos-enter -c "su tteggel -c 'ssh-keygen -b 4096 -t rsa -f ~/.ssh/id_rsa -q -N \"\"'"
 nixos-enter -c "su tteggel -c 'git config --global user.email \"thom@tteggel.org\"; git config --global user.name \"Thom Leggett\"'"
