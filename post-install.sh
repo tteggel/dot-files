@@ -24,10 +24,12 @@ mkdir -p /mnt/home/tteggel/src/github.com/tteggel/dot-files
 cp -r $SCRIPT_PATH /mnt/home/tteggel/src/github.com/tteggel
 nixos-enter -c "chown -R tteggel:users /home/tteggel/src"
 rm -rf /mnt/etc/nixos
-mkdir -p /mnt/etc/nixos
-nixos-enter -c "find /home/tteggel/src/github.com/tteggel/dot-files/nix -maxdepth 1 -exec ln -s {} /etc/nixos \;"
+nixos-enter -c "ln -s /home/tteggel/src/github.com/tteggel/dot-files/nix /etc/nixos"
 
+touch /mnt/etc/resolv.conf
 mount -o bind,ro /etc/resolv.conf /mnt/etc/resolv.conf
 nixos-enter -c "su tteggel -c '/home/tteggel/src/github.com/tteggel/dot-files/setup.sh engineer'"
-
-nixos-enter -c "nixos-rebuild switch"
+echo -n "Adding yubikey..."
+nixos-enter -c "su tteggel -c 'mkdir -p /home/tteggel/.config/Yubico && pamu2fcfg > /home/tteggel/.config/Yubico/u2f_keys'"
+nixos-enter -c "su tteggel -c 'ssh-keygen -b 4096 -t rsa -f ~/.ssh/id_rsa -q -N \'\''"
+nixos-enter -c "su tteggel -c 'git config --global user.email \"thom@tteggel.org\"; git config --global user.name \"Thom Leggett\"'"

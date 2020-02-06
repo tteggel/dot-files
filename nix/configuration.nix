@@ -5,7 +5,6 @@ let
       https://github.com/NixOS/nixpkgs-channels/archive/nixpkgs-unstable.tar.gz;
 in
 {
-
   nixpkgs.config = {
     allowUnfree = true;
 
@@ -173,10 +172,20 @@ in
       uid = 1000;
       extraGroups = ["wheel" "input" "audio" "video" "docker" "dialout"];
       shell = pkgs.zsh;
-      hashedPassword = "";
     };
     groups = { dialout = {}; };
   };
+
+  hardware.u2f.enable = true;
+  security = {
+    pam.services.login.u2fAuth = true;
+    pam.services.sddm.u2fAuth = true;
+    pam.services.i3lock.u2fAuth = true;
+    pam.u2f = {
+      enable = true;
+      control = "required";
+    };
+  }
 
   nix = {
     useSandbox = true;
