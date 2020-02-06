@@ -172,6 +172,7 @@ in
       uid = 1000;
       extraGroups = ["wheel" "input" "audio" "video" "docker" "dialout"];
       shell = pkgs.zsh;
+      hashedPassword = "$6$YiZNkbac0NjU$g/.gjO05NUXdjzj3z102rzA6xwv3nG/NCpKtNOaYul0lJKtKY6GVNRtB./1Z1QqEPHAXzyJn1U5PmbusscW3R0";
     };
     groups = { dialout = {}; };
   };
@@ -185,7 +186,7 @@ in
       enable = true;
       control = "required";
     };
-  }
+  };
 
   nix = {
     useSandbox = true;
