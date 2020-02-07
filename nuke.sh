@@ -59,8 +59,17 @@ luks() {
 
 cleanup
 
-# EFI partition
+# Label
+echo "d
+x
+z
+Y
+w
+q
+" | gdisk /dev/sda
 parted -s $DISK mklabel gpt
+
+# EFI partition
 parted -s $DISK mkpart primary fat32 1MiB 1GiB
 parted -s $DISK set 1 esp on
 parted -s $DISK set 1 boot on
@@ -87,8 +96,9 @@ umount "$EFI_MNT" || true
 mkdir -p "$EFI_MNT" || true
 mount "$EFI_PART" "$EFI_MNT"
 nixos-generate-config --root /mnt
-cp -f $SCRIPT_PATH/nix/configuration.nix /mnt/etc/nixos/
-cp -f $SCRIPT_PATH/nix/machines/blank.nix /mnt/etc/nixos/machine.nix
-cp -rf $SCRIPT_PATH/nix/pkgs /mnt/etc/nixos/
+cp /mnt/etc/nixos/hardware-configuration.nix $SCRIPT_PATH/nix/
+rm -rf /mnt/etc/nixos
+cp -rf -t /mnt/etc/nixos $SCRIPT_PATH/nix/*
+ln -sf /mnt/etc/nixos/machines/engineer.nix /mnt/etc/nixos/machine.nix
 nixos-install --no-root-passwd
 $SCRIPT_PATH/post-install.sh
