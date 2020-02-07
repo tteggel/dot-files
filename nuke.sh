@@ -60,9 +60,9 @@ luks() {
 cleanup
 
 # Label
-echo "d
-x
+echo "x
 z
+Y
 Y
 w
 q
