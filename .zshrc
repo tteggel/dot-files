@@ -17,20 +17,14 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir virtualenv vcs root_indicator)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs history time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
 
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
-POWERLEVEL9K_SHORTEN_DELIMITER=""
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_unique"
 
 DEFAULT_USER="tteggel"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # emacs
 alias et='emacsclient -t -c -a ""'
@@ -38,8 +32,8 @@ alias emacs='emacsclient -n -c -a ""'
 EDITOR='emacsclient -t -c -a ""'
 VISUAL='emacsclient -t -c -a ""'
 
-alias ns="nix-shell --command zsh -p"
-alias less="bat -m conf:yaml --theme zenburn"
+alias nr="nix run nixpkgs."
+alias less="bat -m conf:yaml --theme base16"
 
 # open
 alias open=xdg-open
@@ -47,7 +41,6 @@ alias open=xdg-open
 POWERLINE_RIGHT_A="mixed"
 POWERLINE_HIDE_USER_NAME="true"
 POWERLINE_DETECT_SSH="true"
-#POWERLINE_SHOW_GIT_ON_RIGHT="true"
 POWERLINE_HIDE_HOST_NAME="true"
 
 TERM="rxvt-256color"
