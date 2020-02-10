@@ -33,7 +33,7 @@ nixos-enter -c "sudo -u tteggel /home/tteggel/src/github.com/tteggel/dot-files/s
 
 read -p "Press a key to continue then touch Yubi..." -n1
 mkdir -p "/mnt/home/tteggel/.config/Yubico"
-nix run nixpkgs.pam_u2f -c  pamu2fcfg -u tteggel > /mnt/home/tteggel/.config/Yubico/u2f_keys
+nix run nixpkgs.pam_u2f -c  pamu2fcfg -u tteggel -o "pam://thomnixe" -i "pam://thomnixe"> /mnt/home/tteggel/.config/Yubico/u2f_keys
 
 nixos-enter -c "chown -R tteggel:users /home/tteggel"
 

@@ -182,23 +182,14 @@ in
 
   hardware.u2f.enable = true;
   security = {
-#    pam.services.login.yubicoAuth = true;
-#    pam.services.sudo.yubicoAuth = true;
-#    pam.services.sddm.yubicoAuth = true;
-#    pam.services.i3lock.yubicoAuth = true;
-#    pam.services.xss-lock.yubicoAuth = true;
     pam.services.tteggel.u2fAuth = true;
     pam.services.sudo.u2fAuth = true;
     pam.services.i3lock.u2fAuth = true;
     pam.services.sddm.u2fAuth = true;
     pam.u2f = {
       enable = true;
+      debug = true;
     };
-#    pam.yubico = {
-#      id = "tteggel";
-#      enable = true;
-#      control = "required";
-#    };
   };
 
   nix = {
