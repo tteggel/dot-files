@@ -7,9 +7,6 @@
 [submodule "third_party/tmux-current-pane-hostname"]
 	path = third_party/tmux-current-pane-hostname
 	url = https://github.com/soyuka/tmux-current-pane-hostname
-[submodule "third_party/powerlevel9k"]
-	path = third_party/powerlevel9k
-	url = https://github.com/bhilburn/powerlevel9k.git
 [submodule "third_party/powerlevel10k"]
 	path = third_party/powerlevel10k
 	url = https://gitgub.com/romkatv/powerlevel10k

@@ -38,4 +38,3 @@ nix run nixpkgs.pam_u2f -c  pamu2fcfg -u tteggel -o "pam://thomnixe" -i "pam://t
 nixos-enter -c "chown -hR tteggel:users /home/tteggel"
 
 nixos-enter -c "sudo -u tteggel ssh-keygen -b 4096 -t rsa -f /home/tteggel/.ssh/id_rsa -q -N \"\""
-nixos-enter -c "sudo -u tteggel git config --global user.email \"thom@tteggel.org\"; git config --global user.name \"Thom Leggett\""

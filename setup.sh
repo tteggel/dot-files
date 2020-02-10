@@ -33,9 +33,8 @@ ln -s $SCRIPTPATH/.tmux.conf $HOME/.tmux.conf
 rm -rf $HOME/.oh-my-zsh
 ln -s $SCRIPTPATH/third_party/oh-my-zsh $HOME/.oh-my-zsh
 
-rm -rf $HOME/.oh-my-zsh/custom/themes/powerlevel9k
+rm -rf $HOME/.oh-my-zsh/custom/themes/powerlevel10k
 mkdir -p ~/.oh-my-zsh/custom/themes
-ln -s $SCRIPTPATH/third_party/powerlevel9k $HOME/.oh-my-zsh/custom/themes/powerlevel9k
 ln -s $SCRIPTPATH/third_party/powerlevel10k $HOME/.oh-my-zsh/custom/themes/powerlevel10k
 
 rm -rf $HOME/.i3
@@ -52,6 +51,12 @@ ln -s $SCRIPTPATH/.spacemacs $HOME/.spacemacs
 
 rm -rf $HOME/.config/termite
 ln -s $SCRIPTPATH/termite $HOME/.config/termite
+
+rm -rf $HOME/.gitconfig
+ln -s $SCRIPTPATH/.gitconfig $HOME/.gitconfig
+
+rm -rf $HOME/.p10k.zsh
+ln -s $SCRIPTPATH/.p10k.zsh $HOME/.p10k.zsh
 
 popd
 
