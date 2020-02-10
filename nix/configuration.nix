@@ -188,7 +188,6 @@ in
     pam.services.sddm.u2fAuth = true;
     pam.u2f = {
       enable = true;
-      debug = true;
     };
   };
 
