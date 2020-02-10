@@ -185,6 +185,7 @@ in
     pam.services.i3lock.yubicoAuth = true;
     pam.services.xss-lock.yubicoAuth = true;
     pam.yubico = {
+      id = "tteggel";
       enable = true;
       control = "required";
     };

@@ -14,7 +14,7 @@ EFI_MNT=/mnt/boot
 FS_ROOT=fs-root
 
 cleanup() {
-  umount /mnt/boot || true
+  umount "$EFI_MNT" || true
   umount /mnt || true
   umount /boot || true
   cryptsetup close "$LUKS_ROOT" || true

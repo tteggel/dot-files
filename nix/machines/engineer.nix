@@ -3,11 +3,7 @@
 {
   config = {
     environment.systemPackages = with pkgs; [
-      unstable.idea.idea-ultimate
-      unstable.jetbrains.goland
       unstable.jetbrains.jdk
-      unstable.jetbrains.pycharm-professional
-      unstable.jetbrains.ruby-mine
       unstable.jetbrains.webstorm
  
       unstable.firefox
