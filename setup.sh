@@ -50,9 +50,8 @@ ln -s $SCRIPTPATH/third_party/spacemacs $HOME/.emacs.d
 rm -rf $HOME/.spacemacs
 ln -s $SCRIPTPATH/.spacemacs $HOME/.spacemacs
 
-rm -rf $HOME/.yubico
-mkdir $HOME/.yubico
-cp $SCRIPTPATH/.yubico/authorized_yubikeys $HOME/.yubico/authorized_yubikeys
+rm -rf $HOME/.config/termite
+ln -s $SCRIPTPATH/termite $HOME/.config/termite
 
 popd
 
