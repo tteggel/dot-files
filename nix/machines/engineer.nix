@@ -9,7 +9,7 @@
       unstable.firefox
       unstable.google-chrome
 
-      unstable.google-cloud-sdk
+      google-cloud-sdk
       firebase-tools
 
       nodejs

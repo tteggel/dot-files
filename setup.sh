@@ -36,6 +36,7 @@ ln -s $SCRIPTPATH/third_party/oh-my-zsh $HOME/.oh-my-zsh
 rm -rf $HOME/.oh-my-zsh/custom/themes/powerlevel9k
 mkdir -p ~/.oh-my-zsh/custom/themes
 ln -s $SCRIPTPATH/third_party/powerlevel9k $HOME/.oh-my-zsh/custom/themes/powerlevel9k
+ln -s $SCRIPTPATH/third_party/powerlevel10k $HOME/.oh-my-zsh/custom/themes/powerlevel10k
 
 rm -rf $HOME/.i3
 ln -s $SCRIPTPATH/.i3 $HOME/.i3

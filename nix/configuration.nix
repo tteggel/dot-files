@@ -15,7 +15,15 @@ in
       smith = pkgs.callPackage ./pkgs/smith {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
+      meslo-p10k = pkgs.callPackage ./pkgs/meslo-p10k {};
       docker = pkgs.docker-edge;
+      google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
+        version = "279.0.0";
+        src = pkgs.fetchurl {
+          url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-279.0.0-linux-x86_64.tar.gz";
+          sha256 = "1d58jswsgkpykdsh6vvnqqqk1j0lbl3inanggxanx3inc6yvzvs7";
+        };
+      });
     };
   };
 
@@ -158,7 +166,10 @@ in
   fonts = {
     enableFontDir = true;
     enableGhostscriptFonts = true;
-    fonts = [ pkgs.nerdfonts ];
+    fonts = with pkgs; [ 
+      nerdfonts
+      meslo-p10k
+    ];
   };
 
   fileSystems."/home/tteggel/host" = {
