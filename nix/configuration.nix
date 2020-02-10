@@ -174,21 +174,31 @@ in
       uid = 1000;
       extraGroups = ["wheel" "input" "audio" "video" "docker" "dialout"];
       shell = pkgs.zsh;
-      hashedPassword = "$6$YiZNkbac0NjU$g/.gjO05NUXdjzj3z102rzA6xwv3nG/NCpKtNOaYul0lJKtKY6GVNRtB./1Z1QqEPHAXzyJn1U5PmbusscW3R0";
+      #hashedPassword = "$6$YiZNkbac0NjU$g/.gjO05NUXdjzj3z102rzA6xwv3nG/NCpKtNOaYul0lJKtKY6GVNRtB./1Z1QqEPHAXzyJn1U5PmbusscW3R0";
+      hashedPassword = "$6$y3/QwwQC6J$0Jtn58rmAIXEKd6VgAaS8G91opxzfmPihSzXF6e8ApLprestXD6BHjOrI0PZjn9Fztlqp3CrSLv7JlbtWO0H./";
     };
     groups = { dialout = {}; };
   };
 
+  hardware.u2f.enable = true;
   security = {
-    pam.services.login.yubicoAuth = true;
-    pam.services.sddm.yubicoAuth = true;
-    pam.services.i3lock.yubicoAuth = true;
-    pam.services.xss-lock.yubicoAuth = true;
-    pam.yubico = {
-      id = "tteggel";
+#    pam.services.login.yubicoAuth = true;
+#    pam.services.sudo.yubicoAuth = true;
+#    pam.services.sddm.yubicoAuth = true;
+#    pam.services.i3lock.yubicoAuth = true;
+#    pam.services.xss-lock.yubicoAuth = true;
+    pam.services.tteggel.u2fAuth = true;
+    pam.services.sudo.u2fAuth = true;
+    pam.services.i3lock.u2fAuth = true;
+    pam.services.sddm.u2fAuth = true;
+    pam.u2f = {
       enable = true;
-      control = "required";
     };
+#    pam.yubico = {
+#      id = "tteggel";
+#      enable = true;
+#      control = "required";
+#    };
   };
 
   nix = {

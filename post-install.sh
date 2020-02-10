@@ -31,6 +31,10 @@ touch /mnt/etc/resolv.conf
 mount -o bind,ro /etc/resolv.conf /mnt/etc/resolv.conf
 nixos-enter -c "sudo -u tteggel /home/tteggel/src/github.com/tteggel/dot-files/setup.sh engineer"
 
+read -p "Press a key to continue then touch Yubi..." -n1
+mkdir -p "/mnt/home/tteggel/.config/Yubico"
+nix run nixpkgs.pam_u2f -c  pamu2fcfg -u tteggel > /mnt/home/tteggel/.config/Yubico/u2f_keys
+
 nixos-enter -c "chown -R tteggel:users /home/tteggel"
 
 nixos-enter -c "sudo -u tteggel ssh-keygen -b 4096 -t rsa -f /home/tteggel/.ssh/id_rsa -q -N \"\""
