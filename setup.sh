@@ -49,6 +49,9 @@ ln -s $SCRIPTPATH/third_party/spacemacs $HOME/.emacs.d
 rm -rf $HOME/.spacemacs
 ln -s $SCRIPTPATH/.spacemacs $HOME/.spacemacs
 
+rm -rf $HOME/.yubico
+ln -s $SCRIPTPATH/.yubico $HOME/.yubico
+
 popd
 
 cleanup() {

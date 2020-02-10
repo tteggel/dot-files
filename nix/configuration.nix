@@ -36,11 +36,8 @@ in
       checkJournalingFS = false;
       kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
       luks = {
-#        cryptoModules = [ "aes" "xts" "sha512" ];
         yubikeySupport = true;
         devices."luks-root" = {
-#          name = "thomnixe";
-#          preLVM = true;
           yubikey = {
             twoFactor = true;
             slot = 2;
@@ -97,6 +94,9 @@ in
       windowManager.i3.enable = true;
       windowManager.default = "i3";
       displayManager.sddm.enable = true;
+      displayManager.sessionCommands = ''
+        xss-lock i3lock &
+      '';
       dpi = 138;
 #      displayManager.defaultSession = "none+i3";
     };
@@ -107,6 +107,7 @@ in
       '';
       packages = with pkgs; [
         yubikey-personalization
+        libu2f-host
       ];
     };
 
@@ -144,6 +145,7 @@ in
       yubikey-personalization
       opensc
       keybase
+      xss-lock
     ];
 
     shellInit = ''
@@ -177,12 +179,12 @@ in
     groups = { dialout = {}; };
   };
 
-  hardware.u2f.enable = true;
   security = {
-    pam.services.login.u2fAuth = true;
-    pam.services.sddm.u2fAuth = true;
-    pam.services.i3lock.u2fAuth = true;
-    pam.u2f = {
+    pam.services.login.yubicoAuth = true;
+    pam.services.sddm.yubicoAuth = true;
+    pam.services.i3lock.yubicoAuth = true;
+    pam.services.xss-lock.yubicoAuth = true;
+    pam.yubico = {
       enable = true;
       control = "required";
     };
