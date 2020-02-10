@@ -50,7 +50,8 @@ rm -rf $HOME/.spacemacs
 ln -s $SCRIPTPATH/.spacemacs $HOME/.spacemacs
 
 rm -rf $HOME/.yubico
-ln -s $SCRIPTPATH/.yubico $HOME/.yubico
+mkdir $HOME/.yubico
+cp $SCRIPTPATH/.yubico/authorized_yubikeys $HOME/.yubico/authorized_yubikeys
 
 popd
 
