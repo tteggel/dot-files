@@ -20,7 +20,7 @@ in
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
         version = "279.0.0";
         src = pkgs.fetchurl {
-          url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-279.0.0-linux-x86_64.tar.gz";
+          url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
           sha256 = "1d58jswsgkpykdsh6vvnqqqk1j0lbl3inanggxanx3inc6yvzvs7";
         };
       });
