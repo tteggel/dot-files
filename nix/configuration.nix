@@ -185,8 +185,7 @@ in
       uid = 1000;
       extraGroups = ["wheel" "input" "audio" "video" "docker" "dialout"];
       shell = pkgs.zsh;
-      #hashedPassword = "$6$YiZNkbac0NjU$g/.gjO05NUXdjzj3z102rzA6xwv3nG/NCpKtNOaYul0lJKtKY6GVNRtB./1Z1QqEPHAXzyJn1U5PmbusscW3R0";
-      hashedPassword = "$6$y3/QwwQC6J$0Jtn58rmAIXEKd6VgAaS8G91opxzfmPihSzXF6e8ApLprestXD6BHjOrI0PZjn9Fztlqp3CrSLv7JlbtWO0H./";
+      hashedPassword = "$6$YiZNkbac0NjU$g/.gjO05NUXdjzj3z102rzA6xwv3nG/NCpKtNOaYul0lJKtKY6GVNRtB./1Z1QqEPHAXzyJn1U5PmbusscW3R0";
     };
     groups = { dialout = {}; };
   };
