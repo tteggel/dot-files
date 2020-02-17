@@ -6,8 +6,10 @@
       unstable.jetbrains.jdk
       unstable.jetbrains.webstorm
  
-      unstable.firefox
-      unstable.google-chrome
+      google-chrome-dev
+      gitPkgs.chromium-git_82
+
+      unstable.slack
 
       google-cloud-sdk
       firebase-tools
@@ -17,9 +19,10 @@
       mocha
       unstable.nodePackages.node2nix
 
+      inkscape
+
       gcc
       binutils
-      go
       dep
       gnumake      
       tree

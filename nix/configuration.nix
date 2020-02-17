@@ -12,16 +12,20 @@ in
       unstable = import unstableTarball {
         config = config.nixpkgs.config;
       };
+      gitPkgs = import "/home/tteggel/src/github.com/nixos/nixpkgs" {
+        config = config.nixpkgs.config;
+      };
       smith = pkgs.callPackage ./pkgs/smith {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
       meslo-p10k = pkgs.callPackage ./pkgs/meslo-p10k {};
       docker = pkgs.docker-edge;
+      nodejs = unstable.nodejs-12_x;
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "279.0.0";
+        version = "280.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          sha256 = "1d58jswsgkpykdsh6vvnqqqk1j0lbl3inanggxanx3inc6yvzvs7";
+          sha256 = "1kq9q9hfcvrj4ilnpmwv4y7c6605p0pp505gmg1pvv0nn8fhz58i";
         };
       });
     };
@@ -198,6 +202,7 @@ in
     pam.services.sddm.u2fAuth = true;
     pam.u2f = {
       enable = true;
+      cue = true;
     };
   };
 
