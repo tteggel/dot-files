@@ -31,6 +31,7 @@
       jq
       libffi
       bat
+      lsof
    ];
   };
 }
