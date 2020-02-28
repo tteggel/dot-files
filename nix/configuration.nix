@@ -9,23 +9,32 @@ in
     allowUnfree = true;
 
     packageOverrides = pkgs: rec {
+
+      # Other package trees
       unstable = import unstableTarball {
         config = config.nixpkgs.config;
       };
       gitPkgs = import "/home/tteggel/src/github.com/nixos/nixpkgs" {
         config = config.nixpkgs.config;
       };
+
+      # Local packages
       smith = pkgs.callPackage ./pkgs/smith {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
       meslo-p10k = pkgs.callPackage ./pkgs/meslo-p10k {};
+      playwright = pkgs.callPackage ./pkgs/playwright {};
+
+      # Package selections
       docker = pkgs.docker-edge;
       nodejs = unstable.nodejs-12_x;
+
+      # Package overrides
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "280.0.0";
+        version = "282.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          sha256 = "1kq9q9hfcvrj4ilnpmwv4y7c6605p0pp505gmg1pvv0nn8fhz58i";
+          sha256 = "15gwc74m9mkn35vms98i863gzbbfn61rx7xx6zwiwf4qm5vd2byv";
         };
       });
     };
@@ -108,6 +117,7 @@ in
       displayManager.sddm.enable = true;
       displayManager.sessionCommands = ''
         xss-lock i3lock &
+        flameshot &
       '';
       dpi = 138;
 #      displayManager.defaultSession = "none+i3";
@@ -135,6 +145,7 @@ in
 
   environment = {
     systemPackages = with pkgs; [
+      nix-index
       emacs
 
       git
@@ -158,6 +169,8 @@ in
       opensc
       keybase
       xss-lock
+
+      flameshot
     ];
 
     shellInit = ''

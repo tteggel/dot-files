@@ -517,13 +517,13 @@ let
         sha512 = "8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==";
       };
     };
-    "log-symbols-2.2.0" = {
+    "log-symbols-3.0.0" = {
       name = "log-symbols";
       packageName = "log-symbols";
-      version = "2.2.0";
+      version = "3.0.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/log-symbols/-/log-symbols-2.2.0.tgz";
-        sha512 = "VeIAFslyIerEJLXHziedo2basKbMKtTw3vfn5IzG0XTjhAVEJyNHnL2p7vc+wBDSdQuUpNw3M2u6xb9QsAY5Eg==";
+        url = "https://registry.npmjs.org/log-symbols/-/log-symbols-3.0.0.tgz";
+        sha512 = "dSkNGuI7iG3mfvDzUuYZyvk5dD9ocYCYzNU6CYDE6+Xqd+gwme6Z00NS3dUh8mq/73HaEtT7m6W+yUPtU6BZnQ==";
       };
     };
     "minimatch-3.0.4" = {
@@ -910,10 +910,10 @@ in
   mocha = nodeEnv.buildNodePackage {
     name = "mocha";
     packageName = "mocha";
-    version = "7.0.1";
+    version = "7.1.0";
     src = fetchurl {
-      url = "https://registry.npmjs.org/mocha/-/mocha-7.0.1.tgz";
-      sha512 = "9eWmWTdHLXh72rGrdZjNbG3aa1/3NRPpul1z0D979QpEnFdCG0Q5tv834N+94QEN2cysfV72YocQ3fn87s70fg==";
+      url = "https://registry.npmjs.org/mocha/-/mocha-7.1.0.tgz";
+      sha512 = "MymHK8UkU0K15Q/zX7uflZgVoRWiTjy0fXE/QjKts6mowUvGxOdPhZ2qj3b0iZdUrNZlW9LAIMFHB4IW+2b3EQ==";
     };
     dependencies = [
       sources."ansi-colors-3.2.3"
@@ -982,7 +982,7 @@ in
       sources."js-yaml-3.13.1"
       sources."locate-path-3.0.0"
       sources."lodash-4.17.15"
-      sources."log-symbols-2.2.0"
+      sources."log-symbols-3.0.0"
       sources."minimatch-3.0.4"
       sources."minimist-0.0.8"
       sources."mkdirp-0.5.1"

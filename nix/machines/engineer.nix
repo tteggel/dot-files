@@ -7,7 +7,7 @@
       unstable.jetbrains.webstorm
  
       google-chrome-dev
-      gitPkgs.chromium-git_82
+      #gitPkgs.chromium-git_82
 
       unstable.slack
 
@@ -18,6 +18,7 @@
       unstable.yarn
       mocha
       unstable.nodePackages.node2nix
+      playwright
 
       inkscape
 

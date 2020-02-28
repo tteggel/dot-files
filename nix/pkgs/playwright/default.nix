@@ -15,5 +15,7 @@ let
     inherit pkgs nodejs;
     inherit (stdenv.hostPlatform) system;
   };
-in
-nodePackages_12_x.mocha
+in 
+nodePackages_12_x.playwright.override {
+    postInstall = "npm run-script install";
+}

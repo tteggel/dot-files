@@ -1,9 +1,19 @@
-{ pkgs, nodejs, stdenv }:
+{ pkgs ? import <nixpkgs> {}, nodejs ? pkgs.nodejs, stdenv ? pkgs.stdenv}:
 
 let
-  nodePackages = import ./composition.nix {
+  nodePackages_10_x = import ./composition-v10.nix {
+    inherit pkgs nodejs;
+    inherit (stdenv.hostPlatform) system;
+  };
+
+  nodePackages_12_x = import ./composition-v12.nix {
+    inherit pkgs nodejs;
+    inherit (stdenv.hostPlatform) system;
+  };  
+
+  nodePackages_13_x = import ./composition-v13.nix {
     inherit pkgs nodejs;
     inherit (stdenv.hostPlatform) system;
   };
 in
-nodePackages.firebase-tools
+nodePackages_12_x.firebase-tools
