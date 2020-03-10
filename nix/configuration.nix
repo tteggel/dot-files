@@ -31,10 +31,10 @@ in
 
       # Package overrides
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "282.0.0";
+        version = "283.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          sha256 = "15gwc74m9mkn35vms98i863gzbbfn61rx7xx6zwiwf4qm5vd2byv";
+          hash = "sha256:071lz378i8cwzdd5rn00k0sshxyfm6n4ql91bsbmmqrqjbkvpd0k";
         };
       });
     };
@@ -83,6 +83,9 @@ in
 
   networking = {
     hostName = "thomnixe";
+    hosts = {
+      "127.0.0.1" = ["app.dev.bookcreator.com"];
+    };
   };
 
   i18n = {
