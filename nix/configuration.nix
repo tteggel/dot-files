@@ -194,7 +194,7 @@ in
 
   fileSystems."/home/tteggel/host" = {
     fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-    device = ".host:Shared";
+    device = ".host:thomnixe";
     options = [ "nofail" "allow_other" "uid=1000" "gid=100" "auto_unmount" "defaults" ];
   };
 

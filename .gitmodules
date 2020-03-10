@@ -9,4 +9,4 @@
 	url = https://github.com/soyuka/tmux-current-pane-hostname
 [submodule "third_party/powerlevel10k"]
 	path = third_party/powerlevel10k
-	url = https://gitgub.com/romkatv/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k

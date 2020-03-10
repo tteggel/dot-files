@@ -50,6 +50,7 @@ rm -rf $HOME/.spacemacs
 ln -s $SCRIPTPATH/.spacemacs $HOME/.spacemacs
 
 rm -rf $HOME/.config/termite
+mkdir -p $HOME/.config
 ln -s $SCRIPTPATH/termite $HOME/.config/termite
 
 rm -rf $HOME/.gitconfig
