@@ -31,10 +31,10 @@ in
 
       # Package overrides
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "283.0.0";
+        version = "284.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:071lz378i8cwzdd5rn00k0sshxyfm6n4ql91bsbmmqrqjbkvpd0k";
+          hash = "sha256:0ba15xnq5sjps9w8n9lb6jy9371vkf902rl47cmjsfmq38yz15h4";
         };
       });
     };
