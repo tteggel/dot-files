@@ -1,8 +1,8 @@
 { config, pkgs, options, stdenv, ... }:
 let
-  unstableTarball =
+  stableTarball =
     fetchTarball
-      https://github.com/NixOS/nixpkgs-channels/archive/nixpkgs-unstable.tar.gz;
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-19.09.tar.gz;
 in
 {
   nixpkgs.config = {
@@ -11,7 +11,7 @@ in
     packageOverrides = pkgs: rec {
 
       # Other package trees
-      unstable = import unstableTarball {
+      stable = import stableTarball {
         config = config.nixpkgs.config;
       };
       gitPkgs = import "/home/tteggel/src/github.com/nixos/nixpkgs" {
@@ -27,7 +27,7 @@ in
 
       # Package selections
       docker = pkgs.docker-edge;
-      nodejs = unstable.nodejs-12_x;
+      nodejs = pkgs.nodejs-12_x;
 
       # Package overrides
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
@@ -40,11 +40,10 @@ in
     };
   };
 
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./machine.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./machine.nix
+  ];
 
   boot = {
     loader = {
@@ -52,7 +51,7 @@ in
       efi.canTouchEfiVariables = true;
     };
     kernelParams = [ "elevator=noop" ];
-#    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest;
     initrd = {
       checkJournalingFS = false;
       kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
@@ -78,20 +77,26 @@ in
 
   system.autoUpgrade = {
     enable = true;
-    channel = https://nixos.org/channels/nixpkgs-unstable;
+    channel = https://nixos.org/channels/nixos-unstable;
   };
 
   networking = {
     hostName = "thomnixe";
     hosts = {
-      "127.0.0.1" = ["app.dev.bookcreator.com"];
+      "127.0.0.1" = ["app.dev.bookcreator.com" "read.dev.bookcreator.com"];
+    };
+    firewall = {
+      enable = true;
     };
   };
 
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "uk";
     defaultLocale = "en_GB.UTF-8";
+  };
+
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "uk";
   };
 
   time.timeZone = "Europe/London";
@@ -114,21 +119,20 @@ in
       layout = "gb";
       videoDrivers = [ "vmware" ];
       desktopManager.xterm.enable = false;
-      desktopManager.default = "none";
       windowManager.i3.enable = true;
-      windowManager.default = "i3";
       displayManager.sddm.enable = true;
       displayManager.sessionCommands = ''
         xss-lock i3lock &
         flameshot &
       '';
       dpi = 138;
-#      displayManager.defaultSession = "none+i3";
+      displayManager.defaultSession = "none+i3";
     };
 
     udev = {
       extraRules = ''
         SUBSYSTEM=="tty", GROUP="dialout"
+        ACTION=="remove", ENV{ID_VENDOR_ID}=="1050", ENV{ID_MODEL_ID}=="0407", RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
       '';
       packages = with pkgs; [
         yubikey-personalization
@@ -156,7 +160,6 @@ in
       termite
       tmux
       zsh
-      python27Packages.powerline
       python3Packages.lxml
       python3Packages.requests
 

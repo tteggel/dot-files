@@ -3,21 +3,22 @@
 {
   config = {
     environment.systemPackages = with pkgs; [
-      unstable.jetbrains.jdk
-      unstable.jetbrains.webstorm
+      jetbrains.jdk
+      jetbrains.webstorm
  
+      google-chrome
       google-chrome-dev
       #gitPkgs.chromium-git_82
 
-      unstable.slack
+      slack
 
       google-cloud-sdk
       firebase-tools
 
       nodejs
-      unstable.yarn
+      yarn
       mocha
-      unstable.nodePackages.node2nix
+      nodePackages.node2nix
       playwright
 
       inkscape
