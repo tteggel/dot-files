@@ -34,6 +34,8 @@
       libffi
       bat
       lsof
+
+      go
    ];
   };
 }

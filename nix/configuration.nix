@@ -8,6 +8,8 @@ in
   nixpkgs.config = {
     allowUnfree = true;
 
+    pulseaudio = true;
+
     packageOverrides = pkgs: rec {
 
       # Other package trees
@@ -109,6 +111,8 @@ in
     };
   };
 
+  hardware.pulseaudio.enable = true;
+
   services = {
     printing.enable = true;
 
@@ -120,7 +124,7 @@ in
       videoDrivers = [ "vmware" ];
       desktopManager.xterm.enable = false;
       windowManager.i3.enable = true;
-      displayManager.sddm.enable = true;
+      #displayManager.sddm.enable = true;
       displayManager.sessionCommands = ''
         xss-lock i3lock &
         flameshot &
@@ -152,6 +156,9 @@ in
 
   environment = {
     systemPackages = with pkgs; [
+      pavucontrol
+      alsaTools
+
       nix-index
       emacs
 
