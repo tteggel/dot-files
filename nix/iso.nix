@@ -6,8 +6,6 @@
 nixpkgs.config = {
     allowUnfree = true;
 
-    pulseaudio = true;
-
     packageOverrides = pkgs: rec {
 
       pbkdf2-sha512 = pkgs.callPackage ./pkgs/pbkdf2-sha512 {};
@@ -40,7 +38,7 @@ nixpkgs.config = {
 
 
   imports = [
-    <nixpkgs/nixos/modules/installer/cd-dvd/iso-image.nix>
+    <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
   ];
 
   boot = {
@@ -49,6 +47,7 @@ nixpkgs.config = {
   };
 
   environment.systemPackages = with pkgs; [
+    git
   ];
 
 }
