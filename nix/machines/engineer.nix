@@ -11,6 +11,7 @@
       #gitPkgs.chromium-git_82
 
       slack
+      spotify
 
       google-cloud-sdk
       firebase-tools

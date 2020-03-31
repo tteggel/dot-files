@@ -59,6 +59,9 @@ ln -s $SCRIPTPATH/.gitconfig $HOME/.gitconfig
 rm -rf $HOME/.p10k.zsh
 ln -s $SCRIPTPATH/.p10k.zsh $HOME/.p10k.zsh
 
+rm -rf $HOME/.expressvpn
+ln -s $SCRIPTPATH/.expressvpn $HOME/.expressvpn
+
 popd
 
 cleanup() {

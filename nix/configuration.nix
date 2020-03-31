@@ -21,6 +21,7 @@ in
       };
 
       # Local packages
+      pbkdf2-sha512 = pkgs.callPackage ./pkgs/pbkdf2-sha512 {};
       smith = pkgs.callPackage ./pkgs/smith {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
@@ -29,7 +30,7 @@ in
 
       # Package selections
       docker = pkgs.docker-edge;
-      nodejs = pkgs.nodejs-12_x;
+      nodejs = pkgs.nodejs-10_x;
 
       # Package overrides
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
@@ -37,6 +38,30 @@ in
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
           hash = "sha256:0ba15xnq5sjps9w8n9lb6jy9371vkf902rl47cmjsfmq38yz15h4";
+        };
+      });
+
+      linuxPackages_latest = pkgs.linuxPackages_latest.extend (self: super: {
+        kernel = super.kernel.override {
+          kernelPatches = super.kernel.kernelPatches ++ [
+            rec {
+              name = "0023-Add-DM_CRYPT_FORCE_INLINE-flag-to-dm-crypt-target";
+              patch = pkgs.fetchpatch {
+                name = name + ".patch";
+                url = "https://raw.githubusercontent.com/cloudflare/linux/master/" + name + ".patch";
+                sha256 = "1yiw6xzxnigz3ii9afd2409mfl0qx46lj4c7nqq4186ik87cvi3c";
+              };
+            }
+
+            rec {
+              name = "0024-Add-xtsproxy-Crypto-API-module";
+              patch = pkgs.fetchpatch {
+                name = name + ".patch";
+                url = "https://raw.githubusercontent.com/cloudflare/linux/master/" + name + ".patch";
+                sha256 = "0cy8784k6p2z37h4jgzv6il6pfxvx18wbgn95gdz2yd33rz43rc9";
+              };
+            } 
+          ];
         };
       });
     };
@@ -54,6 +79,7 @@ in
     };
     kernelParams = [ "elevator=noop" ];
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "xtsproxy" ];
     initrd = {
       checkJournalingFS = false;
       kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
@@ -145,6 +171,14 @@ in
     };
 
     pcscd.enable = true;
+
+    openvpn = {
+      servers.uzbek = {
+        autoStart = false;
+        updateResolvConf = true;
+        config = "config /home/tteggel/.expressvpn/my_expressvpn_uzbekistan_udp.ovpn";
+      };
+    };
   };
 
   programs = {
@@ -179,6 +213,8 @@ in
       htop
 
       yubikey-personalization
+      keyutils
+      pbkdf2-sha512
       opensc
       keybase
       xss-lock

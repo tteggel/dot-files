@@ -14,7 +14,7 @@ EFI_MNT=/mnt/boot
 FS_ROOT=fs-root
 
 cleanup() {
-  echo "Bye!"
+  umount "$EFI_MNT" || true
 }
 
 yubi_run() {
@@ -29,7 +29,7 @@ luks() {
   STORAGE=/crypt-storage/default
   SLOT=2
   SALT_LENGTH=16
-  CIPHER=aes-xts-plain64
+  CIPHER=xts-aes-xtsproxy-plain64
   HASH=sha512
 
   mkdir -p "$EFI_MNT"
