@@ -29,7 +29,7 @@ luks() {
   STORAGE=/crypt-storage/default
   SLOT=2
   SALT_LENGTH=16
-  CIPHER=xts-aes-xtsproxy-plain64
+  CIPHER=capi:xts-aes-xtsproxy-plain64
   HASH=sha512
 
   mkdir -p "$EFI_MNT"
