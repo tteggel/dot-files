@@ -32,7 +32,7 @@ luks() {
   STORAGE=/crypt-storage/default
   SLOT=2
   SALT_LENGTH=16
-  CIPHER=xts-aes-xtsproxy-plain64
+  CIPHER=capi:xts-aes-xtsproxy-plain64
   HASH=sha512
 
   salt=$(yubi_run "dd if=/dev/random bs=1 count=$SALT_LENGTH 2>/dev/null | rbtohex")
