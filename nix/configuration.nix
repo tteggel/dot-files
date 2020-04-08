@@ -33,6 +33,10 @@ in
       nodejs = pkgs.nodejs-10_x;
 
       # Package overrides
+      ffmpeg-full = pkgs.ffmpeg-full.override ({
+        nonfreeLicensing = true;
+      });
+
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
         version = "284.0.0";
         src = pkgs.fetchurl {

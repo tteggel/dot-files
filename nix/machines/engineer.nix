@@ -37,6 +37,8 @@
       lsof
 
       go
+
+      ffmpeg-full
    ];
   };
 }
