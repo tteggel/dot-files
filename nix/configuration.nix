@@ -87,7 +87,7 @@ in
     kernelModules = [ "xtsproxy" ];
     initrd = {
       checkJournalingFS = false;
-      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
+      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid"  "xtsproxy" ];
       luks = {
         yubikeySupport = true;
         devices."luks-root" = {
