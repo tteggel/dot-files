@@ -35,6 +35,7 @@ in
       # Package overrides
       ffmpeg-full = pkgs.ffmpeg-full.override ({
         nonfreeLicensing = true;
+        fdkaacExtlib = true;
       });
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
@@ -107,15 +108,10 @@ in
     };
   };
 
-  system.autoUpgrade = {
-    enable = true;
-    channel = https://nixos.org/channels/nixos-unstable;
-  };
-
   networking = {
     hostName = "thomnixe";
     hosts = {
-      "127.0.0.1" = ["app.dev.bookcreator.com" "read.dev.bookcreator.com"];
+#      "127.0.0.1" = ["app.dev.bookcreator.com" "read.dev.bookcreator.com"];
     };
     firewall = {
       enable = true;

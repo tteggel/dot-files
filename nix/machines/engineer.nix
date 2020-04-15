@@ -38,6 +38,8 @@
 
       go
 
+      git-lfs
+
       ffmpeg-full
    ];
   };
