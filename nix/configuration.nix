@@ -26,23 +26,24 @@ in
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
       meslo-p10k = pkgs.callPackage ./pkgs/meslo-p10k {};
-      playwright = pkgs.callPackage ./pkgs/playwright {};
+#      playwright = pkgs.callPackage ./pkgs/playwright {};
 
       # Package selections
       docker = pkgs.docker-edge;
       nodejs = pkgs.nodejs-10_x;
 
       # Package overrides
-      ffmpeg-full = pkgs.ffmpeg-full.override ({
-        nonfreeLicensing = true;
-        fdkaacExtlib = true;
-      });
+
+      #ffmpeg-full = pkgs.ffmpeg-full.override ({
+      #  nonfreeLicensing = true;
+      #  fdkaacExtlib = true;
+      #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "284.0.0";
+        version = "290.0.1";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:0ba15xnq5sjps9w8n9lb6jy9371vkf902rl47cmjsfmq38yz15h4";
+          hash = "sha256:03k9sixxscyhksjbrcgcir5y0zc1hdjdahdn2gkfw45rmrfc9027";
         };
       });
 
@@ -83,11 +84,12 @@ in
       efi.canTouchEfiVariables = true;
     };
     kernelParams = [ "elevator=noop" ];
-    kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "xtsproxy" ];
+#    kernelPackages = pkgs.linuxPackages_latest;
+#    kernelModules = [ "xtsproxy" ];
     initrd = {
       checkJournalingFS = false;
-      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid"  "xtsproxy" ];
+#      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid"  "xtsproxy" ];
+      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" ];
       luks = {
         yubikeySupport = true;
         devices."luks-root" = {
@@ -112,6 +114,7 @@ in
     hostName = "thomnixe";
     hosts = {
 #      "127.0.0.1" = ["app.dev.bookcreator.com" "read.dev.bookcreator.com"];
+      "35.227.242.123" = ["api.dev.bookcreator.com"];
     };
     firewall = {
       enable = true;

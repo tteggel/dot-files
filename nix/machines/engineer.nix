@@ -20,7 +20,7 @@
       yarn
       mocha
       nodePackages.node2nix
-      playwright
+      #playwright
 
       inkscape
 
