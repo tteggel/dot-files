@@ -16,4 +16,4 @@ let
     inherit (stdenv.hostPlatform) system;
   };
 in
-nodePackages_12_x.mocha
+nodePackages_12_x.artillery

@@ -7,5 +7,5 @@ set -eu -o pipefail
 rm -f node-env.nix
 node2nix --nodejs-10 -i node-packages.json -o node-packages-v10.nix -c composition-v10.nix
 node2nix --nodejs-12 -i node-packages.json -o node-packages-v12.nix -c composition-v12.nix
-node2nix --nodejs-13 -i node-packages.json -o node-packages-v13.nix -c composition-v13.nix
+node2nix --nodejs-14 -i node-packages.json -o node-packages-v14.nix -c composition-v14.nix
 

@@ -20,6 +20,7 @@
       yarn
       mocha
       nodePackages.node2nix
+      artillery
       #playwright
 
       inkscape

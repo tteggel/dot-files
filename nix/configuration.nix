@@ -14,10 +14,10 @@ in
 
       # Other package trees
       stable = import stableTarball {
-        config = config.nixpkgs.config;
+        config = removeAttrs config.nixpkgs.config [ "packageOverrides" ];
       };
       gitPkgs = import "/home/tteggel/src/github.com/nixos/nixpkgs" {
-        config = config.nixpkgs.config;
+        config = removeAttrs config.nixpkgs.config [ "packageOverrides" ];
       };
 
       # Local packages
@@ -26,11 +26,16 @@ in
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
       meslo-p10k = pkgs.callPackage ./pkgs/meslo-p10k {};
-#      playwright = pkgs.callPackage ./pkgs/playwright {};
+      artillery = pkgs.callPackage ./pkgs/artillery {};
 
       # Package selections
       docker = pkgs.docker-edge;
-      nodejs = pkgs.nodejs-10_x;
+      nodejs = pkgs.nodejs-14_x;
+
+      # Bugs
+      # https://github.com/NixOS/nixpkgs/issues/90544
+      gdk-pixbuf-xlib = gitPkgs.gdk-pixbuf-xlib;
+      open-vm-tools = gitPkgs.open-vm-tools;
 
       # Package overrides
 
@@ -40,10 +45,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "290.0.1";
+        version = "296.0.1";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:03k9sixxscyhksjbrcgcir5y0zc1hdjdahdn2gkfw45rmrfc9027";
+          hash = "sha256:27df575571eee39f337fc74384274a92dfc015b4da90dcbf9f79de0d5a9eb3e6";
         };
       });
 
@@ -114,7 +119,7 @@ in
     hostName = "thomnixe";
     hosts = {
 #      "127.0.0.1" = ["app.dev.bookcreator.com" "read.dev.bookcreator.com"];
-      "35.227.242.123" = ["api.dev.bookcreator.com"];
+#      "35.227.242.123" = ["api.dev.bookcreator.com"];
     };
     firewall = {
       enable = true;
@@ -133,7 +138,9 @@ in
   time.timeZone = "Europe/London";
 
   virtualisation = {
-    vmware.guest.enable = true;
+    vmware.guest = {
+      enable = true;
+    };
     docker = {
       enable = true;
       extraOptions = "--mtu=1290";
@@ -175,13 +182,6 @@ in
 
     pcscd.enable = true;
 
-    openvpn = {
-      servers.uzbek = {
-        autoStart = false;
-        updateResolvConf = true;
-        config = "config /home/tteggel/.expressvpn/my_expressvpn_uzbekistan_udp.ovpn";
-      };
-    };
   };
 
   programs = {
@@ -204,8 +204,7 @@ in
       termite
       tmux
       zsh
-      python3Packages.lxml
-      python3Packages.requests
+      python
 
       aspell
       aspellDicts.en

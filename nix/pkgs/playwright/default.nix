@@ -11,7 +11,7 @@ let
     inherit (stdenv.hostPlatform) system;
   };  
 
-  nodePackages_13_x = import ./composition-v13.nix {
+  nodePackages_14_x = import ./composition-v14.nix {
     inherit pkgs nodejs;
     inherit (stdenv.hostPlatform) system;
   };

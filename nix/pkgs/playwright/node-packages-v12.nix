@@ -4,13 +4,13 @@
 
 let
   sources = {
-    "@types/node-13.13.4" = {
+    "@types/node-14.0.13" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "13.13.4";
+      version = "14.0.13";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-13.13.4.tgz";
-        sha512 = "x26ur3dSXgv5AwKS0lNfbjpCakGIduWU1DU91Zz58ONRWrIKGunmZBNv4P7N+e27sJkiGDsw/3fT4AtsqQBrBA==";
+        url = "https://registry.npmjs.org/@types/node/-/node-14.0.13.tgz";
+        sha512 = "rouEWBImiRaSJsVA+ITTFM6ZxibuAlTuNOCyxVbwreu6k6+ujs7DfnU9o+PShFhET78pMBl3eH+AGSI5eOTkPA==";
       };
     };
     "@types/yauzl-2.9.1" = {
@@ -85,13 +85,13 @@ let
         sha512 = "mel+jf7nrtEl5Pn1Qx46zARXKDpBbvzezse7p7LqINmdoIk8PYP5SySaxEmYv6TZ0JyEKA1hsCId6DIhgITtWQ==";
       };
     };
-    "debug-4.1.1" = {
+    "debug-4.2.0" = {
       name = "debug";
       packageName = "debug";
-      version = "4.1.1";
+      version = "4.2.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/debug/-/debug-4.1.1.tgz";
-        sha512 = "pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==";
+        url = "https://registry.npmjs.org/debug/-/debug-4.2.0.tgz";
+        sha512 = "IX2ncY78vDTjZMFUdmsvIRFY2Cf4FnD0wRs+nQwJU8Lu99/tPFdb0VybiiMTPe3I6rQmwsqQqRBvxU+bZ/I8sg==";
       };
     };
     "end-of-stream-1.4.4" = {
@@ -121,13 +121,13 @@ let
         sha1 = "5109d62f3e56ea967c4b63505aef08291c8a5203";
       };
     };
-    "extract-zip-2.0.0" = {
+    "extract-zip-2.0.1" = {
       name = "extract-zip";
       packageName = "extract-zip";
-      version = "2.0.0";
+      version = "2.0.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/extract-zip/-/extract-zip-2.0.0.tgz";
-        sha512 = "i42GQ498yibjdvIhivUsRslx608whtGoFIhF26Z7O4MYncBxp8CwalOs1lnHy21A9sIohWO2+uiE4SRtC9JXDg==";
+        url = "https://registry.npmjs.org/extract-zip/-/extract-zip-2.0.1.tgz";
+        sha512 = "GDhU9ntwuKyGXdZBUgTIe+vXnWj0fppUEtMDL0+idd5Sta8TGpHssn/eusA9mrPr9qNDym6SxAYZjNvCn/9RBg==";
       };
     };
     "fd-slicer-1.1.0" = {
@@ -202,13 +202,13 @@ let
         sha512 = "9IXdWudL61npZjvLuVe/ktHiA41iE8qFyLB+4VDTblEsWBzeg8WQTlktdUK4CdncUqtUgUg0bbOmTE2bKBKaBQ==";
       };
     };
-    "mime-2.4.5" = {
+    "mime-2.4.6" = {
       name = "mime";
       packageName = "mime";
-      version = "2.4.5";
+      version = "2.4.6";
       src = fetchurl {
-        url = "https://registry.npmjs.org/mime/-/mime-2.4.5.tgz";
-        sha512 = "3hQhEUF027BuxZjQA3s7rIv/7VCQPa27hN9u9g87sEkWaKwQPuXOkVKtOeiyUrnWqTDiOs8Ed2rwg733mB0R5w==";
+        url = "https://registry.npmjs.org/mime/-/mime-2.4.6.tgz";
+        sha512 = "RZKhC3EmpBchfTGBVb8fb+RL2cWyw/32lshnsETttkBAyAUXSGHxbEJWWRXc751DrIxG1q04b8QwMbAwkRPpUA==";
       };
     };
     "minimatch-3.0.4" = {
@@ -254,15 +254,6 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/pend/-/pend-1.2.0.tgz";
         sha1 = "7a57eb550a6783f9115331fcf4663d5c8e007a50";
-      };
-    };
-    "playwright-core-0.17.0" = {
-      name = "playwright-core";
-      packageName = "playwright-core";
-      version = "0.17.0";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/playwright-core/-/playwright-core-0.17.0.tgz";
-        sha512 = "bYUyoZQ2BHUZ0XVwG/xVyy+Gbffnwkt5byZH+06ITWNqAMwYw6FGmAkOKHPmcZxoVQpURatT2ncj27+UoHdfQw==";
       };
     };
     "pngjs-5.0.0" = {
@@ -343,13 +334,13 @@ in
   playwright = nodeEnv.buildNodePackage {
     name = "playwright";
     packageName = "playwright";
-    version = "0.17.0";
+    version = "1.1.1";
     src = fetchurl {
-      url = "https://registry.npmjs.org/playwright/-/playwright-0.17.0.tgz";
-      sha512 = "cgcc7AnpR5/UrfBireUg+T3bdnrpFwALAVGxnjjFU4jClbThdkkkSgPK5g1TQQFs3ipg7ruuYYiKa+Ev+IELbw==";
+      url = "https://registry.npmjs.org/playwright/-/playwright-1.1.1.tgz";
+      sha512 = "abAB/gFdMQueapllosYyEzeKyEu6x/83JykqxmUwSu2foGnLT7E4jPUvbJdOSEpzpDGxN01KmonyskcfXxfcpA==";
     };
     dependencies = [
-      sources."@types/node-13.13.4"
+      sources."@types/node-14.0.13"
       sources."@types/yauzl-2.9.1"
       sources."agent-base-4.3.0"
       sources."async-limiter-1.0.1"
@@ -357,11 +348,11 @@ in
       sources."brace-expansion-1.1.11"
       sources."buffer-crc32-0.2.13"
       sources."concat-map-0.0.1"
-      sources."debug-4.1.1"
+      sources."debug-4.2.0"
       sources."end-of-stream-1.4.4"
       sources."es6-promise-4.2.8"
       sources."es6-promisify-5.0.0"
-      sources."extract-zip-2.0.0"
+      sources."extract-zip-2.0.1"
       sources."fd-slicer-1.1.0"
       sources."fs.realpath-1.0.0"
       sources."get-stream-5.1.0"
@@ -374,13 +365,12 @@ in
       sources."inflight-1.0.6"
       sources."inherits-2.0.4"
       sources."jpeg-js-0.3.7"
-      sources."mime-2.4.5"
+      sources."mime-2.4.6"
       sources."minimatch-3.0.4"
       sources."ms-2.1.2"
       sources."once-1.4.0"
       sources."path-is-absolute-1.0.1"
       sources."pend-1.2.0"
-      sources."playwright-core-0.17.0"
       sources."pngjs-5.0.0"
       sources."progress-2.0.3"
       sources."proxy-from-env-1.1.0"
@@ -393,7 +383,7 @@ in
     buildInputs = globalBuildInputs;
     meta = {
       description = "A high-level API to automate web browsers";
-      homepage = "https://github.com/Microsoft/playwright#readme";
+      homepage = https://playwright.dev/;
       license = "Apache-2.0";
     };
     production = true;
