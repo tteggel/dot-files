@@ -62,6 +62,9 @@ ln -s $SCRIPTPATH/.p10k.zsh $HOME/.p10k.zsh
 rm -rf $HOME/.expressvpn
 ln -s $SCRIPTPATH/.expressvpn $HOME/.expressvpn
 
+rm -rf $HOME/.background-image
+ln -s $SCRIPTPATH/.background-image $HOME/.background-image
+
 popd
 
 cleanup() {

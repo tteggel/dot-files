@@ -22,6 +22,8 @@
       nodePackages.node2nix
       artillery
       #playwright
+      
+      ngrok
 
       inkscape
 

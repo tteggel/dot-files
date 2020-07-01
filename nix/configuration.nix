@@ -1,4 +1,4 @@
-{ config, pkgs, options, stdenv, ... }:
+{ config, pkgs, options, stdenv, lib, ... }:
 let
   stableTarball =
     fetchTarball
@@ -34,7 +34,6 @@ in
 
       # Bugs
       # https://github.com/NixOS/nixpkgs/issues/90544
-      gdk-pixbuf-xlib = gitPkgs.gdk-pixbuf-xlib;
       open-vm-tools = gitPkgs.open-vm-tools;
 
       # Package overrides
@@ -158,8 +157,14 @@ in
       enable = true;
       layout = "gb";
       videoDrivers = [ "vmware" ];
-      desktopManager.xterm.enable = false;
-      windowManager.i3.enable = true;
+      desktopManager = {
+        xterm.enable = false;
+        wallpaper.mode = "fill"; 
+      };
+      windowManager.i3 = {
+        enable = true;
+        package = pkgs.i3-gaps;
+      };
       #displayManager.sddm.enable = true;
       displayManager.sessionCommands = ''
         xss-lock i3lock &
@@ -178,6 +183,18 @@ in
         yubikey-personalization
         libu2f-host
       ];
+    };
+
+    openvpn = {
+      servers.ny = {
+        autoStart = false;
+        updateResolvConf = true;
+        config = "config /home/tteggel/.expressvpn/my_expressvpn_usa_-_new_york_udp.ovpn";
+        authUserPass = {
+          username = (lib.fileContents /home/tteggel/.expressvpn/username);
+          password = (lib.fileContents /home/tteggel/.expressvpn/password);
+        };
+      };
     };
 
     pcscd.enable = true;
@@ -258,7 +275,6 @@ in
     groups = { dialout = {}; };
   };
 
-  hardware.u2f.enable = true;
   security = {
     pam.services.tteggel.u2fAuth = true;
     pam.services.sudo.u2fAuth = true;

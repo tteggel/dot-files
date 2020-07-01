@@ -1,19 +1,4 @@
-URxvt.termName:             rxvt-256color
-URxvt.depth:                32
-URxvt.geometry:             90x30
-URxvt.transparent:          false
-URxvt.fading:               0
-URxvt.urgentOnBell:         true
-URxvt.visualBell:           true
-URxvt.loginShell:           true
-URxvt.saveLines:            8192
-URxvt.internalBorder:       3
-URxvt.lineSpace:            0
-
 ! Fonts
-URxvt.allow_bold:           true
-URxvt.font:                 xft:Source Code Pro for Powerline
-
 Xft.antialias:		1
 Xft.autohint:		0
 Xft.dpi:		138
@@ -21,25 +6,6 @@ Xft.hinting:		1
 Xft.hintstyle:		hintfull
 Xft.lcdfilter:		lcddefault
 Xft.rgba:		rgb
-
-! Scrollbar
-URxvt.scrollStyle:          rxvt
-URxvt.scrollBar:            false
-
-! Perl extensions
-URxvt.perl-ext-common:      default,matcher,keyboard-select
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
-URxvt.matcher.button:       1
-URxvt.urlLauncher:          x-www-browser
-
-! Cursor
-URxvt.cursorBlink:          true
-URxvt.cursorColor:          #657b83
-URxvt.cursorUnderline:      false
-
-! Pointer
-URxvt.pointerBlank:         true
 
 ! Base16 Brush Trees Dark
 ! Scheme: Abraham White &lt;abelincoln.white@gmail.com&gt;
