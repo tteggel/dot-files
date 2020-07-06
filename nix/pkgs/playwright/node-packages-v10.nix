@@ -4,13 +4,13 @@
 
 let
   sources = {
-    "@types/node-14.0.13" = {
+    "@types/node-14.0.14" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "14.0.13";
+      version = "14.0.14";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-14.0.13.tgz";
-        sha512 = "rouEWBImiRaSJsVA+ITTFM6ZxibuAlTuNOCyxVbwreu6k6+ujs7DfnU9o+PShFhET78pMBl3eH+AGSI5eOTkPA==";
+        url = "https://registry.npmjs.org/@types/node/-/node-14.0.14.tgz";
+        sha512 = "syUgf67ZQpaJj01/tRTknkMNoBBLWJOBODF0Zm4NrXmiSuxjymFrxnTu1QVYRubhVkRcZLYZG8STTwJRdVm/WQ==";
       };
     };
     "@types/yauzl-2.9.1" = {
@@ -340,7 +340,7 @@ in
       sha512 = "abAB/gFdMQueapllosYyEzeKyEu6x/83JykqxmUwSu2foGnLT7E4jPUvbJdOSEpzpDGxN01KmonyskcfXxfcpA==";
     };
     dependencies = [
-      sources."@types/node-14.0.13"
+      sources."@types/node-14.0.14"
       sources."@types/yauzl-2.9.1"
       sources."agent-base-4.3.0"
       sources."async-limiter-1.0.1"

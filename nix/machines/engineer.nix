@@ -43,7 +43,7 @@
 
       git-lfs
 
-      ffmpeg-full
+      #ffmpeg-full
    ];
   };
 }

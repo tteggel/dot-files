@@ -76,13 +76,13 @@ let
         sha1 = "89b4d199ab2bee49de164ea02b89ce462d71b767";
       };
     };
-    "binary-extensions-2.0.0" = {
+    "binary-extensions-2.1.0" = {
       name = "binary-extensions";
       packageName = "binary-extensions";
-      version = "2.0.0";
+      version = "2.1.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.0.0.tgz";
-        sha512 = "Phlt0plgpIIBOGTT/ehfFnbNlfsDEiqmzE2KRXoX1bLIlir4X/MR+zSyBEkL05ffWgnRSf/DXv+WrUAVr93/ow==";
+        url = "https://registry.npmjs.org/binary-extensions/-/binary-extensions-2.1.0.tgz";
+        sha512 = "1Yj8h9Q+QDF5FzhMs/c9+6UntbD5MkRfRwac8DoEm9ZfUBZ7tZ55YcGVAzEe4bXsdQHEk+s9S5wsOKVdZrw0tQ==";
       };
     };
     "brace-expansion-1.1.11" = {
@@ -670,13 +670,13 @@ let
         sha512 = "6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==";
       };
     };
-    "object-inspect-1.7.0" = {
+    "object-inspect-1.8.0" = {
       name = "object-inspect";
       packageName = "object-inspect";
-      version = "1.7.0";
+      version = "1.8.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/object-inspect/-/object-inspect-1.7.0.tgz";
-        sha512 = "a7pEHdh1xKIAgTySUGgLMx/xwDZskN1Ud6egYYN3EdRW4ZMPNEDUTF+hwy2LUC+Bl+SyLXANnwz/jyh/qutKUw==";
+        url = "https://registry.npmjs.org/object-inspect/-/object-inspect-1.8.0.tgz";
+        sha512 = "jLdtEOB112fORuypAyl/50VRVIBIdVQOSUUGQHzJ4xBSbit81zRarz7GThkEFZy1RceYrWYcPcBFPQwHyAc1gA==";
       };
     };
     "object-keys-1.1.1" = {
@@ -1040,7 +1040,7 @@ in
       sources."argparse-1.0.10"
       sources."array.prototype.map-1.0.2"
       sources."balanced-match-1.0.0"
-      sources."binary-extensions-2.0.0"
+      sources."binary-extensions-2.1.0"
       sources."brace-expansion-1.1.11"
       sources."braces-3.0.2"
       sources."browser-stdout-1.3.1"
@@ -1113,7 +1113,7 @@ in
       sources."minimatch-3.0.4"
       sources."ms-2.1.2"
       sources."normalize-path-3.0.0"
-      sources."object-inspect-1.7.0"
+      sources."object-inspect-1.8.0"
       sources."object-keys-1.1.1"
       sources."object.assign-4.1.0"
       sources."once-1.4.0"

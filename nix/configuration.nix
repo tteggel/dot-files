@@ -32,10 +32,6 @@ in
       docker = pkgs.docker-edge;
       nodejs = pkgs.nodejs-14_x;
 
-      # Bugs
-      # https://github.com/NixOS/nixpkgs/issues/90544
-      open-vm-tools = gitPkgs.open-vm-tools;
-
       # Package overrides
 
       #ffmpeg-full = pkgs.ffmpeg-full.override ({
@@ -44,10 +40,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "296.0.1";
+        version = "299.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:27df575571eee39f337fc74384274a92dfc015b4da90dcbf9f79de0d5a9eb3e6";
+          hash = "sha256:240042ba13bdef96e2d494dc67c3c367dfb27d0db5b9cb5bce4d3a517671762f";
         };
       });
 
@@ -118,7 +114,6 @@ in
     hostName = "thomnixe";
     hosts = {
 #      "127.0.0.1" = ["app.dev.bookcreator.com" "read.dev.bookcreator.com"];
-#      "35.227.242.123" = ["api.dev.bookcreator.com"];
     };
     firewall = {
       enable = true;
@@ -165,7 +160,6 @@ in
         enable = true;
         package = pkgs.i3-gaps;
       };
-      #displayManager.sddm.enable = true;
       displayManager.sessionCommands = ''
         xss-lock i3lock &
         flameshot &
@@ -273,6 +267,7 @@ in
       hashedPassword = "$6$YiZNkbac0NjU$g/.gjO05NUXdjzj3z102rzA6xwv3nG/NCpKtNOaYul0lJKtKY6GVNRtB./1Z1QqEPHAXzyJn1U5PmbusscW3R0";
     };
     groups = { dialout = {}; };
+    users.root.hashedPassword = "$6$YiZNkbac0NjU$g/.gjO05NUXdjzj3z102rzA6xwv3nG/NCpKtNOaYul0lJKtKY6GVNRtB./1Z1QqEPHAXzyJn1U5PmbusscW3R0";
   };
 
   security = {
