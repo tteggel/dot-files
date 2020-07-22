@@ -4,13 +4,13 @@
 
 let
   sources = {
-    "@types/node-14.0.14" = {
+    "@types/node-14.0.24" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "14.0.14";
+      version = "14.0.24";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-14.0.14.tgz";
-        sha512 = "syUgf67ZQpaJj01/tRTknkMNoBBLWJOBODF0Zm4NrXmiSuxjymFrxnTu1QVYRubhVkRcZLYZG8STTwJRdVm/WQ==";
+        url = "https://registry.npmjs.org/@types/node/-/node-14.0.24.tgz";
+        sha512 = "btt/oNOiDWcSuI721MdL8VQGnjsKjlTMdrKyTcLCKeQp/n4AAMFJ961wMbp+09y8WuGPClDEv07RIItdXKIXAA==";
       };
     };
     "after-0.8.2" = {
@@ -472,13 +472,13 @@ let
         sha512 = "a+EPoD+uZiNfh+5fxw2nO9QwFa6nJe2Or35fGY6Ipw1R3R4AGz1d1TEZrCegvw2YTmZ0jXirGYlzxxpYSHwpEg==";
       };
     };
-    "csv-parse-4.10.1" = {
+    "csv-parse-4.11.1" = {
       name = "csv-parse";
       packageName = "csv-parse";
-      version = "4.10.1";
+      version = "4.11.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/csv-parse/-/csv-parse-4.10.1.tgz";
-        sha512 = "gdDJVchi0oSLIcYXz1H/VSgLE6htHDqJyFsRU/vTkQgmVOZ3S0IR2LXnNbWUYG7VD76dYVwdfBLyx8AX9+An8A==";
+        url = "https://registry.npmjs.org/csv-parse/-/csv-parse-4.11.1.tgz";
+        sha512 = "cH2BG5Gd0u4G8qVI/jGXJSP2+El7Vy91/ZD3ehKALAWids1aIKOPhZ1ZVJzUrs2zTn6aGumVPBlbHsI91kI83A==";
       };
     };
     "dashdash-1.14.1" = {
@@ -1309,13 +1309,13 @@ let
         sha1 = "3b09924edf9f083c0490fdd4c0bc4421e04764ee";
       };
     };
-    "lodash-4.17.15" = {
+    "lodash-4.17.19" = {
       name = "lodash";
       packageName = "lodash";
-      version = "4.17.15";
+      version = "4.17.19";
       src = fetchurl {
-        url = "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz";
-        sha512 = "8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==";
+        url = "https://registry.npmjs.org/lodash/-/lodash-4.17.19.tgz";
+        sha512 = "JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==";
       };
     };
     "lodash.isplainobject-4.0.6" = {
@@ -2302,7 +2302,7 @@ in
       sha512 = "yRUqYziBsnAuzBM4G3d1uJ0YvbyxLF3e7BsjMxguzOaNxxdAFAady2CBJWe1BrPM4yLnW6lH/O6AcSG/CPzjfw==";
     };
     dependencies = [
-      sources."@types/node-14.0.14"
+      sources."@types/node-14.0.24"
       sources."after-0.8.2"
       sources."ajv-6.12.3"
       sources."ansi-align-2.0.0"
@@ -2365,7 +2365,7 @@ in
       sources."crypto-random-string-1.0.0"
       sources."css-select-1.2.0"
       sources."css-what-2.1.3"
-      sources."csv-parse-4.10.1"
+      sources."csv-parse-4.11.1"
       sources."dashdash-1.14.1"
       (sources."debug-2.6.9" // {
         dependencies = [
@@ -2467,7 +2467,7 @@ in
       sources."jsprim-1.4.1"
       sources."latest-version-3.1.0"
       sources."levn-0.3.0"
-      sources."lodash-4.17.15"
+      sources."lodash-4.17.19"
       sources."lodash.isplainobject-4.0.6"
       (sources."log-symbols-2.2.0" // {
         dependencies = [

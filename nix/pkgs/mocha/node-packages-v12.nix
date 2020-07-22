@@ -625,13 +625,13 @@ let
         sha512 = "t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==";
       };
     };
-    "lodash-4.17.15" = {
+    "lodash-4.17.19" = {
       name = "lodash";
       packageName = "lodash";
-      version = "4.17.15";
+      version = "4.17.19";
       src = fetchurl {
-        url = "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz";
-        sha512 = "8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==";
+        url = "https://registry.npmjs.org/lodash/-/lodash-4.17.19.tgz";
+        sha512 = "JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==";
       };
     };
     "log-symbols-3.0.0" = {
@@ -1108,7 +1108,7 @@ in
       sources."iterate-value-1.0.2"
       sources."js-yaml-3.13.1"
       sources."locate-path-5.0.0"
-      sources."lodash-4.17.15"
+      sources."lodash-4.17.19"
       sources."log-symbols-3.0.0"
       sources."minimatch-3.0.4"
       sources."ms-2.1.2"

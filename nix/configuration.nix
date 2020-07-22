@@ -40,10 +40,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "299.0.0";
+        version = "302.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:240042ba13bdef96e2d494dc67c3c367dfb27d0db5b9cb5bce4d3a517671762f";
+          hash = "sha256:59cfb58e52d93ef4a39d475f6c5c9c0f13ad229ea7f871a8be41e6a2c0a76e4b";
         };
       });
 
@@ -138,6 +138,7 @@ in
     docker = {
       enable = true;
       extraOptions = "--mtu=1290";
+      storageDriver = "btrfs";
     };
   };
 
