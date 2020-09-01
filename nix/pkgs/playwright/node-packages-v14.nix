@@ -4,13 +4,13 @@
 
 let
   sources = {
-    "@types/node-14.0.24" = {
+    "@types/node-14.6.2" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "14.0.24";
+      version = "14.6.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-14.0.24.tgz";
-        sha512 = "btt/oNOiDWcSuI721MdL8VQGnjsKjlTMdrKyTcLCKeQp/n4AAMFJ961wMbp+09y8WuGPClDEv07RIItdXKIXAA==";
+        url = "https://registry.npmjs.org/@types/node/-/node-14.6.2.tgz";
+        sha512 = "onlIwbaeqvZyniGPfdw/TEhKIh79pz66L1q06WUQqJLnAb6wbjvOtepLYTGHTqzdXgBYIE3ZdmqHDGsRsbBz7A==";
       };
     };
     "@types/yauzl-2.9.1" = {
@@ -67,15 +67,6 @@ let
         sha1 = "0d333e3f00eac50aa1454abd30ef8c2a5d9a7242";
       };
     };
-    "commander-5.1.0" = {
-      name = "commander";
-      packageName = "commander";
-      version = "5.1.0";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/commander/-/commander-5.1.0.tgz";
-        sha512 = "P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==";
-      };
-    };
     "concat-map-0.0.1" = {
       name = "concat-map";
       packageName = "concat-map";
@@ -130,13 +121,13 @@ let
         sha1 = "1504ad2523158caa40db4a2787cb01411994ea4f";
       };
     };
-    "get-stream-5.1.0" = {
+    "get-stream-5.2.0" = {
       name = "get-stream";
       packageName = "get-stream";
-      version = "5.1.0";
+      version = "5.2.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/get-stream/-/get-stream-5.1.0.tgz";
-        sha512 = "EXr1FOzrzTfGeL0gQdeFEvOMm2mzMOglyiOXSTpPC+iAjAKftbr3jpCMWynogwYnM+eSj9sHGc6wjIcDvYiygw==";
+        url = "https://registry.npmjs.org/get-stream/-/get-stream-5.2.0.tgz";
+        sha512 = "nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==";
       };
     };
     "glob-7.1.6" = {
@@ -175,13 +166,13 @@ let
         sha512 = "k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==";
       };
     };
-    "jpeg-js-0.3.7" = {
+    "jpeg-js-0.4.2" = {
       name = "jpeg-js";
       packageName = "jpeg-js";
-      version = "0.3.7";
+      version = "0.4.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/jpeg-js/-/jpeg-js-0.3.7.tgz";
-        sha512 = "9IXdWudL61npZjvLuVe/ktHiA41iE8qFyLB+4VDTblEsWBzeg8WQTlktdUK4CdncUqtUgUg0bbOmTE2bKBKaBQ==";
+        url = "https://registry.npmjs.org/jpeg-js/-/jpeg-js-0.4.2.tgz";
+        sha512 = "+az2gi/hvex7eLTMTlbRLOhH6P6WFdk2ITI8HJsaH2VqYO0I594zXSYEP+tf4FW+8Cy68ScDXoAsQdyQanv3sw==";
       };
     };
     "mime-2.4.6" = {
@@ -316,32 +307,31 @@ in
   playwright = nodeEnv.buildNodePackage {
     name = "playwright";
     packageName = "playwright";
-    version = "1.2.1";
+    version = "1.3.0";
     src = fetchurl {
-      url = "https://registry.npmjs.org/playwright/-/playwright-1.2.1.tgz";
-      sha512 = "wD5WZ3rNvmXq+W4qhwykrm8J7VGYsjMjdC2WjZb4B4r7j/IFzq6EhliD+ZBIl+HOymFNsTwPZYhXy7IqeC2+YQ==";
+      url = "https://registry.npmjs.org/playwright/-/playwright-1.3.0.tgz";
+      sha512 = "W3mwXv2XNFugbepSZTZxI314WfI1SAjdZBEeGOu8S5KnPz4RSlunUFgXn6496o8lobPmORLcJ9VTSGyiFfGpaw==";
     };
     dependencies = [
-      sources."@types/node-14.0.24"
+      sources."@types/node-14.6.2"
       sources."@types/yauzl-2.9.1"
       sources."agent-base-6.0.1"
       sources."async-limiter-1.0.1"
       sources."balanced-match-1.0.0"
       sources."brace-expansion-1.1.11"
       sources."buffer-crc32-0.2.13"
-      sources."commander-5.1.0"
       sources."concat-map-0.0.1"
       sources."debug-4.2.0"
       sources."end-of-stream-1.4.4"
       sources."extract-zip-2.0.1"
       sources."fd-slicer-1.1.0"
       sources."fs.realpath-1.0.0"
-      sources."get-stream-5.1.0"
+      sources."get-stream-5.2.0"
       sources."glob-7.1.6"
       sources."https-proxy-agent-5.0.0"
       sources."inflight-1.0.6"
       sources."inherits-2.0.4"
-      sources."jpeg-js-0.3.7"
+      sources."jpeg-js-0.4.2"
       sources."mime-2.4.6"
       sources."minimatch-3.0.4"
       sources."ms-2.1.2"
