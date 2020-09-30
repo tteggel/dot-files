@@ -2,7 +2,7 @@
 let
   stableTarball =
     fetchTarball
-      https://github.com/NixOS/nixpkgs-channels/archive/nixos-19.09.tar.gz;
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-20.09.tar.gz;
 in
 {
   nixpkgs.config = {
@@ -31,6 +31,7 @@ in
       # Package selections
       docker = pkgs.docker-edge;
       nodejs = pkgs.nodejs-14_x;
+#     openvpn = gitPkgs.openvpn;
 
       # Package overrides
 
@@ -40,10 +41,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "307.0.0";
+        version = "312.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:845f81f2d3afd8f2a8fc50e587e9d027ced22775f40218004f66045aededed43";
+          hash = "sha256:49a88d901df80b07fc863896e3427029a667c7084714d65849f731b0c4c84bae";
         };
       });
 
@@ -113,7 +114,7 @@ in
   networking = {
     hostName = "thomnixe";
     hosts = {
-#      "127.0.0.1" = ["app.dev.bookcreator.com" "read.dev.bookcreator.com"];
+#      "127.0.0.1" = ["apis.google.com"];
     };
     firewall = {
       enable = true;
@@ -217,6 +218,8 @@ in
       tmux
       zsh
       python
+      python3
+      inotify-tools
 
       aspell
       aspellDicts.en
