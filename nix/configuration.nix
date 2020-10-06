@@ -100,7 +100,7 @@ in
             saltLength = 16;
             gracePeriod = 60;
             storage = {
-              device = "/dev/sda1";
+              device = "/dev/nvme0n1p1";
               fsType = "vfat";
               path = "/crypt-storage/default";
             };
