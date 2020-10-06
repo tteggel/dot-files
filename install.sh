@@ -17,6 +17,11 @@ cleanup() {
 
 cleanup
 
+# ExpressVPN
+mkdir -p /home/tteggel/.expressvpn
+touch /home/tteggel/.expressvpn/username
+touch /home/tteggel/.expressvpn/password
+
 # Bootstrap nixos
 mkdir -p "$EFI_MNT" || true
 mount "$EFI_PART" "$EFI_MNT"
