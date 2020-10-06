@@ -165,6 +165,7 @@ in
       displayManager.sessionCommands = ''
         xss-lock i3lock &
         flameshot &
+        dunst &
       '';
       dpi = 138;
       displayManager.defaultSession = "none+i3";
@@ -191,6 +192,17 @@ in
           password = (lib.fileContents /home/tteggel/.expressvpn/password);
         };
       };
+
+     servers.de = {
+        autoStart = false;
+        updateResolvConf = true;
+        config = "config /home/tteggel/.expressvpn/my_expressvpn_germany_-_frankfurt_-_1_udp.ovpn";
+        authUserPass = {
+          username = (lib.fileContents /home/tteggel/.expressvpn/username);
+          password = (lib.fileContents /home/tteggel/.expressvpn/password);
+        };
+      };
+
     };
 
     pcscd.enable = true;
@@ -226,6 +238,7 @@ in
 
       dmenu
       i3status
+      dunst
 
       htop
 
