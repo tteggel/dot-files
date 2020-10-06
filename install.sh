@@ -7,8 +7,8 @@ pushd $(dirname $0)
 SCRIPT_PATH=$(pwd)
 popd
 
-DISK=/dev/sda
-EFI_PART="$DISK"1
+DISK=/dev/nvme0n1
+EFI_PART="$DISK"p1
 EFI_MNT=/mnt/boot
 
 cleanup() {
