@@ -7,9 +7,9 @@ pushd $(dirname $0)
 SCRIPT_PATH=$(pwd)
 popd
 
-DISK=/dev/sda
+DISK=/dev/nvme0n1
 LUKS_ROOT=luks-root
-EFI_PART="$DISK"1
+EFI_PART="$DISK"p1
 EFI_MNT=/mnt/boot
 FS_ROOT=fs-root
 
@@ -25,7 +25,7 @@ luks() {
 
   KEY_LENGTH=512
   ITERATIONS=1000000
-  LUKS_PART="$DISK"2
+  LUKS_PART="$DISK"p2
   STORAGE=/crypt-storage/default
   SLOT=2
   SALT_LENGTH=16
