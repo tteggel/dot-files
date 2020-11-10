@@ -52,7 +52,9 @@ luks() {
 
   yubi_run "echo -n \"$k_luks\" | hextorb | cryptsetup luksFormat --cipher=\"$CIPHER\" --key-size=\"$KEY_LENGTH\" \
                                   --hash=\"$HASH\" --key-file=- \"$LUKS_PART\""
-  yubi_run "echo -n \"$k_luks\" | hextorb | cryptsetup luksOpen $LUKS_PART $LUKS_ROOT --key-file=-"
+  yubi_run "echo -n \"$k_luks\" | hextorb | cryptsetup luksOpen $LUKS_PART $LUKS_ROOT --key-file=- \
+                                  --perf-no_read_workqueue --perf-no_write_workqueue --persistent"
+
 }
 
 ################

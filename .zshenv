@@ -13,3 +13,5 @@ fi
 eval $(dircolors $HOME/.dircolors)
 
 unset SOURCE_DATE_EPOCH
+
+KIDTRON_CHROME_BIN=/var/run/current-system/sw/bin/google-chrome-unstable

@@ -2,7 +2,7 @@
 let
   stableTarball =
     fetchTarball
-      https://github.com/NixOS/nixpkgs-channels/archive/nixos-20.09.tar.gz;
+      https://github.com/NixOS/nixpkgs-channels/archive/nixos-20.03.tar.gz;
 in
 {
   nixpkgs.config = {
@@ -31,6 +31,7 @@ in
       # Package selections
       docker = pkgs.docker-edge;
       nodejs = pkgs.nodejs-14_x;
+      open-vm-tools = stable.open-vm-tools;
 #     openvpn = gitPkgs.openvpn;
 
       # Package overrides
@@ -41,10 +42,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "312.0.0";
+        version = "317.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:49a88d901df80b07fc863896e3427029a667c7084714d65849f731b0c4c84bae";
+          hash = "sha256:1809d491a2f0f6c1000628ee0a04b7c516decd377bad9a639ce083c8e42e7b76";
         };
       });
 
@@ -52,25 +53,18 @@ in
         kernel = super.kernel.override {
           kernelPatches = super.kernel.kernelPatches ++ [
             rec {
-              name = "0023-Add-DM_CRYPT_FORCE_INLINE-flag-to-dm-crypt-target";
-              patch = pkgs.fetchpatch {
-                name = name + ".patch";
-                url = "https://raw.githubusercontent.com/cloudflare/linux/master/patches/" + name + ".patch";
-                sha256 = "1yiw6xzxnigz3ii9afd2409mfl0qx46lj4c7nqq4186ik87cvi3c";
-              };
-            }
-
-            rec {
               name = "0024-Add-xtsproxy-Crypto-API-module";
               patch = pkgs.fetchpatch {
                 name = name + ".patch";
                 url = "https://raw.githubusercontent.com/cloudflare/linux/master/patches/" + name + ".patch";
                 sha256 = "0cy8784k6p2z37h4jgzv6il6pfxvx18wbgn95gdz2yd33rz43rc9";
               };
-            } 
+            }
+ 
           ];
         };
       });
+
     };
   };
 
@@ -84,12 +78,11 @@ in
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    kernelParams = [ "elevator=noop" ];
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "xtsproxy" ];
     initrd = {
       checkJournalingFS = false;
-      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid"  "xtsproxy" ];
+      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid"  "xtsproxy" "nvme" ];
       luks = {
         yubikeySupport = true;
         devices."luks-root" = {
@@ -249,6 +242,7 @@ in
       xss-lock
 
       flameshot
+      ffmpeg
     ];
 
     shellInit = ''
@@ -259,7 +253,7 @@ in
   };
 
   fonts = {
-    enableFontDir = true;
+    fontDir.enable = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [ 
       nerdfonts

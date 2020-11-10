@@ -168,3 +168,5 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+assign [class="Google-chrome"] 4
