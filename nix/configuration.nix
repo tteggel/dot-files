@@ -31,8 +31,9 @@ in
       # Package selections
       docker = pkgs.docker-edge;
       nodejs = pkgs.nodejs-14_x;
-      open-vm-tools = stable.open-vm-tools;
-#     openvpn = gitPkgs.openvpn;
+
+      # REMOVE once the fix propagates to unstable
+      termite = gitPkgs.termite;
 
       # Package overrides
 
@@ -42,10 +43,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "317.0.0";
+        version = "319.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:1809d491a2f0f6c1000628ee0a04b7c516decd377bad9a639ce083c8e42e7b76";
+          hash = "sha256:28048af8fe83a1c80a37258d4e6c00edf22bc93edf570fb9bb6a42cca726d4c5";
         };
       });
 
@@ -243,6 +244,7 @@ in
 
       flameshot
       ffmpeg
+      vlc
     ];
 
     shellInit = ''
