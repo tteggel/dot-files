@@ -14,7 +14,7 @@ buildGoPackage rec {
     sha1 = "50dihx6sx0ys5h3v05r47804d8ww6vqm";
   };
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     description = "smith is a simple command line utility for building microcontainers from rpm packages or oci images.";
     homepage = https://github.com/oracle/smith;
     platforms = platforms.linux ++ platforms.darwin;

@@ -11,7 +11,7 @@
       #gitPkgs.chromium-git_82
 
       slack
-      spotify
+#      spotify
 
       google-cloud-sdk
       firebase-tools
@@ -20,7 +20,7 @@
       yarn
       mocha
       nodePackages.node2nix
-      artillery
+#      artillery
       #playwright
       
       ngrok
@@ -32,7 +32,7 @@
       dep
       gnumake      
       tree
-      smith
+#      smith
       openssl
       jq
       libffi

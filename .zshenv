@@ -14,4 +14,5 @@ eval $(dircolors $HOME/.dircolors)
 
 unset SOURCE_DATE_EPOCH
 
-KIDTRON_CHROME_BIN=/var/run/current-system/sw/bin/google-chrome-unstable
+export KIDTRON_CHROME_BIN=/var/run/current-system/sw/bin/google-chrome-unstable
+export KIDTRON_SEED_USER=thom+fast-check@bookcreator.com

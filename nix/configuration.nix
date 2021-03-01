@@ -22,18 +22,18 @@ in
 
       # Local packages
       pbkdf2-sha512 = pkgs.callPackage ./pkgs/pbkdf2-sha512 {};
-      smith = pkgs.callPackage ./pkgs/smith {};
+#      smith = pkgs.callPackage ./pkgs/smith {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
       meslo-p10k = pkgs.callPackage ./pkgs/meslo-p10k {};
-      artillery = pkgs.callPackage ./pkgs/artillery {};
+#      artillery = pkgs.callPackage ./pkgs/artillery {};
 
       # Package selections
       docker = pkgs.docker-edge;
       nodejs = pkgs.nodejs-14_x;
 
       # REMOVE once the fix propagates to unstable
-      termite = gitPkgs.termite;
+#      termite = gitPkgs.termite;
 
       # Package overrides
 
@@ -43,28 +43,28 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "319.0.0";
+        version = "329.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:28048af8fe83a1c80a37258d4e6c00edf22bc93edf570fb9bb6a42cca726d4c5";
+          hash = "sha256:bab65ba4997632a85bbf7f5d7c7cfceb851edd0fa00114151dea2492b8045854";
         };
       });
 
-      linuxPackages_latest = pkgs.linuxPackages_latest.extend (self: super: {
-        kernel = super.kernel.override {
-          kernelPatches = super.kernel.kernelPatches ++ [
-            rec {
-              name = "0024-Add-xtsproxy-Crypto-API-module";
-              patch = pkgs.fetchpatch {
-                name = name + ".patch";
-                url = "https://raw.githubusercontent.com/cloudflare/linux/master/patches/" + name + ".patch";
-                sha256 = "0cy8784k6p2z37h4jgzv6il6pfxvx18wbgn95gdz2yd33rz43rc9";
-              };
-            }
- 
-          ];
-        };
-      });
+#      linuxPackages_latest = pkgs.linuxPackages_latest.extend (self: super: {
+#        kernel = super.kernel.override {
+#          kernelPatches = super.kernel.kernelPatches ++ [
+#            rec {
+#              name = "0024-Add-xtsproxy-Crypto-API-module";
+#              patch = pkgs.fetchpatch {
+#                name = name + ".patch";
+#                url = "https://raw.githubusercontent.com/cloudflare/linux/master/patches/" + name + ".patch";
+#                sha256 = "0cy8784k6p2z37h4jgzv6il6pfxvx18wbgn95gdz2yd33rz43rc9";
+#              };
+#            }
+# 
+#          ];
+#        };
+#      });
 
     };
   };
@@ -80,10 +80,11 @@ in
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "xtsproxy" ];
+ #   kernelModules = [ "xtsproxy" ];
     initrd = {
       checkJournalingFS = false;
-      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid"  "xtsproxy" "nvme" ];
+#      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid"  "xtsproxy" "nvme" ];
+      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "nvme" ];
       luks = {
         yubikeySupport = true;
         devices."luks-root" = {
@@ -245,6 +246,7 @@ in
       flameshot
       ffmpeg
       vlc
+      mpv
     ];
 
     shellInit = ''
