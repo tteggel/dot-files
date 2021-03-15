@@ -158,7 +158,6 @@ in
       };
       displayManager.sessionCommands = ''
         xss-lock i3lock &
-        flameshot &
         dunst &
       '';
       dpi = 138;

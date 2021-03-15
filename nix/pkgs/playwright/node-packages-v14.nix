@@ -4,13 +4,13 @@
 
 let
   sources = {
-    "@types/node-14.14.28" = {
+    "@types/node-14.14.34" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "14.14.28";
+      version = "14.14.34";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-14.14.28.tgz";
-        sha512 = "lg55ArB+ZiHHbBBttLpzD07akz0QPrZgUODNakeC09i62dnrywr9mFErHuaPlB6I7z+sEbK+IYmplahvplCj2g==";
+        url = "https://registry.npmjs.org/@types/node/-/node-14.14.34.tgz";
+        sha512 = "dBPaxocOK6UVyvhbnpFIj2W+S+1cBTkHQbFQfeeJhoKFbzYcVUGHvddeWPSucKATb3F0+pgDq0i6ghEaZjsugA==";
       };
     };
     "@types/yauzl-2.9.1" = {
@@ -92,6 +92,15 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.4.tgz";
         sha512 = "+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==";
+      };
+    };
+    "escape-string-regexp-2.0.0" = {
+      name = "escape-string-regexp";
+      packageName = "escape-string-regexp";
+      version = "2.0.0";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz";
+        sha512 = "UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==";
       };
     };
     "extract-zip-2.0.1" = {
@@ -310,6 +319,15 @@ let
         sha512 = "VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==";
       };
     };
+    "stack-utils-2.0.3" = {
+      name = "stack-utils";
+      packageName = "stack-utils";
+      version = "2.0.3";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/stack-utils/-/stack-utils-2.0.3.tgz";
+        sha512 = "gL//fkxfWUsIlFL2Tl42Cl6+HFALEaB1FU76I/Fy+oZjRreP7OPMXFlGbxM7NQsI0ZpUfw76sHnv0WNYuTb7Iw==";
+      };
+    };
     "wrappy-1.0.2" = {
       name = "wrappy";
       packageName = "wrappy";
@@ -319,13 +337,13 @@ let
         sha1 = "b5243d8f3ec1aa35f1364605bc0d1036e30ab69f";
       };
     };
-    "ws-7.4.3" = {
+    "ws-7.4.4" = {
       name = "ws";
       packageName = "ws";
-      version = "7.4.3";
+      version = "7.4.4";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ws/-/ws-7.4.3.tgz";
-        sha512 = "hr6vCR76GsossIRsr8OLR9acVVm1jyfEWvhbNjtgPOrfvAlKzvyeg/P6r8RuDjRyrcQoPQT7K0DGEPc7Ae6jzA==";
+        url = "https://registry.npmjs.org/ws/-/ws-7.4.4.tgz";
+        sha512 = "Qm8k8ojNQIMx7S+Zp8u/uHOx7Qazv3Yv4q68MiWWWOJhiwG5W3x7iqmRtJo8xxrciZUY4vRxUTJCKuRnF28ZZw==";
       };
     };
     "yauzl-2.10.0" = {
@@ -343,13 +361,13 @@ in
   playwright = nodeEnv.buildNodePackage {
     name = "playwright";
     packageName = "playwright";
-    version = "1.8.1";
+    version = "1.9.2";
     src = fetchurl {
-      url = "https://registry.npmjs.org/playwright/-/playwright-1.8.1.tgz";
-      sha512 = "nmuiDEDwB/SdAxiZQS5pLqPS3XXN8OJ1LKvTSiAbJvu+AUf7f0RD7nuq9xB0C08Emd6stx9yBMhANvD12k/+GQ==";
+      url = "https://registry.npmjs.org/playwright/-/playwright-1.9.2.tgz";
+      sha512 = "Hsgfk3GZO+hgewRNW9xl9/tHjdZvVwxTseHagbiNpDf90PXICEh8UHXy/2eykeIXrZFMA6W6petEtRWNPi3gfQ==";
     };
     dependencies = [
-      sources."@types/node-14.14.28"
+      sources."@types/node-14.14.34"
       sources."@types/yauzl-2.9.1"
       sources."agent-base-6.0.2"
       sources."balanced-match-1.0.0"
@@ -359,6 +377,7 @@ in
       sources."concat-map-0.0.1"
       sources."debug-4.3.2"
       sources."end-of-stream-1.4.4"
+      sources."escape-string-regexp-2.0.0"
       sources."extract-zip-2.0.1"
       sources."fd-slicer-1.1.0"
       sources."fs.realpath-1.0.0"
@@ -383,8 +402,9 @@ in
       sources."retry-0.12.0"
       sources."rimraf-3.0.2"
       sources."signal-exit-3.0.3"
+      sources."stack-utils-2.0.3"
       sources."wrappy-1.0.2"
-      sources."ws-7.4.3"
+      sources."ws-7.4.4"
       sources."yauzl-2.10.0"
     ];
     buildInputs = globalBuildInputs;

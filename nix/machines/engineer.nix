@@ -8,6 +8,8 @@
  
       google-chrome
       google-chrome-dev
+#      firefox
+      firefox-devedition-bin
       #gitPkgs.chromium-git_82
 
       slack
