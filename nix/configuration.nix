@@ -43,10 +43,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "329.0.0";
+        version = "331.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:bab65ba4997632a85bbf7f5d7c7cfceb851edd0fa00114151dea2492b8045854";
+          hash = "sha256:f90c2df5bd0b3498d7e33112f17439eead8c94ae7d60a1cab0091de0eee62c16";
         };
       });
 
