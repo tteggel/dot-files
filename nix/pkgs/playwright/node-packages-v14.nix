@@ -4,13 +4,13 @@
 
 let
   sources = {
-    "@types/node-14.14.34" = {
+    "@types/node-14.14.35" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "14.14.34";
+      version = "14.14.35";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-14.14.34.tgz";
-        sha512 = "dBPaxocOK6UVyvhbnpFIj2W+S+1cBTkHQbFQfeeJhoKFbzYcVUGHvddeWPSucKATb3F0+pgDq0i6ghEaZjsugA==";
+        url = "https://registry.npmjs.org/@types/node/-/node-14.14.35.tgz";
+        sha512 = "Lt+wj8NVPx0zUmUwumiVXapmaLUcAk3yPuHCFVXras9k5VT9TdhJqKqGVUQCD60OTMCl0qxJ57OiTL0Mic3Iag==";
       };
     };
     "@types/yauzl-2.9.1" = {
@@ -367,7 +367,7 @@ in
       sha512 = "Hsgfk3GZO+hgewRNW9xl9/tHjdZvVwxTseHagbiNpDf90PXICEh8UHXy/2eykeIXrZFMA6W6petEtRWNPi3gfQ==";
     };
     dependencies = [
-      sources."@types/node-14.14.34"
+      sources."@types/node-14.14.35"
       sources."@types/yauzl-2.9.1"
       sources."agent-base-6.0.2"
       sources."balanced-match-1.0.0"

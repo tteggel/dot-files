@@ -310,22 +310,22 @@ let
         sha512 = "tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==";
       };
     };
-    "@types/node-13.13.46" = {
+    "@types/node-13.13.47" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "13.13.46";
+      version = "13.13.47";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-13.13.46.tgz";
-        sha512 = "dqpbzK/KDsOlEt+oyB3rv+u1IxlLFziZu/Z0adfRKoelkr+sTd6QcgiQC+HWq/vkYkHwG5ot2LxgV05aAjnhcg==";
+        url = "https://registry.npmjs.org/@types/node/-/node-13.13.47.tgz";
+        sha512 = "R6851wTjN1YJza8ZIeX6puNBSi/ZULHVh4WVleA7q256l+cP2EtXnKbO455fTs2ytQk3dL9qkU+Wh8l/uROdKg==";
       };
     };
-    "@types/node-14.14.34" = {
+    "@types/node-14.14.35" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "14.14.34";
+      version = "14.14.35";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-14.14.34.tgz";
-        sha512 = "dBPaxocOK6UVyvhbnpFIj2W+S+1cBTkHQbFQfeeJhoKFbzYcVUGHvddeWPSucKATb3F0+pgDq0i6ghEaZjsugA==";
+        url = "https://registry.npmjs.org/@types/node/-/node-14.14.35.tgz";
+        sha512 = "Lt+wj8NVPx0zUmUwumiVXapmaLUcAk3yPuHCFVXras9k5VT9TdhJqKqGVUQCD60OTMCl0qxJ57OiTL0Mic3Iag==";
       };
     };
     "JSONStream-1.3.5" = {
@@ -1021,22 +1021,22 @@ let
         sha1 = "b35dac376479facc3e94747d41d0d0f5238ffcb5";
       };
     };
-    "cli-spinners-2.5.0" = {
+    "cli-spinners-2.6.0" = {
       name = "cli-spinners";
       packageName = "cli-spinners";
-      version = "2.5.0";
+      version = "2.6.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/cli-spinners/-/cli-spinners-2.5.0.tgz";
-        sha512 = "PC+AmIuK04E6aeSs/pUccSujsTzBhu4HzC2dL+CfJB/Jcc2qTRbEwZQDfIUpt2Xl8BodYBEq8w4fc0kU2I9DjQ==";
+        url = "https://registry.npmjs.org/cli-spinners/-/cli-spinners-2.6.0.tgz";
+        sha512 = "t+4/y50K/+4xcCRosKkA7W4gTr1MySvLV0q+PxmG7FJ5g+66ChKurYjxBCjHggHH3HA5Hh9cy+lcUGWDqVH+4Q==";
       };
     };
-    "cli-table-0.3.5" = {
+    "cli-table-0.3.6" = {
       name = "cli-table";
       packageName = "cli-table";
-      version = "0.3.5";
+      version = "0.3.6";
       src = fetchurl {
-        url = "https://registry.npmjs.org/cli-table/-/cli-table-0.3.5.tgz";
-        sha512 = "7uo2+RMNQUZ13M199udxqwk1qxTOS53EUak4gmu/aioUpdH5RvBz0JkJslcWz6ABKedZNqXXzikMZgHh+qF16A==";
+        url = "https://registry.npmjs.org/cli-table/-/cli-table-0.3.6.tgz";
+        sha512 = "ZkNZbnZjKERTY5NwC2SeMeLeifSPq/pubeRoTpdr3WchLlnZg6hEgvHkK5zL7KNFdd9PmHN8lxrENUwI3cE8vQ==";
       };
     };
     "cli-width-2.2.1" = {
@@ -4315,13 +4315,13 @@ let
         sha512 = "b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==";
       };
     };
-    "semver-7.3.4" = {
+    "semver-7.3.5" = {
       name = "semver";
       packageName = "semver";
-      version = "7.3.4";
+      version = "7.3.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/semver/-/semver-7.3.4.tgz";
-        sha512 = "tCfb2WLjqFAtXn4KEdxIhalnRtoKFN7nAwj0B3ZXCbQloV2tq5eDbcTmT68JJD3nRJq24/XgxtQKFIpQdtvmVw==";
+        url = "https://registry.npmjs.org/semver/-/semver-7.3.5.tgz";
+        sha512 = "PoeGJYh8HK4BTO/a9Tf6ZG3veo/A7ZVsYrSA6J8ny9nb3B1VrpkuN+z9OE5wfE5p6H4LchYZsegiQgbJD94ZFQ==";
       };
     };
     "semver-diff-3.1.1" = {
@@ -4450,13 +4450,13 @@ let
         sha512 = "iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==";
       };
     };
-    "socks-2.5.1" = {
+    "socks-2.6.0" = {
       name = "socks";
       packageName = "socks";
-      version = "2.5.1";
+      version = "2.6.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/socks/-/socks-2.5.1.tgz";
-        sha512 = "oZCsJJxapULAYJaEYBSzMcz8m3jqgGrHaGhkmU/o/PQfFWYWxkAaA0UMGImb6s6tEXfKi959X6VJjMMQ3P6TTQ==";
+        url = "https://registry.npmjs.org/socks/-/socks-2.6.0.tgz";
+        sha512 = "mNmr9owlinMplev0Wd7UHFlqI4ofnBnNzFuzrm63PPaHgbkqCFe4T5LzwKmtQ/f2tX0NTpcdVLyD/FHxFBstYw==";
       };
     };
     "socks-proxy-agent-5.0.0" = {
@@ -5285,7 +5285,7 @@ in
       sources."@opentelemetry/context-base-0.12.0"
       (sources."@opentelemetry/core-0.12.0" // {
         dependencies = [
-          sources."semver-7.3.4"
+          sources."semver-7.3.5"
         ];
       })
       sources."@opentelemetry/resources-0.12.0"
@@ -5309,7 +5309,7 @@ in
       sources."@types/glob-7.1.3"
       sources."@types/long-4.0.1"
       sources."@types/minimatch-3.0.3"
-      sources."@types/node-14.14.34"
+      sources."@types/node-14.14.35"
       sources."JSONStream-1.3.5"
       sources."abbrev-1.1.1"
       sources."abort-controller-3.0.0"
@@ -5418,8 +5418,8 @@ in
       sources."cli-boxes-2.2.1"
       sources."cli-color-1.4.0"
       sources."cli-cursor-2.1.0"
-      sources."cli-spinners-2.5.0"
-      sources."cli-table-0.3.5"
+      sources."cli-spinners-2.6.0"
+      sources."cli-table-0.3.6"
       sources."cli-width-2.2.1"
       sources."clone-1.0.4"
       sources."clone-response-1.0.2"
@@ -5529,7 +5529,7 @@ in
       sources."events-listener-1.1.0"
       (sources."exegesis-2.5.6" // {
         dependencies = [
-          sources."semver-7.3.4"
+          sources."semver-7.3.5"
         ];
       })
       sources."exegesis-express-2.0.0"
@@ -5808,7 +5808,7 @@ in
       (sources."node-gyp-7.1.2" // {
         dependencies = [
           sources."mkdirp-1.0.4"
-          sources."semver-7.3.4"
+          sources."semver-7.3.5"
           sources."tar-6.1.0"
           sources."which-2.0.2"
         ];
@@ -5860,7 +5860,7 @@ in
       sources."promise-breaker-5.0.0"
       (sources."protobufjs-6.10.2" // {
         dependencies = [
-          sources."@types/node-13.13.46"
+          sources."@types/node-13.13.47"
         ];
       })
       sources."proxy-addr-2.0.6"
@@ -5937,7 +5937,7 @@ in
       sources."signal-exit-3.0.3"
       sources."simple-swizzle-0.2.2"
       sources."smart-buffer-4.1.0"
-      sources."socks-2.5.1"
+      sources."socks-2.6.0"
       sources."socks-proxy-agent-5.0.0"
       sources."source-map-0.6.1"
       sources."sprintf-js-1.0.3"

@@ -1,5 +1,6 @@
 [options]
 font = MesloLGS NF
+scrollback_lines = 10000
 
 [colors]
 # Base16 Brush Trees Dark

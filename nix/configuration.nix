@@ -32,40 +32,19 @@ in
       docker = pkgs.docker-edge;
       nodejs = pkgs.nodejs-14_x;
 
-      # REMOVE once the fix propagates to unstable
-#      termite = gitPkgs.termite;
-
       # Package overrides
-
       #ffmpeg-full = pkgs.ffmpeg-full.override ({
       #  nonfreeLicensing = true;
       #  fdkaacExtlib = true;
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "331.0.0";
+        version = "332.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:f90c2df5bd0b3498d7e33112f17439eead8c94ae7d60a1cab0091de0eee62c16";
+          hash = "sha256:9e75433a7d636f0ac2ab837802bd0f2bfd933bb089bf1cf73c3e99cdd077e1a4";
         };
       });
-
-#      linuxPackages_latest = pkgs.linuxPackages_latest.extend (self: super: {
-#        kernel = super.kernel.override {
-#          kernelPatches = super.kernel.kernelPatches ++ [
-#            rec {
-#              name = "0024-Add-xtsproxy-Crypto-API-module";
-#              patch = pkgs.fetchpatch {
-#                name = name + ".patch";
-#                url = "https://raw.githubusercontent.com/cloudflare/linux/master/patches/" + name + ".patch";
-#                sha256 = "0cy8784k6p2z37h4jgzv6il6pfxvx18wbgn95gdz2yd33rz43rc9";
-#              };
-#            }
-# 
-#          ];
-#        };
-#      });
-
     };
   };
 
@@ -80,10 +59,8 @@ in
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
- #   kernelModules = [ "xtsproxy" ];
     initrd = {
       checkJournalingFS = false;
-#      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid"  "xtsproxy" "nvme" ];
       kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "nvme" ];
       luks = {
         yubikeySupport = true;
