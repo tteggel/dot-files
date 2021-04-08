@@ -61,7 +61,7 @@ in
     kernelPackages = pkgs.linuxPackages_latest;
     initrd = {
       checkJournalingFS = false;
-      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "nvme" ];
+      kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "3w-9xxx" "3w-xxxx" "aic79xx" "aic7xxx" "arcmsr" "mptspi" ];
       luks = {
         yubikeySupport = true;
         devices."luks-root" = {
@@ -72,18 +72,21 @@ in
             saltLength = 16;
             gracePeriod = 60;
             storage = {
-              device = "/dev/nvme0n1p1";
+              device = "/dev/disk/by-label/BOOT";
               fsType = "vfat";
               path = "/crypt-storage/default";
             };
           };
+          allowDiscards = true;
         };
       };
     };
   };
 
   networking = {
-    hostName = "thomnixe";
+    hostName = "thomnix";
+#    nameservers = [ "4.4.4.4" "8.8.8.8" ];
+#    nameservers = [ "18.220.192.95" "18.220.192.111" ];
     hosts = {
 #      "127.0.0.1" = ["apis.google.com"];
     };
@@ -114,7 +117,9 @@ in
     };
   };
 
-  hardware.pulseaudio.enable = true;
+  hardware = { 
+    pulseaudio.enable = true;
+  };
 
   services = {
     printing.enable = true;
@@ -133,12 +138,15 @@ in
         enable = true;
         package = pkgs.i3-gaps;
       };
-      displayManager.sessionCommands = ''
-        xss-lock i3lock &
-        dunst &
-      '';
+      displayManager = {
+        defaultSession = "none+i3";
+#        sddm.enable = true;
+        sessionCommands = ''
+          xss-lock i3lock &
+          dunst &
+        '';
+      };
       dpi = 138;
-      displayManager.defaultSession = "none+i3";
     };
 
     udev = {
@@ -265,6 +273,8 @@ in
     pam.services.sudo.u2fAuth = true;
     pam.services.i3lock.u2fAuth = true;
     pam.services.sddm.u2fAuth = true;
+    pam.services.lightdm.u2fAuth = true;
+    pam.services.login.u2fAuth = true;
     pam.u2f = {
       enable = true;
       cue = true;
