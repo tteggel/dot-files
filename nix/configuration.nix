@@ -30,7 +30,8 @@ in
 
       # Package selections
       docker = pkgs.docker-edge;
-      nodejs = pkgs.nodejs-14_x;
+#      nodejs = pkgs.nodejs-16_x;
+#      nodePackages = pkgs.nodePackages_latest;
 
       # Package overrides
       #ffmpeg-full = pkgs.ffmpeg-full.override ({
@@ -39,10 +40,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "332.0.0";
+        version = "343.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:9e75433a7d636f0ac2ab837802bd0f2bfd933bb089bf1cf73c3e99cdd077e1a4";
+          hash = "sha256:a3a965b6f27f55471d4a43cf010a002ed41ae22c7cc8287353c023cc05a687d0";
         };
       });
     };
@@ -59,6 +60,7 @@ in
       efi.canTouchEfiVariables = true;
     };
     kernelPackages = pkgs.linuxPackages_latest;
+    cleanTmpDir = true;
     initrd = {
       checkJournalingFS = false;
       kernelModules = [ "vfat" "nls_cp437" "nls_iso8859-1" "usbhid" "3w-9xxx" "3w-xxxx" "aic79xx" "aic7xxx" "arcmsr" "mptspi" ];
@@ -88,7 +90,7 @@ in
 #    nameservers = [ "4.4.4.4" "8.8.8.8" ];
 #    nameservers = [ "18.220.192.95" "18.220.192.111" ];
     hosts = {
-#      "127.0.0.1" = ["apis.google.com"];
+      "127.0.0.1" = ["app-local.dev.bookcreator.com" "read-local.dev.bookcreator.com"];
     };
     firewall = {
       enable = true;
@@ -122,6 +124,7 @@ in
   };
 
   services = {
+
     printing.enable = true;
 
     emacs.enable = true;
@@ -184,6 +187,11 @@ in
     };
 
     pcscd.enable = true;
+
+    journald.extraConfig = ''
+      SystemMaxUse=100M
+      MaxFileSec=7day
+    '';
 
   };
 
@@ -292,6 +300,8 @@ in
       # Number of seconds to wait for binary-cache to accept() our connect()
       connect-timeout = 15
     '';
+
+    autoOptimiseStore = true;
 
     # Automatic garbage collection
     gc.automatic = true;

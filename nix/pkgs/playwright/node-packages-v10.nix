@@ -4,13 +4,13 @@
 
 let
   sources = {
-    "@types/node-14.14.35" = {
+    "@types/node-15.0.2" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "14.14.35";
+      version = "15.0.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-14.14.35.tgz";
-        sha512 = "Lt+wj8NVPx0zUmUwumiVXapmaLUcAk3yPuHCFVXras9k5VT9TdhJqKqGVUQCD60OTMCl0qxJ57OiTL0Mic3Iag==";
+        url = "https://registry.npmjs.org/@types/node/-/node-15.0.2.tgz";
+        sha512 = "p68+a+KoxpoB47015IeYZYRrdqMUcpbK8re/zpFB8Ld46LHC1lPEbp3EXgkEhAYEcPvjJF6ZO+869SQ0aH1dcA==";
       };
     };
     "@types/yauzl-2.9.1" = {
@@ -31,13 +31,13 @@ let
         sha512 = "RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==";
       };
     };
-    "balanced-match-1.0.0" = {
+    "balanced-match-1.0.2" = {
       name = "balanced-match";
       packageName = "balanced-match";
-      version = "1.0.0";
+      version = "1.0.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.0.tgz";
-        sha1 = "89b4d199ab2bee49de164ea02b89ce462d71b767";
+        url = "https://registry.npmjs.org/balanced-match/-/balanced-match-1.0.2.tgz";
+        sha512 = "3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==";
       };
     };
     "brace-expansion-1.1.11" = {
@@ -139,13 +139,13 @@ let
         sha512 = "nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==";
       };
     };
-    "glob-7.1.6" = {
+    "glob-7.1.7" = {
       name = "glob";
       packageName = "glob";
-      version = "7.1.6";
+      version = "7.1.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/glob/-/glob-7.1.6.tgz";
-        sha512 = "LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==";
+        url = "https://registry.npmjs.org/glob/-/glob-7.1.7.tgz";
+        sha512 = "OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==";
       };
     };
     "graceful-fs-4.2.6" = {
@@ -337,13 +337,13 @@ let
         sha1 = "b5243d8f3ec1aa35f1364605bc0d1036e30ab69f";
       };
     };
-    "ws-7.4.4" = {
+    "ws-7.4.5" = {
       name = "ws";
       packageName = "ws";
-      version = "7.4.4";
+      version = "7.4.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ws/-/ws-7.4.4.tgz";
-        sha512 = "Qm8k8ojNQIMx7S+Zp8u/uHOx7Qazv3Yv4q68MiWWWOJhiwG5W3x7iqmRtJo8xxrciZUY4vRxUTJCKuRnF28ZZw==";
+        url = "https://registry.npmjs.org/ws/-/ws-7.4.5.tgz";
+        sha512 = "xzyu3hFvomRfXKH8vOFMU3OguG6oOvhXMo3xsGy3xWExqaM2dxBbVxuD99O7m3ZUFMvvscsZDqxfgMaRr/Nr1g==";
       };
     };
     "yauzl-2.10.0" = {
@@ -361,16 +361,16 @@ in
   playwright = nodeEnv.buildNodePackage {
     name = "playwright";
     packageName = "playwright";
-    version = "1.9.2";
+    version = "1.10.0";
     src = fetchurl {
-      url = "https://registry.npmjs.org/playwright/-/playwright-1.9.2.tgz";
-      sha512 = "Hsgfk3GZO+hgewRNW9xl9/tHjdZvVwxTseHagbiNpDf90PXICEh8UHXy/2eykeIXrZFMA6W6petEtRWNPi3gfQ==";
+      url = "https://registry.npmjs.org/playwright/-/playwright-1.10.0.tgz";
+      sha512 = "b7SGBcCPq4W3pb4ImEDmNXtO0ZkJbZMuWiShsaNJd+rGfY/6fqwgllsAojmxGSgFmijYw7WxCoPiAIEDIH16Kw==";
     };
     dependencies = [
-      sources."@types/node-14.14.35"
+      sources."@types/node-15.0.2"
       sources."@types/yauzl-2.9.1"
       sources."agent-base-6.0.2"
-      sources."balanced-match-1.0.0"
+      sources."balanced-match-1.0.2"
       sources."brace-expansion-1.1.11"
       sources."buffer-crc32-0.2.13"
       sources."commander-6.2.1"
@@ -382,7 +382,7 @@ in
       sources."fd-slicer-1.1.0"
       sources."fs.realpath-1.0.0"
       sources."get-stream-5.2.0"
-      sources."glob-7.1.6"
+      sources."glob-7.1.7"
       sources."graceful-fs-4.2.6"
       sources."https-proxy-agent-5.0.0"
       sources."inflight-1.0.6"
@@ -404,7 +404,7 @@ in
       sources."signal-exit-3.0.3"
       sources."stack-utils-2.0.3"
       sources."wrappy-1.0.2"
-      sources."ws-7.4.4"
+      sources."ws-7.4.5"
       sources."yauzl-2.10.0"
     ];
     buildInputs = globalBuildInputs;
