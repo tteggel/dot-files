@@ -17,6 +17,9 @@
 
       google-cloud-sdk
       firebase-tools
+      bower
+      gulp
+      lerna
 
       nodejs
       yarn

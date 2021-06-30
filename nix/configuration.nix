@@ -24,6 +24,9 @@ in
       pbkdf2-sha512 = pkgs.callPackage ./pkgs/pbkdf2-sha512 {};
 #      smith = pkgs.callPackage ./pkgs/smith {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
+      lerna = pkgs.callPackage ./pkgs/lerna {};
+      bower = pkgs.callPackage ./pkgs/bower {};
+      gulp = pkgs.callPackage ./pkgs/gulp {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
       meslo-p10k = pkgs.callPackage ./pkgs/meslo-p10k {};
 #      artillery = pkgs.callPackage ./pkgs/artillery {};
@@ -40,10 +43,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "343.0.0";
+        version = "345.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:a3a965b6f27f55471d4a43cf010a002ed41ae22c7cc8287353c023cc05a687d0";
+          hash = "sha256:c708b60dfc9f8cf34272d4330f69a93101091c27b63bb5533b59bcb6d44f8e7d";
         };
       });
     };
