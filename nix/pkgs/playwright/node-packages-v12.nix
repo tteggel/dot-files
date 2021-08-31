@@ -4,22 +4,22 @@
 
 let
   sources = {
-    "@types/node-15.0.2" = {
+    "@types/node-16.7.8" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "15.0.2";
+      version = "16.7.8";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-15.0.2.tgz";
-        sha512 = "p68+a+KoxpoB47015IeYZYRrdqMUcpbK8re/zpFB8Ld46LHC1lPEbp3EXgkEhAYEcPvjJF6ZO+869SQ0aH1dcA==";
+        url = "https://registry.npmjs.org/@types/node/-/node-16.7.8.tgz";
+        sha512 = "8upnoQU0OPzbIkm+ZMM0zCeFCkw2s3mS0IWdx0+AAaWqm4fkBb0UJp8Edl7FVKRamYbpJC/aVsHpKWBIbiC7Zg==";
       };
     };
-    "@types/yauzl-2.9.1" = {
+    "@types/yauzl-2.9.2" = {
       name = "_at_types_slash_yauzl";
       packageName = "@types/yauzl";
-      version = "2.9.1";
+      version = "2.9.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/yauzl/-/yauzl-2.9.1.tgz";
-        sha512 = "A1b8SU4D10uoPjwb0lnHmmu8wZhR9d+9o2PKBQT2jU5YPTKsxac6M2qGAdY7VcL+dHHhARVUDmeg0rOrcd9EjA==";
+        url = "https://registry.npmjs.org/@types/yauzl/-/yauzl-2.9.2.tgz";
+        sha512 = "8uALY5LTvSuHgloDVUvWP3pIauILm+8/0pDMokuDYIoNsOkSwd5AiHBTSEJjKTDcZr5z8UpgOWZkxBF4iJftoA==";
       };
     };
     "agent-base-6.0.2" = {
@@ -148,13 +148,13 @@ let
         sha512 = "OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==";
       };
     };
-    "graceful-fs-4.2.6" = {
+    "graceful-fs-4.2.8" = {
       name = "graceful-fs";
       packageName = "graceful-fs";
-      version = "4.2.6";
+      version = "4.2.8";
       src = fetchurl {
-        url = "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.6.tgz";
-        sha512 = "nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==";
+        url = "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.8.tgz";
+        sha512 = "qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==";
       };
     };
     "https-proxy-agent-5.0.0" = {
@@ -337,13 +337,13 @@ let
         sha1 = "b5243d8f3ec1aa35f1364605bc0d1036e30ab69f";
       };
     };
-    "ws-7.4.5" = {
+    "ws-7.5.4" = {
       name = "ws";
       packageName = "ws";
-      version = "7.4.5";
+      version = "7.5.4";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ws/-/ws-7.4.5.tgz";
-        sha512 = "xzyu3hFvomRfXKH8vOFMU3OguG6oOvhXMo3xsGy3xWExqaM2dxBbVxuD99O7m3ZUFMvvscsZDqxfgMaRr/Nr1g==";
+        url = "https://registry.npmjs.org/ws/-/ws-7.5.4.tgz";
+        sha512 = "zP9z6GXm6zC27YtspwH99T3qTG7bBFv2VIkeHstMLrLlDJuzA7tQ5ls3OJ1hOGGCzTQPniNJoHXIAOS0Jljohg==";
       };
     };
     "yauzl-2.10.0" = {
@@ -355,20 +355,29 @@ let
         sha1 = "c7eb17c93e112cb1086fa6d8e51fb0667b79a5f9";
       };
     };
+    "yazl-2.5.1" = {
+      name = "yazl";
+      packageName = "yazl";
+      version = "2.5.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/yazl/-/yazl-2.5.1.tgz";
+        sha512 = "phENi2PLiHnHb6QBVot+dJnaAZ0xosj7p3fWl+znIjBDlnMI2PsZCJZ306BPTFOaHf5qdDEI8x5qFrSOBN5vrw==";
+      };
+    };
   };
 in
 {
   playwright = nodeEnv.buildNodePackage {
     name = "playwright";
     packageName = "playwright";
-    version = "1.10.0";
+    version = "1.14.1";
     src = fetchurl {
-      url = "https://registry.npmjs.org/playwright/-/playwright-1.10.0.tgz";
-      sha512 = "b7SGBcCPq4W3pb4ImEDmNXtO0ZkJbZMuWiShsaNJd+rGfY/6fqwgllsAojmxGSgFmijYw7WxCoPiAIEDIH16Kw==";
+      url = "https://registry.npmjs.org/playwright/-/playwright-1.14.1.tgz";
+      sha512 = "JYNjhwWcfsBkg0FMGLbFO9e58FVdmICE4k97/glIQV7cBULL7oxNjRQC7Ffe+Y70XVNnP0HSJLaA0W5SukyftQ==";
     };
     dependencies = [
-      sources."@types/node-15.0.2"
-      sources."@types/yauzl-2.9.1"
+      sources."@types/node-16.7.8"
+      sources."@types/yauzl-2.9.2"
       sources."agent-base-6.0.2"
       sources."balanced-match-1.0.2"
       sources."brace-expansion-1.1.11"
@@ -383,7 +392,7 @@ in
       sources."fs.realpath-1.0.0"
       sources."get-stream-5.2.0"
       sources."glob-7.1.7"
-      sources."graceful-fs-4.2.6"
+      sources."graceful-fs-4.2.8"
       sources."https-proxy-agent-5.0.0"
       sources."inflight-1.0.6"
       sources."inherits-2.0.4"
@@ -404,8 +413,9 @@ in
       sources."signal-exit-3.0.3"
       sources."stack-utils-2.0.3"
       sources."wrappy-1.0.2"
-      sources."ws-7.4.5"
+      sources."ws-7.5.4"
       sources."yauzl-2.10.0"
+      sources."yazl-2.5.1"
     ];
     buildInputs = globalBuildInputs;
     meta = {

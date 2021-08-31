@@ -283,13 +283,13 @@ let
         sha1 = "59616b498304d556abd466966b22eeda3eca5fbe";
       };
     };
-    "buffer-from-1.1.1" = {
+    "buffer-from-1.1.2" = {
       name = "buffer-from";
       packageName = "buffer-from";
-      version = "1.1.1";
+      version = "1.1.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.1.tgz";
-        sha512 = "MQcXEUbCKtEo7bhqEs6560Hyd4XaovZlO/k9V3hjVUF/zwW7KBVdSK4gIt/bzwS9MbR5qob+F5jusZsb0YQK2A==";
+        url = "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.2.tgz";
+        sha512 = "E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==";
       };
     };
     "cache-base-1.0.1" = {
@@ -670,13 +670,13 @@ let
         sha1 = "97e801aa052df02454de46b02bf621642cdc8502";
       };
     };
-    "ext-1.4.0" = {
+    "ext-1.5.0" = {
       name = "ext";
       packageName = "ext";
-      version = "1.4.0";
+      version = "1.5.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ext/-/ext-1.4.0.tgz";
-        sha512 = "Key5NIsUxdqKg3vIsdw9dSuXpPCQ297y6wBjL30edxwPgt2E44WcWBZey/ZvUc6sERLTxKdyCu4gZFmUbk1Q7A==";
+        url = "https://registry.npmjs.org/ext/-/ext-1.5.0.tgz";
+        sha512 = "+ONcYoWj/SoQwUofMr94aGu05Ou4FepKi7N7b+O8T4jVfyIsZQV1/xeS8jpaBzF0csAk0KLXoHCxU7cKYZjo1Q==";
       };
     };
     "extend-3.0.2" = {
@@ -958,13 +958,13 @@ let
         sha512 = "5mwUoSuBk44Y4EshyiqcH95ZntbDdTQqA3QYSrxmzj28Ai0vXBGMH1ApSANH14j2sIRtqCEyg6PfsuP7ElOEDA==";
       };
     };
-    "graceful-fs-4.2.6" = {
+    "graceful-fs-4.2.8" = {
       name = "graceful-fs";
       packageName = "graceful-fs";
-      version = "4.2.6";
+      version = "4.2.8";
       src = fetchurl {
-        url = "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.6.tgz";
-        sha512 = "nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==";
+        url = "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.8.tgz";
+        sha512 = "qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==";
       };
     };
     "gulp-cli-2.3.0" = {
@@ -1156,13 +1156,13 @@ let
         sha512 = "NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==";
       };
     };
-    "is-core-module-2.4.0" = {
+    "is-core-module-2.6.0" = {
       name = "is-core-module";
       packageName = "is-core-module";
-      version = "2.4.0";
+      version = "2.6.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/is-core-module/-/is-core-module-2.4.0.tgz";
-        sha512 = "6A2fkfq1rfeQZjxrZJGerpLCTHRNEBiSgnu0+obeJpEPZRUooHgsizvzv0ZjJwOz3iWIHdJtVWJ/tmPr3D21/A==";
+        url = "https://registry.npmjs.org/is-core-module/-/is-core-module-2.6.0.tgz";
+        sha512 = "wShG8vs60jKfPWpF2KZRaAtvt3a20OAn7+IJ6hLPECpSABLcKtFKTTI4ZtH5QcBruBHlq+WsdHWyz0BCZW7svQ==";
       };
     };
     "is-data-descriptor-0.1.4" = {
@@ -1570,13 +1570,13 @@ let
         sha512 = "kDcwXR4PS7caBpuRYYBUz9iVixUk3anO3f5OYFiIPwK/20vCzKCHyKoulbiDY1S53zD2bxUpxN/IJ+TnXjfvxg==";
       };
     };
-    "nan-2.14.2" = {
+    "nan-2.15.0" = {
       name = "nan";
       packageName = "nan";
-      version = "2.14.2";
+      version = "2.15.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/nan/-/nan-2.14.2.tgz";
-        sha512 = "M2ufzIiINKCuDfBSAUr1vWQ+vuVcA9kqx8JJUsbQi6yf1uGRyb7HfpdfUr5qLXf3B/t8dPvcjhKMmlfnP47EzQ==";
+        url = "https://registry.npmjs.org/nan/-/nan-2.15.0.tgz";
+        sha512 = "8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==";
       };
     };
     "nanomatch-1.2.13" = {
@@ -2245,13 +2245,13 @@ let
         sha512 = "cbqHunsQWnJNE6KhVSMsMeH5H/L9EpymbzqTQ3uLwNCLZ1Q481oWaofqH7nO6V07xlXwY6PhQdQ2IedWx/ZK4Q==";
       };
     };
-    "spdx-license-ids-3.0.9" = {
+    "spdx-license-ids-3.0.10" = {
       name = "spdx-license-ids";
       packageName = "spdx-license-ids";
-      version = "3.0.9";
+      version = "3.0.10";
       src = fetchurl {
-        url = "https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.9.tgz";
-        sha512 = "Ki212dKK4ogX+xDo4CtOZBVIwhsKBEfsEEcwmJfLQzirgc2jIWdzg40Unxz/HzEUqM1WFzVlQSMF9kZZ2HboLQ==";
+        url = "https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.10.tgz";
+        sha512 = "oie3/+gKf7QtpitB0LYLETe+k8SifzsX4KixvpOsbI6S0kRiRQ5MKOio8eMSAKQ17N06+wdEOXRiId+zOxo0hA==";
       };
     };
     "split-string-3.1.0" = {
@@ -2726,7 +2726,7 @@ in
         ];
       })
       sources."buffer-equal-1.0.0"
-      sources."buffer-from-1.1.1"
+      sources."buffer-from-1.1.2"
       sources."cache-base-1.0.1"
       sources."call-bind-1.0.2"
       sources."camelcase-3.0.0"
@@ -2808,7 +2808,7 @@ in
         ];
       })
       sources."expand-tilde-2.0.2"
-      (sources."ext-1.4.0" // {
+      (sources."ext-1.5.0" // {
         dependencies = [
           sources."type-2.5.0"
         ];
@@ -2859,7 +2859,7 @@ in
       sources."global-modules-1.0.0"
       sources."global-prefix-1.0.2"
       sources."glogg-1.0.2"
-      sources."graceful-fs-4.2.6"
+      sources."graceful-fs-4.2.8"
       sources."gulp-cli-2.3.0"
       sources."gulplog-1.0.0"
       sources."has-1.0.3"
@@ -2882,7 +2882,7 @@ in
       sources."is-arrayish-0.2.1"
       sources."is-binary-path-1.0.1"
       sources."is-buffer-1.1.6"
-      sources."is-core-module-2.4.0"
+      sources."is-core-module-2.6.0"
       sources."is-data-descriptor-1.0.0"
       sources."is-descriptor-1.0.2"
       sources."is-extendable-0.1.1"
@@ -2931,7 +2931,7 @@ in
       })
       sources."ms-2.0.0"
       sources."mute-stdout-1.0.1"
-      sources."nan-2.14.2"
+      sources."nan-2.15.0"
       sources."nanomatch-1.2.13"
       sources."next-tick-1.0.0"
       sources."normalize-package-data-2.5.0"
@@ -3046,7 +3046,7 @@ in
       sources."spdx-correct-3.1.1"
       sources."spdx-exceptions-2.3.0"
       sources."spdx-expression-parse-3.0.1"
-      sources."spdx-license-ids-3.0.9"
+      sources."spdx-license-ids-3.0.10"
       sources."split-string-3.1.0"
       sources."stack-trace-0.0.10"
       (sources."static-extend-0.1.2" // {

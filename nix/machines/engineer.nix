@@ -5,15 +5,14 @@
     environment.systemPackages = with pkgs; [
       jetbrains.jdk
       jetbrains.webstorm
+      jetbrains.pycharm-professional
  
       google-chrome
-      google-chrome-dev
-#      firefox
+      #google-chrome-dev
+      firefox
       firefox-devedition-bin
-      #gitPkgs.chromium-git_82
 
       slack
-#      spotify
 
       google-cloud-sdk
       firebase-tools
@@ -25,8 +24,6 @@
       yarn
       mocha
       nodePackages.node2nix
-#      artillery
-      #playwright
       
       ngrok
 
@@ -37,7 +34,6 @@
       dep
       gnumake      
       tree
-#      smith
       openssl
       jq
       libffi
@@ -48,7 +44,7 @@
 
       git-lfs
 
-      #ffmpeg-full
+      kubectl
    ];
   };
 }

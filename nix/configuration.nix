@@ -22,17 +22,16 @@ in
 
       # Local packages
       pbkdf2-sha512 = pkgs.callPackage ./pkgs/pbkdf2-sha512 {};
-#      smith = pkgs.callPackage ./pkgs/smith {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
       lerna = pkgs.callPackage ./pkgs/lerna {};
       bower = pkgs.callPackage ./pkgs/bower {};
       gulp = pkgs.callPackage ./pkgs/gulp {};
       mocha = pkgs.callPackage ./pkgs/mocha {};
       meslo-p10k = pkgs.callPackage ./pkgs/meslo-p10k {};
-#      artillery = pkgs.callPackage ./pkgs/artillery {};
 
       # Package selections
       docker = pkgs.docker-edge;
+#      google-chrome-dev = gitPkgs.google-chrome-dev;
 #      nodejs = pkgs.nodejs-16_x;
 #      nodePackages = pkgs.nodePackages_latest;
 
@@ -43,10 +42,10 @@ in
       #});
 
       google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "345.0.0";
+        version = "354.0.0";
         src = pkgs.fetchurl {
           url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:c708b60dfc9f8cf34272d4330f69a93101091c27b63bb5533b59bcb6d44f8e7d";
+          hash = "sha256:d8ea1bd3e2b27d8eaa1fc5b6b8424f6a7a2d6e06323563f54e08a48f3d942b4f";
         };
       });
     };
