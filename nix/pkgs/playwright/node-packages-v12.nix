@@ -4,13 +4,13 @@
 
 let
   sources = {
-    "@types/node-16.7.8" = {
+    "@types/node-16.11.1" = {
       name = "_at_types_slash_node";
       packageName = "@types/node";
-      version = "16.7.8";
+      version = "16.11.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@types/node/-/node-16.7.8.tgz";
-        sha512 = "8upnoQU0OPzbIkm+ZMM0zCeFCkw2s3mS0IWdx0+AAaWqm4fkBb0UJp8Edl7FVKRamYbpJC/aVsHpKWBIbiC7Zg==";
+        url = "https://registry.npmjs.org/@types/node/-/node-16.11.1.tgz";
+        sha512 = "PYGcJHL9mwl1Ek3PLiYgyEKtwTMmkMw4vbiyz/ps3pfdRYLVv+SN7qHVAImrjdAXxgluDEw6Ph4lyv+m9UpRmA==";
       };
     };
     "@types/yauzl-2.9.2" = {
@@ -139,13 +139,13 @@ let
         sha512 = "nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==";
       };
     };
-    "glob-7.1.7" = {
+    "glob-7.2.0" = {
       name = "glob";
       packageName = "glob";
-      version = "7.1.7";
+      version = "7.2.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/glob/-/glob-7.1.7.tgz";
-        sha512 = "OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==";
+        url = "https://registry.npmjs.org/glob/-/glob-7.2.0.tgz";
+        sha512 = "lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==";
       };
     };
     "graceful-fs-4.2.8" = {
@@ -310,22 +310,22 @@ let
         sha512 = "JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==";
       };
     };
-    "signal-exit-3.0.3" = {
+    "signal-exit-3.0.5" = {
       name = "signal-exit";
       packageName = "signal-exit";
-      version = "3.0.3";
+      version = "3.0.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.3.tgz";
-        sha512 = "VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==";
+        url = "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.5.tgz";
+        sha512 = "KWcOiKeQj6ZyXx7zq4YxSMgHRlod4czeBQZrPb8OKcohcqAXShm7E20kEMle9WBt26hFcAf0qLOcp5zmY7kOqQ==";
       };
     };
-    "stack-utils-2.0.3" = {
+    "stack-utils-2.0.5" = {
       name = "stack-utils";
       packageName = "stack-utils";
-      version = "2.0.3";
+      version = "2.0.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/stack-utils/-/stack-utils-2.0.3.tgz";
-        sha512 = "gL//fkxfWUsIlFL2Tl42Cl6+HFALEaB1FU76I/Fy+oZjRreP7OPMXFlGbxM7NQsI0ZpUfw76sHnv0WNYuTb7Iw==";
+        url = "https://registry.npmjs.org/stack-utils/-/stack-utils-2.0.5.tgz";
+        sha512 = "xrQcmYhOsn/1kX+Vraq+7j4oE2j/6BFscZ0etmYg81xuM8Gq0022Pxb8+IqgOFUIaxHs0KaSb7T1+OegiNrNFA==";
       };
     };
     "wrappy-1.0.2" = {
@@ -337,13 +337,13 @@ let
         sha1 = "b5243d8f3ec1aa35f1364605bc0d1036e30ab69f";
       };
     };
-    "ws-7.5.4" = {
+    "ws-7.5.5" = {
       name = "ws";
       packageName = "ws";
-      version = "7.5.4";
+      version = "7.5.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ws/-/ws-7.5.4.tgz";
-        sha512 = "zP9z6GXm6zC27YtspwH99T3qTG7bBFv2VIkeHstMLrLlDJuzA7tQ5ls3OJ1hOGGCzTQPniNJoHXIAOS0Jljohg==";
+        url = "https://registry.npmjs.org/ws/-/ws-7.5.5.tgz";
+        sha512 = "BAkMFcAzl8as1G/hArkxOxq3G7pjUqQ3gzYbLL0/5zNkph70e+lCoxBGnm6AW1+/aiNeV4fnKqZ8m4GZewmH2w==";
       };
     };
     "yauzl-2.10.0" = {
@@ -370,13 +370,13 @@ in
   playwright = nodeEnv.buildNodePackage {
     name = "playwright";
     packageName = "playwright";
-    version = "1.14.1";
+    version = "1.15.2";
     src = fetchurl {
-      url = "https://registry.npmjs.org/playwright/-/playwright-1.14.1.tgz";
-      sha512 = "JYNjhwWcfsBkg0FMGLbFO9e58FVdmICE4k97/glIQV7cBULL7oxNjRQC7Ffe+Y70XVNnP0HSJLaA0W5SukyftQ==";
+      url = "https://registry.npmjs.org/playwright/-/playwright-1.15.2.tgz";
+      sha512 = "+Z+7ckihyxR6rK5q8DWC6eUbKARfXpyxpjNcoJfgwSr64lAOzjhyFQiPC/JkdIqhsLgZjxpWfl1S7fLb+wPkgA==";
     };
     dependencies = [
-      sources."@types/node-16.7.8"
+      sources."@types/node-16.11.1"
       sources."@types/yauzl-2.9.2"
       sources."agent-base-6.0.2"
       sources."balanced-match-1.0.2"
@@ -391,7 +391,7 @@ in
       sources."fd-slicer-1.1.0"
       sources."fs.realpath-1.0.0"
       sources."get-stream-5.2.0"
-      sources."glob-7.1.7"
+      sources."glob-7.2.0"
       sources."graceful-fs-4.2.8"
       sources."https-proxy-agent-5.0.0"
       sources."inflight-1.0.6"
@@ -410,10 +410,10 @@ in
       sources."pump-3.0.0"
       sources."retry-0.12.0"
       sources."rimraf-3.0.2"
-      sources."signal-exit-3.0.3"
-      sources."stack-utils-2.0.3"
+      sources."signal-exit-3.0.5"
+      sources."stack-utils-2.0.5"
       sources."wrappy-1.0.2"
-      sources."ws-7.5.4"
+      sources."ws-7.5.5"
       sources."yauzl-2.10.0"
       sources."yazl-2.5.1"
     ];

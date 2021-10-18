@@ -472,13 +472,13 @@ let
         sha512 = "XBlx8HSqrT0ObQwmSzM7WE5k8FxTV75h1DX1Z3n6NhQ/UYYAvInWYmG06vFt7hQZArE2fuO62aihiWIVQwh1sw==";
       };
     };
-    "core-util-is-1.0.2" = {
+    "core-util-is-1.0.3" = {
       name = "core-util-is";
       packageName = "core-util-is";
-      version = "1.0.2";
+      version = "1.0.3";
       src = fetchurl {
-        url = "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz";
-        sha1 = "b5fd54220aa2bc5ab57aab7140c940754503c1a7";
+        url = "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.3.tgz";
+        sha512 = "ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==";
       };
     };
     "d-1.0.1" = {
@@ -670,13 +670,13 @@ let
         sha1 = "97e801aa052df02454de46b02bf621642cdc8502";
       };
     };
-    "ext-1.5.0" = {
+    "ext-1.6.0" = {
       name = "ext";
       packageName = "ext";
-      version = "1.5.0";
+      version = "1.6.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ext/-/ext-1.5.0.tgz";
-        sha512 = "+ONcYoWj/SoQwUofMr94aGu05Ou4FepKi7N7b+O8T4jVfyIsZQV1/xeS8jpaBzF0csAk0KLXoHCxU7cKYZjo1Q==";
+        url = "https://registry.npmjs.org/ext/-/ext-1.6.0.tgz";
+        sha512 = "sdBImtzkq2HpkdRLtlLWDa6w4DX22ijZLKx8BMPUuKe1c5lbN6xwQDQCxSfxBQnHZ13ls/FH0MQZx/q/gr6FQg==";
       };
     };
     "extend-3.0.2" = {
@@ -895,13 +895,13 @@ let
         sha1 = "dc15ca1c672387ca76bd37ac0a395ba2042a2c28";
       };
     };
-    "glob-7.1.7" = {
+    "glob-7.2.0" = {
       name = "glob";
       packageName = "glob";
-      version = "7.1.7";
+      version = "7.2.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/glob/-/glob-7.1.7.tgz";
-        sha512 = "OvD9ENzPLbegENnYP5UUfJIirTg4+XwMWGaQfQTY0JenxNvvIKP3U3/tAQSPIu/lHxXYSZmpXlUHeqAIdKzBLQ==";
+        url = "https://registry.npmjs.org/glob/-/glob-7.2.0.tgz";
+        sha512 = "lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==";
       };
     };
     "glob-parent-3.1.0" = {
@@ -1156,13 +1156,13 @@ let
         sha512 = "NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==";
       };
     };
-    "is-core-module-2.6.0" = {
+    "is-core-module-2.8.0" = {
       name = "is-core-module";
       packageName = "is-core-module";
-      version = "2.6.0";
+      version = "2.8.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/is-core-module/-/is-core-module-2.6.0.tgz";
-        sha512 = "wShG8vs60jKfPWpF2KZRaAtvt3a20OAn7+IJ6hLPECpSABLcKtFKTTI4ZtH5QcBruBHlq+WsdHWyz0BCZW7svQ==";
+        url = "https://registry.npmjs.org/is-core-module/-/is-core-module-2.8.0.tgz";
+        sha512 = "vd15qHsaqrRL7dtH6QNuy0ndJmRDrS9HAM1CAiSifNUFv4x1a0CCVsj18hJ1mShxIG6T2i1sO78MkP56r0nYRw==";
       };
     };
     "is-data-descriptor-0.1.4" = {
@@ -1246,13 +1246,13 @@ let
         sha1 = "7ba5ae24217804ac70707b96922567486cc3e84a";
       };
     };
-    "is-glob-4.0.1" = {
+    "is-glob-4.0.3" = {
       name = "is-glob";
       packageName = "is-glob";
-      version = "4.0.1";
+      version = "4.0.3";
       src = fetchurl {
-        url = "https://registry.npmjs.org/is-glob/-/is-glob-4.0.1.tgz";
-        sha512 = "5G0tKtBTFImOqDnLB2hG6Bp2qcKEFduo4tZu9MT/H6NQv/ghhy30o55ufafxJ/LdH79LLs2Kfrn85TLKyA7BUg==";
+        url = "https://registry.npmjs.org/is-glob/-/is-glob-4.0.3.tgz";
+        sha512 = "xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==";
       };
     };
     "is-negated-glob-1.0.0" = {
@@ -2767,7 +2767,7 @@ in
           sources."is-plain-object-5.0.0"
         ];
       })
-      sources."core-util-is-1.0.2"
+      sources."core-util-is-1.0.3"
       sources."d-1.0.1"
       sources."debug-2.6.9"
       sources."decamelize-1.2.0"
@@ -2808,7 +2808,7 @@ in
         ];
       })
       sources."expand-tilde-2.0.2"
-      (sources."ext-1.5.0" // {
+      (sources."ext-1.6.0" // {
         dependencies = [
           sources."type-2.5.0"
         ];
@@ -2848,7 +2848,7 @@ in
       sources."get-caller-file-1.0.3"
       sources."get-intrinsic-1.1.1"
       sources."get-value-2.0.6"
-      sources."glob-7.1.7"
+      sources."glob-7.2.0"
       (sources."glob-parent-3.1.0" // {
         dependencies = [
           sources."is-glob-3.1.0"
@@ -2882,13 +2882,13 @@ in
       sources."is-arrayish-0.2.1"
       sources."is-binary-path-1.0.1"
       sources."is-buffer-1.1.6"
-      sources."is-core-module-2.6.0"
+      sources."is-core-module-2.8.0"
       sources."is-data-descriptor-1.0.0"
       sources."is-descriptor-1.0.2"
       sources."is-extendable-0.1.1"
       sources."is-extglob-2.1.1"
       sources."is-fullwidth-code-point-1.0.0"
-      sources."is-glob-4.0.1"
+      sources."is-glob-4.0.3"
       sources."is-negated-glob-1.0.0"
       (sources."is-number-3.0.0" // {
         dependencies = [
