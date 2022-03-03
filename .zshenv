@@ -16,5 +16,5 @@ unset SOURCE_DATE_EPOCH
 
 export KIDTRON_CHROME_BIN=/run/current-system/sw/bin/google-chrome-unstable
 export KIDTRON_FIREFOX_BIN=/run/current-system/sw/bin/firefox
-export KIDTRON_SEED_USER=thom+fast-check@bookcreator.com
+export KIDTRON_SEED_USER=thom+south.west.test@bookcreator.com
 

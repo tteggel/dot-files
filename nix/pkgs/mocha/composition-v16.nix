@@ -2,16 +2,16 @@
 
 {pkgs ? import <nixpkgs> {
     inherit system;
-  }, system ? builtins.currentSystem, nodejs ? pkgs."nodejs-10_x"}:
+  }, system ? builtins.currentSystem, nodejs ? pkgs."nodejs-12_x"}:
 
 let
   nodeEnv = import ./node-env.nix {
-    inherit (pkgs) stdenv lib python2 runCommand writeTextFile;
+    inherit (pkgs) stdenv lib python2 runCommand writeTextFile writeShellScript;
     inherit pkgs nodejs;
     libtool = if pkgs.stdenv.isDarwin then pkgs.darwin.cctools else null;
   };
 in
-import ./node-packages-v10.nix {
+import ./node-packages-v16.nix {
   inherit (pkgs) fetchurl nix-gitignore stdenv lib fetchgit;
   inherit nodeEnv;
 }

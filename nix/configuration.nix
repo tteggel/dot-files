@@ -23,16 +23,14 @@ in
       # Local packages
       pbkdf2-sha512 = pkgs.callPackage ./pkgs/pbkdf2-sha512 {};
       firebase-tools = pkgs.callPackage ./pkgs/firebase-tools {};
-      lerna = pkgs.callPackage ./pkgs/lerna {};
-      bower = pkgs.callPackage ./pkgs/bower {};
-      gulp = pkgs.callPackage ./pkgs/gulp {};
-      mocha = pkgs.callPackage ./pkgs/mocha {};
+#      mocha = pkgs.callPackage ./pkgs/mocha {};
       meslo-p10k = pkgs.callPackage ./pkgs/meslo-p10k {};
+      playwright = pkgs.callPackage ./pkgs/playwright {};
 
       # Package selections
       docker = pkgs.docker-edge;
 #      google-chrome-dev = gitPkgs.google-chrome-dev;
-#      nodejs = pkgs.nodejs-16_x;
+      nodejs = pkgs.nodejs-14_x;
 #      nodePackages = pkgs.nodePackages_latest;
 
       # Package overrides
@@ -41,13 +39,15 @@ in
       #  fdkaacExtlib = true;
       #});
 
-      google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
-        version = "354.0.0";
-        src = pkgs.fetchurl {
-          url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
-          hash = "sha256:d8ea1bd3e2b27d8eaa1fc5b6b8424f6a7a2d6e06323563f54e08a48f3d942b4f";
-        };
-      });
+      google-cloud-sdk = gitPkgs.google-cloud-sdk;
+
+      #google-cloud-sdk = pkgs.google-cloud-sdk.overrideAttrs ( oldAttrs: rec {
+      #  version = "365.0.0";
+      #  src = pkgs.fetchurl {
+      #    url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-${version}-linux-x86_64.tar.gz";
+      #    hash = "sha256-gdCtZNyj6X0C6HPThrr8x3tBbXybReXsI4flB1sTP8A=";
+      #  };
+      #});
     };
   };
 
@@ -127,7 +127,12 @@ in
 
   services = {
 
-    printing.enable = true;
+    sshd.enable = true;
+
+    printing = {
+      enable = true;
+      drivers = [ pkgs.hplip ];
+    };
 
     emacs.enable = true;
 
@@ -270,7 +275,7 @@ in
     extraUsers.tteggel = {
       isNormalUser = true;
       uid = 1000;
-      extraGroups = ["wheel" "input" "audio" "video" "docker" "dialout"];
+      extraGroups = ["wheel" "input" "audio" "video" "docker" "dialout" "lpadmin"];
       shell = pkgs.zsh;
       hashedPassword = "$6$YiZNkbac0NjU$g/.gjO05NUXdjzj3z102rzA6xwv3nG/NCpKtNOaYul0lJKtKY6GVNRtB./1Z1QqEPHAXzyJn1U5PmbusscW3R0";
     };
@@ -292,8 +297,12 @@ in
   };
 
   nix = {
-    useSandbox = true;
-    buildCores = 0;  # 0 means auto-detect number of CPUs (and use all)
+    
+    settings = {
+      sandbox = true;
+      build-cores = 0;  # 0 means auto-detect number of CPUs (and use all)
+      auto-optimise-store = true;
+    };
 
     extraOptions = ''
       # To not get caught by the '''"nix-collect-garbage -d" makes
@@ -303,12 +312,12 @@ in
       connect-timeout = 15
     '';
 
-    autoOptimiseStore = true;
-
     # Automatic garbage collection
-    gc.automatic = true;
-    gc.dates = "03:15";
-    gc.options = "--delete-older-than 14d";
+    gc = {
+      automatic = true;
+      dates = "03:15";
+      options = "--delete-older-than 14d";
+    };
   };
 
   system.stateVersion = "18.03";

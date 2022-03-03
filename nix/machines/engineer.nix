@@ -8,21 +8,18 @@
       jetbrains.pycharm-professional
  
       google-chrome
-      #google-chrome-dev
-      firefox
-      firefox-devedition-bin
+      google-chrome-dev
+#      firefox
+#      firefox-devedition-bin
 
       slack
 
       google-cloud-sdk
       firebase-tools
-      bower
-      gulp
-      lerna
 
       nodejs
       yarn
-      mocha
+#      mocha
       nodePackages.node2nix
       
       ngrok
@@ -33,7 +30,7 @@
       binutils
       dep
       gnumake      
-      tree
+      tre-command
       openssl
       jq
       libffi
